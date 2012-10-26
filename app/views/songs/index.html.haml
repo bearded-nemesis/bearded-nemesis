@@ -1,33 +1,34 @@
-%h1 Listing songs
-
-%table
-  %tr
-    %th Name
-    %th Genre
-    %th Guitar
-    %th Bass
-    %th Song
-    %th Drums
-    %th Vocals
-    %th Keyboard
-    %th
-    %th
-    %th
-
-  - @songs.each do |song|
+.span12
+  %h3 Listing songs
+  
+  %table.table.table-striped
     %tr
-      %td= song.name
-      %td= song.genre
-      %td= song.guitar_difficulty
-      %td= song.bass_difficulty
-      %td= song.song_difficulty
-      %td= song.drums_difficulty
-      %td= song.vocals_difficulty
-      %td= song.keyboard_difficulty
-      %td= link_to 'Show', song
-      %td= link_to 'Edit', edit_song_path(song)
-      %td= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Song', new_song_path
+      %th Name
+      %th Genre
+      %th Guitar
+      %th Bass
+      %th Song
+      %th Drums
+      %th Vocals
+      %th Keyboard
+      %th
+      %th
+      %th
+  
+    - @songs.each do |song|
+      %tr
+        %td= song.name
+        %td= song.genre
+        %td= song.guitar_difficulty
+        %td= song.bass_difficulty
+        %td= song.song_difficulty
+        %td= song.drums_difficulty
+        %td= song.vocals_difficulty
+        %td= song.keyboard_difficulty
+        %td= link_to 'Show', song
+        %td= link_to 'Edit', edit_song_path(song)
+        %td= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' }
+  
+  %br
+  
+  = link_to 'New Song', new_song_path
