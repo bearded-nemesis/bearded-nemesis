@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @song.name
+%p
+  %b Genre:
+  = @song.genre
+%p
+  %b Guitar difficulty:
+  = @song.guitar_difficulty
+%p
+  %b Bass difficulty:
+  = @song.bass_difficulty
+%p
+  %b Song difficulty:
+  = @song.song_difficulty
+%p
+  %b Drums difficulty:
+  = @song.drums_difficulty
+%p
+  %b Vocals difficulty:
+  = @song.vocals_difficulty
+%p
+  %b Keyboard difficulty:
+  = @song.keyboard_difficulty
+
+= link_to 'Edit', edit_song_path(@song)
+\|
+= link_to 'Back', songs_path
