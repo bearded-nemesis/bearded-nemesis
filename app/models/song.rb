@@ -11,4 +11,6 @@ class Song < ActiveRecord::Base
                                less_than_or_equal_to: 6}
 
   attr_accessible :bass_difficulty, :drums_difficulty, :genre, :guitar_difficulty, :keyboard_difficulty, :name, :song_difficulty, :vocals_difficulty
+
+  has_many :ratings
 end

@@ -4,7 +4,7 @@ class SongsController < ApplicationController
   # GET /songs
   # GET /songs.json
   def index
-    @songs = Song.all
+    @songs = Song.includes(:ratings).where(ratings: {user_id: user.id})
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,6 +16,7 @@ class SongsController < ApplicationController
   # GET /songs/1.json
   def show
     @song = Song.find(params[:id])
+    @ratings = Rating.find
 
     respond_to do |format|
       format.html # show.html.erb
