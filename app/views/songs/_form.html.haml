@@ -1,34 +1,50 @@
-= form_for @song do |f|
+= form_for @song, :html => {:class => "form-horizontal"} do |f|
   - if @song.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@song.errors.count, "error")} prohibited this song from being saved:"
+      %h5= "#{pluralize(@song.errors.count, "error")} prohibited this song from being saved:"
       %ul
         - @song.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :genre
-    = f.text_field :genre
-  .field
-    = f.label :guitar_difficulty
-    = f.number_field :guitar_difficulty
-  .field
-    = f.label :bass_difficulty
-    = f.number_field :bass_difficulty
-  .field
-    = f.label :song_difficulty
-    = f.number_field :song_difficulty
-  .field
-    = f.label :drums_difficulty
-    = f.number_field :drums_difficulty
-  .field
-    = f.label :vocals_difficulty
-    = f.number_field :vocals_difficulty
-  .field
-    = f.label :keyboard_difficulty
-    = f.number_field :keyboard_difficulty
-  .actions
-    = f.submit 'Save'
+  .control-group
+    = f.label :name, :class => "control-label"
+    .controls
+      = f.text_field :name
+  
+  .control-group
+    = f.label :genre, :class => "control-label"
+    .controls
+      = f.text_field :genre
+      
+  .control-group
+    = f.label :guitar_difficulty, :class => "control-label"
+    .controls
+      = f.number_field :guitar_difficulty      
+      
+  .control-group
+    = f.label :bass_difficulty, :class => "control-label"
+    .controls
+      = f.number_field :bass_difficulty    
+      
+  .control-group
+    = f.label :song_difficulty, :class => "control-label"
+    .controls
+      = f.number_field :song_difficulty    
+      
+  .control-group
+    = f.label :drums_difficulty, :class => "control-label"
+    .controls
+      = f.number_field :drums_difficulty    
+      
+  .control-group
+    = f.label :vocals_difficulty, :class => "control-label"
+    .controls
+      = f.number_field :vocals_difficulty   
+      
+  .control-group
+    = f.label :keyboard_difficulty, :class => "control-label"
+    .controls
+      = f.number_field :keyboard_difficulty           
+  
+  .form-actions    
+    = f.submit 'Save', :class => "btn"

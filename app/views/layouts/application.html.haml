@@ -2,19 +2,36 @@
 %html
   %head
     %title The Bearded Nemesis
-    = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    %link{:rel => "stylesheet", :type => "text/css", :href => "http://fonts.googleapis.com/css?family=Permanent+Marker"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "/bootstrap/css/bootstrap.min.css"}
+    = stylesheet_link_tag "application", :media => "all"    
     = csrf_meta_tags
   %body
-    %header
-      %h1 The Bearded Nemesis
-      %div
-        - if user_signed_in?
-          = link_to "Logout", destroy_user_session_url, :method => :delete
-        - else
-          = link_to "Log in", new_user_session_url
-    #content
-      = yield
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          %a.brand{:href => "/"}
+            The Bearded Nemesis
+          .nav-collapse.collapse
+            %ul.nav
+              %li
+                = link_to "Songs", songs_url
+              %li
+                - if user_signed_in?
+                  = link_to "Logout", destroy_user_session_url, :method => :delete
+                - else
+                  = link_to "Log in", new_user_session_url
+    
+    %section#main
+      .container-fluid
+        .row-fluid        
+          = yield
+          
     %footer
-      This is a footer.
-      Copyright &copy; 2012 The Bearded Nemesis, Inc. LLC.
+      .container-fluid
+        .row-fluid
+          .span12
+            &copy; 2012 The Bearded Nemesis, Inc. LLC.
+      
+    %script{:src => "/bootstrap/js/bootstrap.min.js"}
+    = javascript_include_tag "application"
