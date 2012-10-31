@@ -5,7 +5,7 @@ class SongsController < ApplicationController
   # GET /songs.json
   def index
     @songs = Song.includes(:ratings).where("ratings.user_id IS NULL OR ratings.user_id = ?", current_user.id)
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @songs }
@@ -16,7 +16,7 @@ class SongsController < ApplicationController
   # GET /songs/1.json
   def show
     @song = Song.find(params[:id])
-    @ratings = Rating.where song: @song, user: current_user
+    @ratings = Rating.where(song_id: @song.id, user_id: current_user.id).first
 
     respond_to do |format|
       format.html # show.html.erb

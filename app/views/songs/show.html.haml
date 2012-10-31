@@ -42,9 +42,44 @@
 
 %fieldset
   %legend Your ratings
-  %p
-    %b Guitar
-    = @rating.guitar if @rating
+  - if @ratings
+    %p
+      %b Overall
+      = @ratings.overall
+    %p
+      %b Guitar
+      = @ratings.guitar
+    %p
+      %b Bass
+      = @ratings.bass
+    %p
+      %b Drums
+      = @ratings.drums
+    %p
+      %b Keyboard
+      = @ratings.keyboard
+    %p
+      %b Vocals
+      = @ratings.vocals
+    %p
+      %b Pro Guitar
+      = @ratings.pro_guitar
+    %p
+      %b Pro Bass
+      = @ratings.pro_bass
+    %p
+      %b Pro Drums
+      = @ratings.pro_drums
+    %p
+      %b Pro Keyboard
+      = @ratings.pro_keyboard
+    %p
+      %b Pro Vocals
+      = @ratings.pro_vocals
+    %p
+      = link_to 'Edit your ratings', edit_song_rating_path(@song, @ratings)
+  - else
+    = link_to 'Rate this song', new_song_rating_path(@song)
 
 = link_to 'Edit', edit_song_path(@song)
 \|
