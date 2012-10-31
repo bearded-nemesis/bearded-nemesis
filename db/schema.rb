@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121026010004) do
+ActiveRecord::Schema.define(:version => 20121031213615) do
 
   create_table "ratings", :force => true do |t|
     t.integer  "user_id"
@@ -35,8 +35,13 @@ ActiveRecord::Schema.define(:version => 20121026010004) do
     t.integer  "drums_difficulty"
     t.integer  "vocals_difficulty"
     t.integer  "keyboard_difficulty"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.integer  "pro_guitar_difficulty"
+    t.integer  "pro_keyboard_difficulty"
+    t.integer  "pro_drums_difficulty"
+    t.integer  "pro_bass_difficulty"
+    t.integer  "pro_vocals_difficulty"
   end
 
   create_table "users", :force => true do |t|
