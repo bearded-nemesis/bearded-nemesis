@@ -11,19 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121031213615) do
+ActiveRecord::Schema.define(:version => 20121031220613) do
 
   create_table "ratings", :force => true do |t|
     t.integer  "user_id"
     t.integer  "song_id"
     t.integer  "guitar"
     t.integer  "bass"
-    t.integer  "vocal"
+    t.integer  "vocals"
     t.integer  "overall"
     t.integer  "drums"
     t.integer  "keyboard"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "pro_guitar"
+    t.integer  "pro_keyboard"
+    t.integer  "pro_drums"
+    t.integer  "pro_bass"
+    t.integer  "pro_vocals"
   end
 
   create_table "songs", :force => true do |t|

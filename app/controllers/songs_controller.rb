@@ -4,8 +4,8 @@ class SongsController < ApplicationController
   # GET /songs
   # GET /songs.json
   def index
-    @songs = Song.includes(:ratings).where(ratings: {user_id: current_user.id})
-
+    @songs = Song.includes(:ratings).where("ratings.user_id IS NULL OR ratings.user_id = ?", current_user.id)
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @songs }
