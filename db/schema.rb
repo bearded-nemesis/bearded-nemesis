@@ -13,6 +13,24 @@
 
 ActiveRecord::Schema.define(:version => 20121026031612) do
 
+  create_table "ratings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "song_id"
+    t.integer  "guitar"
+    t.integer  "bass"
+    t.integer  "vocals"
+    t.integer  "overall"
+    t.integer  "drums"
+    t.integer  "keyboard"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "pro_guitar"
+    t.integer  "pro_keyboard"
+    t.integer  "pro_drums"
+    t.integer  "pro_bass"
+    t.integer  "pro_vocals"
+  end
+
   create_table "songs", :force => true do |t|
     t.string   "name"
     t.string   "genre"
@@ -22,9 +40,14 @@ ActiveRecord::Schema.define(:version => 20121026031612) do
     t.integer  "drums_difficulty"
     t.integer  "vocals_difficulty"
     t.integer  "keyboard_difficulty"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
     t.string   "artist"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.integer  "pro_guitar_difficulty"
+    t.integer  "pro_keyboard_difficulty"
+    t.integer  "pro_drums_difficulty"
+    t.integer  "pro_bass_difficulty"
+    t.integer  "pro_vocals_difficulty"
   end
 
   create_table "users", :force => true do |t|
