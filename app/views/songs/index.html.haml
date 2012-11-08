@@ -1,13 +1,14 @@
 .span12
-  %h3 Listing songs
+  %h3 List of songs
   
   %table.table.table-striped
     %tr
       %th Name
+      %th Artist
       %th Genre
-      %th Guitar
-      %th Bass
       %th Song
+      %th Guitar
+      %th Bass      
       %th Drums
       %th Vocals
       %th Keyboard
@@ -18,10 +19,11 @@
     - @songs.each do |song|
       %tr
         %td= song.name
+        %td= song.artist
         %td= song.genre
-        %td= song.guitar_difficulty
-        %td= song.bass_difficulty
         %td= song.song_difficulty
+        %td= song.guitar_difficulty
+        %td= song.bass_difficulty        
         %td= song.drums_difficulty
         %td= song.vocals_difficulty
         %td= song.keyboard_difficulty
