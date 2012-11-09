@@ -32,6 +32,7 @@
           %a.add-ratings Add Ratings
           - if not song.ratings[0].nil?
             %input.rating-id{:type => "hidden", :value => song.ratings[0].id}
+            %input.song-id{:type => "hidden", :value => song.id}
         %td= link_to 'Details', song
         %td= link_to 'Edit', edit_song_path(song)
         %td= link_to 'Remove', song, method: :delete, data: { confirm: 'Are you sure?' }

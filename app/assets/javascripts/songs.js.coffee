@@ -5,9 +5,10 @@
 $(->    
   $('a.add-ratings').click(->
     if $(this).siblings('.rating-id').length > 0
-      ratingId = $(this).siblings('.rating-id').val()
+      songId = $(this).siblings('.song-id').val()
+      ratingId = $(this).siblings('.rating-id').val()      
       
-      url = "/songs/2/ratings/" + ratingId + "/edit.json"
+      url = "/songs/" + songId + "/ratings/" + ratingId + "/edit.json"
       $.get(url, (data)->
         rating.parse(data)
         
