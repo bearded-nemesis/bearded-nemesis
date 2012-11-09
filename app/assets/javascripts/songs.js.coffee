@@ -4,6 +4,15 @@
 
 $(->  
   $('a.add-ratings').click(->
-    $('#ratings-modal').modal('show')  
+    if $(this).siblings('.rating-id').length > 0
+      ratingId = $(this).siblings('.rating-id').val()
+      
+      url = "/songs/2/ratings/" + ratingId + "/edit.json"
+      $.get(url, (data)->
+        $('#ratings-modal').modal('show')
+        console.log data
+      )
+    else
+      alert "No go bro."
   )
 )

@@ -30,6 +30,8 @@
         %td= song.keyboard_difficulty
         %td
           %a.add-ratings Add Ratings
+          - if not song.ratings[0].nil?
+            %input.rating-id{:type => "hidden", :value => song.ratings[0].id}
         %td= link_to 'Details', song
         %td= link_to 'Edit', edit_song_path(song)
         %td= link_to 'Remove', song, method: :delete, data: { confirm: 'Are you sure?' }
@@ -37,8 +39,7 @@
   %br
   
   = link_to 'New Song', new_song_path
-  
-  
+    
   #ratings-modal.modal.hide.fade{:role => "dialog"}
     .modal-header
       %button.close{:type => "button", "data-dismiss" => "modal"}
