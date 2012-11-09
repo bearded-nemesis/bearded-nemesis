@@ -2,8 +2,7 @@
 %html
   %head
     %title The Bearded Nemesis
-    %link{:rel => "stylesheet", :type => "text/css", :href => "http://fonts.googleapis.com/css?family=Permanent+Marker"}
-    %link{:rel => "stylesheet", :type => "text/css", :href => "/bootstrap/css/bootstrap.min.css"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "http://fonts.googleapis.com/css?family=Permanent+Marker"}    
     = stylesheet_link_tag "application", :media => "all"    
     = csrf_meta_tags
   %body
@@ -34,5 +33,4 @@
           .span12
             &copy; 2012 The Bearded Nemesis, Inc. LLC.
       
-    %script{:src => "/bootstrap/js/bootstrap.min.js"}
     = javascript_include_tag "application"

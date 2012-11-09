@@ -15,6 +15,7 @@
       %th
       %th
       %th
+      %th
   
     - @songs.each do |song|
       %tr
@@ -27,6 +28,11 @@
         %td= song.drums_difficulty
         %td= song.vocals_difficulty
         %td= song.keyboard_difficulty
+        %td
+          %a.add-ratings Add Ratings
+          - if not song.ratings[0].nil?
+            %input.rating-id{:type => "hidden", :value => song.ratings[0].id}
+            %input.song-id{:type => "hidden", :value => song.id}
         %td= link_to 'Details', song
         %td= link_to 'Edit', edit_song_path(song)
         %td= link_to 'Remove', song, method: :delete, data: { confirm: 'Are you sure?' }
@@ -34,3 +40,62 @@
   %br
   
   = link_to 'New Song', new_song_path
+    
+  #ratings-modal.modal.hide.fade{:role => "dialog"}
+    .modal-header
+      %button.close{:type => "button", "data-dismiss" => "modal"}
+        ×
+      %h3
+        Your Ratings
+    .modal-body
+      %form.form-horizontal
+        .control-group
+          %label.control-label Guitar
+          .controls
+            %input.drums-rating{:type => "number", "data-bind" => "value: guitar"}
+        .control-group
+          %label.control-label Bass
+          .controls
+            %input.drums-rating{:type => "number", "data-bind" => "value: bass"}
+        .control-group
+          %label.control-label Drums
+          .controls
+            %input.drums-rating{:type => "number", "data-bind" => "value: drums"}
+        .control-group
+          %label.control-label Vocals
+          .controls
+            %input.drums-rating{:type => "number", "data-bind" => "value: vocals"}
+        .control-group
+          %label.control-label Keyboard
+          .controls
+            %input.drums-rating{:type => "number", "data-bind" => "value: keyboard"}
+        .control-group
+          %label.control-label Pro Guitar
+          .controls
+            %input.drums-rating{:type => "number", "data-bind" => "value: pro_guitar"}
+        .control-group
+          %label.control-label Pro Bass
+          .controls
+            %input.drums-rating{:type => "number", "data-bind" => "value: pro_bass"}
+        .control-group
+          %label.control-label Pro Drums
+          .controls
+            %input.drums-rating{:type => "number", "data-bind" => "value: pro_drums"}
+        .control-group
+          %label.control-label Pro Vocals
+          .controls
+            %input.drums-rating{:type => "number", "data-bind" => "value: pro_vocals"}
+        .control-group
+          %label.control-label Pro Keyboard
+          .controls
+            %input.drums-rating{:type => "number", "data-bind" => "value: pro_keyboard"}  
+        .control-group
+          %label.control-label Overall
+          .controls
+            %input.drums-rating{:type => "number", "data-bind" => "value: overall"}   
+    .modal-footer
+      %button.btn{"data-dismiss" => "modal"}
+        Close
+      %button.btn.btn-primary
+        Save changes
+        
