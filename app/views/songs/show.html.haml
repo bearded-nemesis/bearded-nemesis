@@ -1,86 +1,96 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @song.name
-%p
-  %b Genre:
-  = @song.genre
-%p
-  %b Guitar difficulty:
-  = @song.guitar_difficulty
-%p
-  %b Bass difficulty:
-  = @song.bass_difficulty
-%p
-  %b Song difficulty:
-  = @song.song_difficulty
-%p
-  %b Drums difficulty:
-  = @song.drums_difficulty
-%p
-  %b Vocals difficulty:
-  = @song.vocals_difficulty
-%p
-  %b Keyboard difficulty:
-  = @song.keyboard_difficulty
-%p
-  %b Pro Guitar difficulty:
-  = @song.pro_guitar_difficulty
-%p
-  %b Pro Bass difficulty:
-  = @song.pro_bass_difficulty
-%p
-  %b Pro Drums difficulty:
-  = @song.pro_drums_difficulty
-%p
-  %b Pro Vocals difficulty:
-  = @song.pro_vocals_difficulty
-%p
-  %b Pro Keyboard difficulty:
-  = @song.pro_keyboard_difficulty
+.span8.offset2
+  .row-fluid
+    .span12
+      %h3 
+        = @song.name + ' by ' + @song.artist
 
-%fieldset
-  %legend Your ratings
-  - if @ratings
-    %p
-      %b Overall
-      = @ratings.overall
-    %p
-      %b Guitar
-      = @ratings.guitar
-    %p
-      %b Bass
-      = @ratings.bass
-    %p
-      %b Drums
-      = @ratings.drums
-    %p
-      %b Keyboard
-      = @ratings.keyboard
-    %p
-      %b Vocals
-      = @ratings.vocals
-    %p
-      %b Pro Guitar
-      = @ratings.pro_guitar
-    %p
-      %b Pro Bass
-      = @ratings.pro_bass
-    %p
-      %b Pro Drums
-      = @ratings.pro_drums
-    %p
-      %b Pro Keyboard
-      = @ratings.pro_keyboard
-    %p
-      %b Pro Vocals
-      = @ratings.pro_vocals
-    %p
-      = link_to 'Edit your ratings', edit_song_rating_path(@song, @ratings)
-  - else
-    = link_to 'Rate this song', new_song_rating_path(@song)
-
-= link_to 'Edit', edit_song_path(@song)
-\|
-= link_to 'Back', songs_path
+  .row-fluid
+    .span4
+      %fieldset
+        %legend Details
+        %p
+          %b Genre:
+          = @song.genre
+        %p
+          %b Guitar difficulty:
+          = @song.guitar_difficulty
+        %p
+          %b Bass difficulty:
+          = @song.bass_difficulty
+        %p
+          %b Song difficulty:
+          = @song.song_difficulty
+        %p
+          %b Drums difficulty:
+          = @song.drums_difficulty
+        %p
+          %b Vocals difficulty:
+          = @song.vocals_difficulty
+        %p
+          %b Keyboard difficulty:
+          = @song.keyboard_difficulty
+        %p
+          %b Pro Guitar difficulty:
+          = @song.pro_guitar_difficulty
+        %p
+          %b Pro Bass difficulty:
+          = @song.pro_bass_difficulty
+        %p
+          %b Pro Drums difficulty:
+          = @song.pro_drums_difficulty
+        %p
+          %b Pro Vocals difficulty:
+          = @song.pro_vocals_difficulty
+        %p
+          %b Pro Keyboard difficulty:
+          = @song.pro_keyboard_difficulty
+      
+    .span4.offset2
+      %fieldset
+        %legend Your ratings
+        - if @ratings
+          %p
+            %b Overall
+            = @ratings.overall
+          %p
+            %b Guitar
+            = @ratings.guitar
+          %p
+            %b Bass
+            = @ratings.bass
+          %p
+            %b Drums
+            = @ratings.drums
+          %p
+            %b Keyboard
+            = @ratings.keyboard
+          %p
+            %b Vocals
+            = @ratings.vocals
+          %p
+            %b Pro Guitar
+            = @ratings.pro_guitar
+          %p
+            %b Pro Bass
+            = @ratings.pro_bass
+          %p
+            %b Pro Drums
+            = @ratings.pro_drums
+          %p
+            %b Pro Keyboard
+            = @ratings.pro_keyboard
+          %p
+            %b Pro Vocals
+            = @ratings.pro_vocals
+          %p
+            = link_to 'Edit your ratings', edit_song_rating_path(@song, @ratings)
+        - else
+          = link_to 'Rate this song', new_song_rating_path(@song)
+    
+  .row-fluid  
+    .span12
+      = link_to 'Edit', edit_song_path(@song)
+      \|
+      = link_to 'Back', songs_path
