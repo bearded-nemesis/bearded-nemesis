@@ -4,7 +4,7 @@
   .row-fluid
     .span12
       %h3 
-        = @song.name + ' by ' + @song.artist
+        = @song.name + (@song.artist ? ' by ' + @song.artist : "")
 
   .row-fluid
     .span4
