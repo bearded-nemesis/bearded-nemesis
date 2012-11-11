@@ -1,6 +1,9 @@
 BeardedNemesis::Application.routes.draw do
   resources :songs do
     resources :ratings
+    member do
+      post :own
+    end
   end
 
   devise_for :users

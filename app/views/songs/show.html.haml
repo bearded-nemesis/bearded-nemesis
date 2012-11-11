@@ -88,7 +88,13 @@
             = link_to 'Edit your ratings', edit_song_rating_path(@song, @ratings)
         - else
           = link_to 'Rate this song', new_song_rating_path(@song)
-    
+      %fieldset
+        %legend Status
+        %form(action="#{own_song_path @song}" method="POST")
+          Owned?
+          =check_box_tag "does_own", !@is_owned, @is_owned
+          = token_tag nil
+          %input(type="submit")
   .row-fluid  
     .span12
       = link_to 'Edit', edit_song_path(@song)

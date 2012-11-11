@@ -25,6 +25,7 @@ class Song < ActiveRecord::Base
                   :pro_vocals_difficulty
 
   has_many :ratings
+  has_and_belongs_to_many :users
 
   def convert_blank_ratings_to_nil
     bass_difficulty

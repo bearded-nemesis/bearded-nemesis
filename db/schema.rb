@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121109003954) do
+ActiveRecord::Schema.define(:version => 20121111222123) do
 
   create_table "ratings", :force => true do |t|
     t.integer  "user_id"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(:version => 20121109003954) do
     t.integer  "pro_vocals_difficulty"
     t.string   "artist"
   end
+
+  create_table "songs_users", :id => false, :force => true do |t|
+    t.integer "song_id"
+    t.integer "user_id"
+  end
+
+  add_index "songs_users", ["song_id", "user_id"], :name => "index_songs_users_on_song_id_and_user_id"
+  add_index "songs_users", ["user_id", "song_id"], :name => "index_songs_users_on_user_id_and_song_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

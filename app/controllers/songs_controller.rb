@@ -1,5 +1,6 @@
 class SongsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :get_song, except: [:index, :new, :create]
 
   # GET /songs
   # GET /songs.json
@@ -15,8 +16,8 @@ class SongsController < ApplicationController
   # GET /songs/1
   # GET /songs/1.json
   def show
-    @song = Song.find(params[:id])
     @ratings = Rating.where(song_id: @song.id, user_id: current_user.id).first
+    @is_owned = current_user_owns_song
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,7 +38,6 @@ class SongsController < ApplicationController
 
   # GET /songs/1/edit
   def edit
-    @song = Song.find(params[:id])
   end
 
   # POST /songs
@@ -59,8 +59,6 @@ class SongsController < ApplicationController
   # PUT /songs/1
   # PUT /songs/1.json
   def update
-    @song = Song.find(params[:id])
-
     respond_to do |format|
       if @song.update_attributes(params[:song])
         format.html { redirect_to @song, notice: 'Song was successfully updated.' }
@@ -75,12 +73,39 @@ class SongsController < ApplicationController
   # DELETE /songs/1
   # DELETE /songs/1.json
   def destroy
-    @song = Song.find(params[:id])
     @song.destroy
 
     respond_to do |format|
       format.html { redirect_to songs_url }
       format.json { head :no_content }
     end
+  end
+
+  def own
+    if params[:does_own]
+      @song.users << current_user unless current_user_owns_song
+    else
+      @song.users.delete current_user if current_user_owns_song
+    end
+
+    respond_to do |format|
+      if @song.save
+        format.html { redirect_to @song, notice: 'Saved.' }
+        format.json { render json: @song, status: :saved, location: @song }
+      else
+        format.html { redirect_to @song }
+        format.json { render json: @song.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  private
+
+  def current_user_owns_song
+    @song.users.find_by_id current_user.id
+  end
+
+  def get_song
+    @song = Song.find params[:id]
   end
 end
