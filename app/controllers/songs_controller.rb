@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_song, except: [:index, :new, :create]
+  before_filter :get_song, except: [:index, :mine, :new, :create]
 
   # GET /songs
   # GET /songs.json
@@ -11,6 +11,17 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.json { render json: @songs }
+    end
+  end
+
+  def mine
+    @songs = Song.includes(:ratings, :users)
+    .where("(ratings.user_id IS NULL OR ratings.user_id = ?) AND (songs_users.user_id = ?)",
+           current_user.id, current_user.id)
+
+    respond_to do |format|
+      format.html { render action: "index" }
       format.json { render json: @songs }
     end
   end

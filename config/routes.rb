@@ -1,6 +1,11 @@
 BeardedNemesis::Application.routes.draw do
   resources :songs do
     resources :ratings
+
+    collection do
+      get :mine
+    end
+
     member do
       post :own
     end
