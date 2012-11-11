@@ -3,6 +3,7 @@
   
   %table.table.table-striped
     %tr
+      %th Owned
       %th Name
       %th Artist
       %th Genre
@@ -19,6 +20,7 @@
   
     - @songs.each do |song|
       %tr
+        %td= song.users.exists? current_user
         %td= song.name
         %td= song.artist
         %td= song.genre
