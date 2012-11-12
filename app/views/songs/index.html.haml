@@ -20,7 +20,7 @@
   
     - @songs.each do |song|
       %tr
-        %td= song.users.exists? current_user
+        %td= @owned_songs.any? {|owned| owned == song}
         %td= song.name
         %td= song.artist
         %td= song.genre

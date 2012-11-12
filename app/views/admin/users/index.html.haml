@@ -1,0 +1,10 @@
+%h1 Users
+%table.table.table-striped
+  %thead
+    %tr
+      %th Email address
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.email
+

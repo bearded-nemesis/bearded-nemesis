@@ -11,6 +11,10 @@ BeardedNemesis::Application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :users
+  end
+
   devise_for :users
 
   root :to => "home#index"

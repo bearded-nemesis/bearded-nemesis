@@ -6,8 +6,9 @@ class SongsController < ApplicationController
   # GET /songs.json
   def index
     @songs = Song.includes(:ratings, :users)
-      .where("(ratings.user_id IS NULL OR ratings.user_id = ?) AND (songs_users.user_id IS NULL OR songs_users.user_id = ?)",
-             current_user.id, current_user.id)
+      .where("(ratings.user_id IS NULL OR ratings.user_id = ?)",
+             current_user.id)
+    @owned_songs = current_user.songs
 
     respond_to do |format|
       format.html # index.html.erb
