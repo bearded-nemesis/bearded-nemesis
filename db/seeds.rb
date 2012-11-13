@@ -8,7 +8,7 @@
 User.delete_all
 admin_user = User.create email: "admin@example.com",
                          password: "password",
-                         is_admin: true
+                         admin: true
 user = User.create email: "user@example.com",
                    password: "password"
 
