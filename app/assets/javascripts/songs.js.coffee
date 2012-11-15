@@ -16,6 +16,17 @@ $(->
       )
     else
       alert "No go bro."
+  )
+  
+  $('button#save-ratings').click(->
+    url = "/songs/3/ratings/2/edit.json"
+    $.ajax '/',
+      type: 'PUT'
+      dataType: 'application' 
+      error: (jqXHR, textStatus, errorThrown) ->
+        $('body').append "AJAX Error: #{textStatus}"
+      success: (data, textStatus, jqXHR) ->
+        $('body').append "Successful AJAX call: #{data}"
   ) 
   
   ko.applyBindings(rating) 
