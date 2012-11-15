@@ -11,6 +11,8 @@ admin_user = User.create email: "admin@example.com",
                          admin: true
 user = User.create email: "user@example.com",
                    password: "password"
+User.create email: "bro@example.com",
+            password: "yousuck"
 
 Song.delete_all
 song1 = Song.create artist: "The Gathering",
