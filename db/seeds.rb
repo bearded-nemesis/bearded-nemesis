@@ -62,3 +62,10 @@ song3 = Song.create artist: "Nine Inch Nails",
 
 song1.users << user
 song2.users << admin_user
+
+song1.ratings.build overall: 2,
+                    user: admin_user
+song1.save!
+song2.ratings.build bass: 3,
+                    user: user
+song2.save!

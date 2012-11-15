@@ -32,7 +32,7 @@
         %td= song.keyboard_difficulty
         %td
           %a.add-ratings Add Ratings
-          - if not song.ratings[0].nil?
+          - if @rated_songs.any? {|rated| rated == song }
             %input.rating-id{:type => "hidden", :value => song.ratings[0].id}
             %input.song-id{:type => "hidden", :value => song.id}
         %td= link_to 'Details', song
