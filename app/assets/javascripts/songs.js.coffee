@@ -12,22 +12,20 @@ $(->
       $.get(url, (data)->
         rating.parse(data)
         
+        $("#ratings-modal form").attr("action", "/songs/2/ratings/1.json").attr("method", "put");
         $('#ratings-modal').modal('show')        
       )
     else
       alert "No go bro."
   )
   
-  $('button#save-ratings').click(->
-    url = "/songs/3/ratings/2/edit.json"
-    $.ajax '/',
-      type: 'PUT'
-      dataType: 'application' 
-      error: (jqXHR, textStatus, errorThrown) ->
-        $('body').append "AJAX Error: #{textStatus}"
-      success: (data, textStatus, jqXHR) ->
-        $('body').append "Successful AJAX call: #{data}"
-  ) 
+  $('#ratings-modal form').ajaxForm(-> 
+    alert "Thank you for your comment!" 
+  )
+  
+  $('#save-ratings').click(->
+    $('#ratings-modal form').submit()    
+  )
   
   ko.applyBindings(rating) 
 )
