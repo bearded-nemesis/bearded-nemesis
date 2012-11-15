@@ -52,51 +52,7 @@
       %h3
         Your Ratings
     .modal-body
-      %form.form-horizontal
-        .control-group
-          %label.control-label Guitar
-          .controls
-            %input.drums-rating{:type => "number", "data-bind" => "value: guitar"}
-        .control-group
-          %label.control-label Bass
-          .controls
-            %input.drums-rating{:type => "number", "data-bind" => "value: bass"}
-        .control-group
-          %label.control-label Drums
-          .controls
-            %input.drums-rating{:type => "number", "data-bind" => "value: drums"}
-        .control-group
-          %label.control-label Vocals
-          .controls
-            %input.drums-rating{:type => "number", "data-bind" => "value: vocals"}
-        .control-group
-          %label.control-label Keyboard
-          .controls
-            %input.drums-rating{:type => "number", "data-bind" => "value: keyboard"}
-        .control-group
-          %label.control-label Pro Guitar
-          .controls
-            %input.drums-rating{:type => "number", "data-bind" => "value: pro_guitar"}
-        .control-group
-          %label.control-label Pro Bass
-          .controls
-            %input.drums-rating{:type => "number", "data-bind" => "value: pro_bass"}
-        .control-group
-          %label.control-label Pro Drums
-          .controls
-            %input.drums-rating{:type => "number", "data-bind" => "value: pro_drums"}
-        .control-group
-          %label.control-label Pro Vocals
-          .controls
-            %input.drums-rating{:type => "number", "data-bind" => "value: pro_vocals"}
-        .control-group
-          %label.control-label Pro Keyboard
-          .controls
-            %input.drums-rating{:type => "number", "data-bind" => "value: pro_keyboard"}  
-        .control-group
-          %label.control-label Overall
-          .controls
-            %input.drums-rating{:type => "number", "data-bind" => "value: overall"}   
+      = render :partial => "/ratings/form", :locals => {:song => @song, :rating => @rating}  
     .modal-footer
       %button.btn{"data-dismiss" => "modal"}
         Close
