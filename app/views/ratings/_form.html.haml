@@ -9,57 +9,57 @@
   .control-group
     = f.label :guitar, :class => "control-label"
     .controls
-      = f.number_field :guitar      
+      = f.number_field :guitar, "data-bind" => "value: guitar"      
       
   .control-group
     = f.label :bass, :class => "control-label"
     .controls
-      = f.number_field :bass
+      = f.number_field :bass, "data-bind" => "value: bass"
       
   .control-group
     = f.label :drums, :class => "control-label"
     .controls
-      = f.number_field :drums    
+      = f.number_field :drums, "data-bind" => "value: drums"    
       
   .control-group
     = f.label :vocals, :class => "control-label"
     .controls
-      = f.number_field :vocals   
+      = f.number_field :vocals, "data-bind" => "value: vocals"   
       
   .control-group
     = f.label :keyboard, :class => "control-label"
     .controls
-      = f.number_field :keyboard    
+      = f.number_field :keyboard, "data-bind" => "value: keyboard"    
       
   .control-group
     = f.label :pro_guitar, :class => "control-label"
     .controls
-      = f.number_field :pro_guitar      
+      = f.number_field :pro_guitar, "data-bind" => "value: pro_guitar"      
       
   .control-group
     = f.label :pro_bass, :class => "control-label"
     .controls
-      = f.number_field :pro_bass
+      = f.number_field :pro_bass, "data-bind" => "value: pro_bass"
       
   .control-group
     = f.label :pro_drums, :class => "control-label"
     .controls
-      = f.number_field :pro_drums    
+      = f.number_field :pro_drums, "data-bind" => "value: pro_drums"
       
   .control-group
     = f.label :pro_vocals, :class => "control-label"
     .controls
-      = f.number_field :pro_vocals   
+      = f.number_field :pro_vocals, "data-bind" => "value: pro_vocals"   
       
   .control-group
     = f.label :pro_keyboard, :class => "control-label"
     .controls
-      = f.number_field :pro_keyboard
+      = f.number_field :pro_keyboard, "data-bind" => "value: pro_keyboard"
 
   .control-group
     = f.label :overall, :class => "control-label"
     .controls
-      = f.number_field :overall
+      = f.number_field :overall, "data-bind" => "value: overall"
   
   .form-actions    
     = f.submit 'Save', :class => "btn"

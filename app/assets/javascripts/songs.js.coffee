@@ -3,20 +3,32 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(->    
-  $('a.add-ratings').click(->
-    if $(this).siblings('.rating-id').length > 0
-      songId = $(this).siblings('.song-id').val()
-      ratingId = $(this).siblings('.rating-id').val()      
-      
-      url = "/songs/" + songId + "/ratings/" + ratingId + "/edit.json"
+  $('.add-ratings').click((evt)->
+    evt.preventDefault()
+    
+    url = $(this).attr("href")
+    method = $(this).data("http-method")      
+    
+    $modal = $("#ratings-modal") 
+    $modal.find("form").attr("action", url).attr("method", method)
+    
+    if (method == "PUT")
       $.get(url, (data)->
         rating.parse(data)
-        
-        $('#ratings-modal').modal('show')        
+                
+        $modal.modal('show')        
       )
     else
-      alert "No go bro."
-  ) 
+      $modal.modal('show')            
+  )
+  
+  $('#ratings-modal form').ajaxForm(-> 
+    $("#ratings-modal").modal("hide")   
+  )
+  
+  $('#save-ratings').click(->
+    $('#ratings-modal form').submit()    
+  )
   
   ko.applyBindings(rating) 
 )

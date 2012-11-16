@@ -11,6 +11,9 @@ class SongsController < ApplicationController
     @owned_songs = current_user.songs
     @rated_songs = current_user.ratings
 
+    @song = Song.first
+    @rating = @song.ratings.build user: current_user
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @songs }

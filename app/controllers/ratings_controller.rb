@@ -10,6 +10,18 @@ class RatingsController < ApplicationController
     end
   end
 
+  # GET /songs/1/ratings/1
+  # GET /songs/1/ratings/1.json
+  def show
+    @song = Song.find params[:song_id]
+    @rating = Rating.find params[:id]
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @rating }
+    end
+  end
+
   def edit
     @song = Song.find params[:song_id]
     @rating = Rating.find params[:id]
@@ -20,6 +32,8 @@ class RatingsController < ApplicationController
     end
   end
 
+  # POST /songs/1/ratings
+  # POST /songs/1/ratings.json
   def create
     @song = Song.find params[:song_id]
     @rating = Rating.new(params[:rating].merge(user: current_user, song: @song))
@@ -35,6 +49,8 @@ class RatingsController < ApplicationController
     end
   end
 
+  # PUT /songs/1/ratings/1
+  # PUT /songs/1/ratings/1.json
   def update
     @song = Song.find params[:song_id]
     @rating = Rating.find params[:id]
