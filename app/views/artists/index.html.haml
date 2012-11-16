@@ -1,0 +1,9 @@
+.span12
+  %h3 List of artists
+
+  %table.table.table-striped
+    %tr
+      %th Name
+    - @artists.each do |artist|
+      %tr
+        %td= link_to artist, show_artists_path(artist)

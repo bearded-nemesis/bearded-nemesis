@@ -1,0 +1,38 @@
+%table.table.table-striped
+  %tr
+    %th Owned
+    %th Name
+    %th Artist
+    %th Genre
+    %th Song
+    %th Guitar
+    %th Bass
+    %th Drums
+    %th Vocals
+    %th Keyboard
+    %th
+    %th
+    %th
+    %th
+
+  = render @songs
+
+%br
+
+= link_to 'New Song', new_song_path
+|
+= link_to 'My Songs', mine_songs_path
+
+#ratings-modal.modal.hide.fade{:role => "dialog"}
+  .modal-header
+    %button.close{:type => "button", "data-dismiss" => "modal"}
+      ×
+    %h3
+      Your Ratings
+  .modal-body
+    = render :partial => "/ratings/form", :locals => {:song => @song, :rating => @rating}
+  .modal-footer
+    %button.btn{"data-dismiss" => "modal"}
+      Close
+    %button#save-ratings.btn.btn-primary
+      Save changes
