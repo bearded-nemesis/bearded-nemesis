@@ -22,6 +22,16 @@ $(->
       $modal.modal('show')            
   )
   
+  $(".star-rating a").click((evt)->
+    evt.preventDefault()      
+    
+    $wrapper = $(this).closest(".star-rating");
+    $wrapper.find("a").removeClass("current-rating")
+    $wrapper.siblings("[type=hidden]").val($(this).text())
+    
+    $(this).addClass("current-rating")       
+  )
+  
   $('#ratings-modal form').ajaxForm(-> 
     $("#ratings-modal").modal("hide")   
   )
@@ -39,10 +49,23 @@ $(->
     $.post url, {'does_own': !does_own}, (data)->
       link.toggleClass "label-success"
       link.text if does_own then "No" else "Yes"
-  )
+  )  
 
   ko.applyBindings(rating) 
 )
+
+ko.bindingHandlers.checkStarRating = {
+  update: (element, valueAccessor, allBindingsAccessor) ->
+    value = valueAccessor()
+    allBindings = allBindingsAccessor()         
+    valueUnwrapped = ko.utils.unwrapObservable(value)         
+    ratingIndex = allBindings.ratingIndex
+    
+    if (valueUnwrapped == ratingIndex)  
+      $(element).addClass("current-rating")
+    else
+      $(element).removeClass("current-rating")    
+}
 
 rating = {
     guitar: ko.observable(),
