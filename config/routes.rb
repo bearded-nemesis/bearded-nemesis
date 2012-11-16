@@ -11,6 +11,9 @@ BeardedNemesis::Application.routes.draw do
     end
   end
 
+  get "/genres" => "genres#index"
+  get "/genres/:name" => "genres#show", as: "show_genres"
+
   namespace :admin do
     resources :users
   end
