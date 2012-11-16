@@ -12,11 +12,12 @@
           %a.brand{:href => "/"}
             The Bearded Nemesis
           .nav-collapse.collapse
-            %ul.nav
-              %li= link_to "Songs", songs_url
-              %li= link_to "Genres", genres_url
-              %li= link_to "Artists", artists_url
-              %li= link_to "Users", admin_users_path if is_user_admin?
+            - if user_signed_in?
+              %ul.nav
+                %li= link_to "Songs", songs_url
+                %li= link_to "Genres", genres_url
+                %li= link_to "Artists", artists_url
+                %li= link_to "Users", admin_users_path if is_user_admin?
             %ul.nav.pull-right
               %li
                 - if user_signed_in?
