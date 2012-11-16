@@ -3,20 +3,18 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(->    
-  $('a.add-ratings').click(->
-    if $(this).siblings('.rating-id').length > 0
-      songId = $(this).siblings('.song-id').val()
-      ratingId = $(this).siblings('.rating-id').val()      
+  $('.add-ratings').click((evt)->
+    evt.preventDefault()
+    
+    url = $(this).attr("href")
+    method = $(this).data("http-method")      
+    
+    $.get(url, (data)->
+      rating.parse(data)
       
-      url = "/songs/" + songId + "/ratings/" + ratingId + "/edit.json"
-      $.get(url, (data)->
-        rating.parse(data)
-        
-        $("#ratings-modal form").attr("action", "/songs/2/ratings/1.json").attr("method", "put");
-        $('#ratings-modal').modal('show')        
-      )
-    else
-      alert "No go bro."
+      $("#ratings-modal form").attr("action", url).attr("method", method)
+      $('#ratings-modal').modal('show')        
+    )
   )
   
   $('#ratings-modal form').ajaxForm(-> 

@@ -10,6 +10,18 @@ class RatingsController < ApplicationController
     end
   end
 
+  # GET /songs/1/ratings/1
+  # GET /songs/1/ratings/1.json
+  def show
+    @song = Song.find params[:song_id]
+    @rating = Rating.find params[:id]
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @rating }
+    end
+  end
+
   def edit
     @song = Song.find params[:song_id]
     @rating = Rating.find params[:id]

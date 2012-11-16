@@ -3,7 +3,7 @@ module RatingsHelper
     if rating.nil?
       new_song_rating_path(song, :format => "json")
     else
-      edit_song_rating_path(song, rating, :format => "json")    
+      song_rating_path(song, rating, :format => "json")    
     end    
   end
   
