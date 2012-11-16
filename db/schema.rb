@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112002103) do
+ActiveRecord::Schema.define(:version => 20121115234718) do
 
   create_table "ratings", :force => true do |t|
     t.integer  "user_id"
@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(:version => 20121112002103) do
     t.integer  "pro_drums_difficulty"
     t.integer  "pro_bass_difficulty"
     t.integer  "pro_vocals_difficulty"
+    t.integer  "year"
+    t.date     "release_date"
+    t.string   "source"
   end
 
   create_table "songs_users", :id => false, :force => true do |t|

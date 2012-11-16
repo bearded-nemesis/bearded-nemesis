@@ -1,4 +1,15 @@
 class Song < ActiveRecord::Base
+  SOURCES = ["Rock Band 1",
+             "Rock Band 2",
+             "Rock Band 3",
+             "Downloadable Content",
+             "Rock Band Network",
+             "The Beatles: Rock Band",
+             "Lego Rock Band",
+             "Green Day: Rock Band",
+             "Rock Band Track Pack Country 2",
+             "Rock Band Track Pack AC/DC Live"]
+
   before_save :convert_blank_ratings_to_nil
 
   validates :artist, :name, :genre, presence: true
@@ -22,7 +33,7 @@ class Song < ActiveRecord::Base
                   :song_difficulty, :vocals_difficulty,
                   :pro_keyboard_difficulty, :pro_drums_difficulty,
                   :pro_guitar_difficulty, :pro_bass_difficulty,
-                  :pro_vocals_difficulty
+                  :pro_vocals_difficulty, :year, :release_date, :source
 
   has_many :ratings
   has_and_belongs_to_many :users
