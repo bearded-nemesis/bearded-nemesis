@@ -100,7 +100,7 @@ class SongsController < ApplicationController
   end
 
   def own
-    if params[:does_own]
+    if params[:does_own] == "true"
       @song.users << current_user unless current_user_owns_song
     else
       @song.users.delete current_user if current_user_owns_song

@@ -29,7 +29,18 @@ $(->
   $('#save-ratings').click(->
     $('#ratings-modal form').submit()    
   )
-  
+
+  $('.ownership').click((evt)->
+    evt.preventDefault()
+    link = $(this)
+    url = link.data("url");
+    does_own = link.hasClass "label-success"
+
+    $.post url, {'does_own': !does_own}, (data)->
+      link.toggleClass "label-success"
+      link.text if does_own then "No" else "Yes"
+  )
+
   ko.applyBindings(rating) 
 )
 
