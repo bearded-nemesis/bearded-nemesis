@@ -41,7 +41,7 @@ class RatingsController < ApplicationController
     respond_to do |format|
       if @rating.save
         format.html { redirect_to @song, notice: 'Ratings were successfully created.' }
-        format.json { render json: @song, status: :created, location: @song }
+        format.json { render json: {rating: @rating, url: edit_song_rating_path(@song, @rating)}, status: :created, location: @song }
       else
         format.html { render action: "new" }
         format.json { render json: @rating.errors, status: :unprocessable_entity }
