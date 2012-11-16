@@ -1,7 +1,7 @@
 module RatingsHelper
   def get_ratings_url(song, rating)
     if rating.nil?
-      new_song_rating_path(song, :format => "json")
+      song_ratings_path(song, :format => "json")
     else
       song_rating_path(song, rating, :format => "json")    
     end    

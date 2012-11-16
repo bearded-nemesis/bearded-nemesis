@@ -9,16 +9,21 @@ $(->
     url = $(this).attr("href")
     method = $(this).data("http-method")      
     
-    $.get(url, (data)->
-      rating.parse(data)
-      
-      $("#ratings-modal form").attr("action", url).attr("method", method)
-      $('#ratings-modal').modal('show')        
-    )
+    $modal = $("#ratings-modal") 
+    $modal.find("form").attr("action", url).attr("method", method)
+    
+    if (method == "PUT")
+      $.get(url, (data)->
+        rating.parse(data)
+                
+        $modal.modal('show')        
+      )
+    else
+      $modal.modal('show')            
   )
   
   $('#ratings-modal form').ajaxForm(-> 
-    alert "Thank you for your comment!" 
+    $("#ratings-modal").modal("hide")   
   )
   
   $('#save-ratings').click(->
