@@ -7,7 +7,7 @@ $(->
     evt.preventDefault()
     
     url = $(this).attr("href")
-    method = $(this).data("http-method")      
+    method = $(this).data("httpMethod")
     
     $modal = $("#ratings-modal") 
     $modal.find("form").attr("action", url).attr("method", method)
@@ -19,6 +19,7 @@ $(->
         $modal.modal('show')        
       )
     else
+      rating.parse {}
       $modal.modal('show')            
   )
   

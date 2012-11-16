@@ -10,7 +10,8 @@
   %td= song.vocals_difficulty
   %td= song.keyboard_difficulty
   %td
-    %a.add-ratings{"href" => get_ratings_url(song, @rated_songs.find {|rated| rated.song == song}), "data-http-method" => get_ratings_method(song.ratings[0])}
+    %a.add-ratings{"href" => get_ratings_url(song, @rated_songs.find {|rated| rated.song == song}),
+      "data-http-method" => get_ratings_method(@rated_songs.find {|rated| rated.song == song})}
       Rate
   %td= link_to 'Details', song
   %td= link_to 'Edit', edit_song_path(song)
