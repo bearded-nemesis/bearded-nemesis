@@ -6,10 +6,6 @@ class ArtistsController < ApplicationController
   def show
     @artist = params[:name]
     @songs = Song.find_all_by_artist @artist
-    @owned_songs = current_user.songs
-    @rated_songs = current_user.ratings
-
-    @song = Song.first
-    @rating = @song.ratings.build user: current_user
+    prepare_song_list
   end
 end

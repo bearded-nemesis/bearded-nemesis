@@ -11,7 +11,7 @@
   %td= song.keyboard_difficulty
   %td
     %a.add-ratings{"href" => get_ratings_url(song, @rated_songs.find {|rated| rated.song == song}), "data-http-method" => get_ratings_method(song.ratings[0])}
-      Add Ratings
+      Rate
   %td= link_to 'Details', song
   %td= link_to 'Edit', edit_song_path(song)
   %td= link_to 'Remove', song, method: :delete, data: { confirm: 'Are you sure?' }

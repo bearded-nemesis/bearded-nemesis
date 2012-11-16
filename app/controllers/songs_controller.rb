@@ -6,11 +6,12 @@ class SongsController < ApplicationController
   # GET /songs.json
   def index
     @songs = Song.all
-    @owned_songs = current_user.songs
-    @rated_songs = current_user.ratings
+    prepare_song_list
+    #@owned_songs = current_user.songs
+    #@rated_songs = current_user.ratings
 
-    @song = Song.first
-    @rating = @song.ratings.build user: current_user
+    #@song = Song.first
+    #@rating = @song.ratings.build user: current_user
 
     respond_to do |format|
       format.html # index.html.erb
