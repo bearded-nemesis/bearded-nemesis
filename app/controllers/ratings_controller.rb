@@ -58,7 +58,7 @@ class RatingsController < ApplicationController
     respond_to do |format|
       if @rating.update_attributes(params[:rating])
         format.html { redirect_to @song, notice: 'Ratings were successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: @rating }
       else
         format.html { render action: "edit" }
         format.json { render json: @rating.errors, status: :unprocessable_entity }
