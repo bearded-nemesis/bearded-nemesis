@@ -1,5 +1,7 @@
 %p#notice= notice
 
+= image_tag avatar_url(@user, 200)
+
 %h2 Friends
 %ul
   - @friendships.each do |friendship|
@@ -9,7 +11,7 @@
 
 = link_to "Find Friends", users_path
 
-%h2 Friend by Users
+%h2 Friended by:
 %ul
   - @user.inverse_friends.each do |user|
     %li= user.email

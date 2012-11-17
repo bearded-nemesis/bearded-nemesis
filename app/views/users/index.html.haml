@@ -2,6 +2,7 @@
 
 %table
   %tr
+    %th
     %th Email Address
     %th
     %th
@@ -9,6 +10,7 @@
 
   - @users.each do |user|
     %tr
+      %th= image_tag avatar_url(user, 24)
       %td= link_to user.email, user
       %td= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post
       %td= link_to 'Edit', edit_user_path(user) if is_user_admin?
