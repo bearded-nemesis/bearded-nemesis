@@ -1,5 +1,18 @@
 %p#notice= notice
 
+%h2 Friends
+%ul
+  - @friendships.each do |friendship|
+    %li
+      =h friendship.friend.email
+      = link_to "remove", friendship, method: :delete if @user == current_user
+
+= link_to "Find Friends", users_path
+
+%h2 Friend by Users
+%ul
+  - @user.inverse_friends.each do |user|
+    %li= user.email
 
 = link_to 'Edit', edit_user_path(@user)
 \|

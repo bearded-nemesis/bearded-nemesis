@@ -1,5 +1,6 @@
 BeardedNemesis::Application.routes.draw do
   resources :friendships
+  resources :users
 
   resources :songs do
     resources :ratings

@@ -2,16 +2,16 @@
 
 %table
   %tr
+    %th Email Address
     %th
     %th
     %th
 
   - @users.each do |user|
     %tr
-      %td= link_to 'Show', user
-      %td= link_to 'Edit', edit_user_path(user)
-      %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+      %td= link_to user.email, user
+      %td= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post
+      %td= link_to 'Edit', edit_user_path(user) if is_user_admin?
+      %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }if is_user_admin?
 
 %br
-
-= link_to 'New User', new_user_path
