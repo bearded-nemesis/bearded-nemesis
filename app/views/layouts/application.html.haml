@@ -11,7 +11,7 @@
         .container-fluid
           %a.brand{:href => "/"}
             The Bearded Nemesis
-          .nav-collapse.collapse
+          .nav-collapse
             - if user_signed_in?
               %ul.nav
                 %li= link_to "Songs", songs_url
@@ -21,9 +21,12 @@
                 %li= link_to "Users", admin_users_path if is_user_admin?
             %ul.nav.pull-right
               - if user_signed_in?
-                %li
-                  %a{:href => user_path(current_user)}
+                %li.dropdown
+                  %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#", id: "dLabel", role: "button"}
                     = image_tag avatar_url(current_user, 20)
+                    %b.caret
+                  %ul.dropdown-menu{role: "menu", "aria-labelledby" => "dLabel"}
+                    %li= link_to "Details", user_path(current_user)
                 %li= link_to "Logout", destroy_user_session_url, :method => :delete
               - else
                 %li= link_to "Log in", new_user_session_url
