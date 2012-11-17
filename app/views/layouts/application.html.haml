@@ -20,11 +20,13 @@
                 %li= link_to "Users", users_url
                 %li= link_to "Users", admin_users_path if is_user_admin?
             %ul.nav.pull-right
-              %li
-                - if user_signed_in?
-                  = link_to "Logout", destroy_user_session_url, :method => :delete
-                - else
-                  = link_to "Log in", new_user_session_url
+              - if user_signed_in?
+                %li
+                  %a{:href => user_path(current_user)}
+                    = image_tag avatar_url(current_user, 20)
+                %li= link_to "Logout", destroy_user_session_url, :method => :delete
+              - else
+                %li= link_to "Log in", new_user_session_url
               
     %section#main
       .container-fluid

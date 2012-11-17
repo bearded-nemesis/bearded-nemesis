@@ -1,6 +1,8 @@
 BeardedNemesis::Application.routes.draw do
-  resources :friendships
+  devise_for :users
   resources :users
+
+  resources :friendships
 
   resources :songs do
     resources :ratings
@@ -22,8 +24,6 @@ BeardedNemesis::Application.routes.draw do
   namespace :admin do
     resources :users
   end
-
-  devise_for :users
 
   root :to => "home#index"
 
