@@ -1,0 +1,13 @@
+= form_for @admin_whitelist do |f|
+  - if @admin_whitelist.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@admin_whitelist.errors.count, "error")} prohibited this admin_whitelist from being saved:"
+      %ul
+        - @admin_whitelist.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :email
+    = f.text_field :email
+  .actions
+    = f.submit 'Save'

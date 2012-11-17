@@ -1,0 +1,19 @@
+%h1 Listing admin_whitelists
+
+%table
+  %tr
+    %th Email
+    %th
+    %th
+    %th
+
+  - @admin_whitelists.each do |admin_whitelist|
+    %tr
+      %td= admin_whitelist.email
+      %td= link_to 'Show', admin_whitelist
+      %td= link_to 'Edit', edit_admin_whitelist_path(admin_whitelist)
+      %td= link_to 'Destroy', admin_whitelist, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Whitelist', new_admin_whitelist_path

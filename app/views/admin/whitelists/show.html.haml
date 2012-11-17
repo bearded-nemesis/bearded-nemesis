@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Email:
+  = @admin_whitelist.email
+
+= link_to 'Edit', edit_admin_whitelist_path(@admin_whitelist)
+\|
+= link_to 'Back', admin_whitelists_path

@@ -18,7 +18,14 @@
                 %li= link_to "Genres", genres_url
                 %li= link_to "Artists", artists_url
                 %li= link_to "Users", users_url
-                %li= link_to "Users", admin_users_path if is_user_admin?
+                - if is_user_admin?
+                  %li.dropdown
+                    %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#", id: "admin-dropdown"}
+                      Admin
+                      %b.caret
+                    %ul.dropdown-menu{role: "menu", "aria-labelledby" => "admin-dropdown"}
+                      %li= link_to "Users", admin_users_path
+                      %li= link_to "Whitelists", admin_whitelists_path
             %ul.nav.pull-right
               - if user_signed_in?
                 %li.dropdown

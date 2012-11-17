@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation,
                   :remember_me, :admin
 
+  before_validation :whitelisted
+
   has_many :ratings
   has_and_belongs_to_many :songs
 
@@ -19,5 +21,13 @@ class User < ActiveRecord::Base
 
   def is_admin?
     admin
+  end
+
+  private
+
+  def whitelisted
+    unless Admin::Whitelist.where(:email => email).any?
+      errors.add :email, "is not on our invitation list"
+    end
   end
 end
