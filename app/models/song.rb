@@ -12,7 +12,7 @@ class Song < ActiveRecord::Base
 
   before_save :convert_blank_ratings_to_nil
 
-  validates :artist, :name, :genre, presence: true
+  validates :artist, :name, :genre, :shortname, presence: true
   validates :bass_difficulty,
             :drums_difficulty,
             :guitar_difficulty,
@@ -26,9 +26,11 @@ class Song < ActiveRecord::Base
             :pro_vocals_difficulty,
             :numericality => { only_integer: true,
                                greater_than_or_equal_to: 0,
-                               less_than_or_equal_to: 6 }
+                               less_than_or_equal_to: 6 },
+            allow_blank: true,
+            allow_nil: true
 
-  attr_accessible :bass_difficulty, :drums_difficulty, :genre,
+  attr_accessible :bass_difficulty, :drums_difficulty, :genre, :shortname,
                   :guitar_difficulty, :keyboard_difficulty, :name, :artist,
                   :song_difficulty, :vocals_difficulty,
                   :pro_keyboard_difficulty, :pro_drums_difficulty,
