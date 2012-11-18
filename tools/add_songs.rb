@@ -1,6 +1,6 @@
 require 'yaml'
 
-song_file = "/home/andrew/work/bearded-nemesis/tools/songs.yaml"
+song_file = "./tools/songs.yaml"
 songs = YAML::load(File.open(song_file))
 
 def difficulty(diff)
