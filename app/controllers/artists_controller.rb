@@ -5,7 +5,7 @@ class ArtistsController < ApplicationController
 
   def show
     @artist = params[:name]
-    @songs = Song.find_all_by_artist @artist
+    @songs = Song.paginate(:page => params[:page], :per_page => 100).find_all_by_artist @artist
     prepare_song_list
   end
 end

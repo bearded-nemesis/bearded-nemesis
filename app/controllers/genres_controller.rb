@@ -5,7 +5,7 @@ class GenresController < ApplicationController
 
   def show
     @genre = params[:name]
-    @songs = Song.find_all_by_genre @genre
+    @songs = Song.paginate(:page => params[:page], :per_page => 100).find_all_by_genre @genre
     prepare_song_list
   end
 end

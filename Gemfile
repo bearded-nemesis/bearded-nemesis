@@ -13,6 +13,7 @@ group :development, :test do
   gem "sqlite3"
 end
 
+gem 'will_paginate'
 gem 'haml-rails'
 gem 'devise'
 
