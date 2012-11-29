@@ -1,6 +1,6 @@
 class ArtistsController < ApplicationController
   def index
-    @artists = Song.uniq.pluck :artist
+    @artists = Song.uniq.pluck(:artist).sort_by{|e| e}
   end
 
   def show
