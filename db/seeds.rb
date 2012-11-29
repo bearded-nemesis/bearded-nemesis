@@ -5,6 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Admin::Whitelist.delete_all
+Admin::Whitelist.create email: "admin@example.com"
+Admin::Whitelist.create email: "user@example.com"
+Admin::Whitelist.create email: "bro@example.com"
+
 User.delete_all
 admin_user = User.create email: "admin@example.com",
                          password: "password",
@@ -16,36 +21,39 @@ User.create email: "bro@example.com",
 
 Song.delete_all
 song1 = Song.create artist: "The Gathering",
-            name: "Third Chance",
-            genre: "Rock",
-            bass_difficulty: 1,
-            drums_difficulty: 2,
-            guitar_difficulty: 3,
-            keyboard_difficulty: 4,
-            vocals_difficulty: 5,
-            song_difficulty: 6,
-            pro_keyboard_difficulty: 0,
-            pro_drums_difficulty: 1,
-            pro_guitar_difficulty: 2,
-            pro_bass_difficulty: 3,
-            pro_vocals_difficulty: 4
+                    shortname: "gather",
+                    name: "Third Chance",
+                    genre: "Rock",
+                    bass_difficulty: 1,
+                    drums_difficulty: 2,
+                    guitar_difficulty: 3,
+                    keyboard_difficulty: 4,
+                    vocals_difficulty: 5,
+                    song_difficulty: 6,
+                    pro_keyboard_difficulty: 0,
+                    pro_drums_difficulty: 1,
+                    pro_guitar_difficulty: 2,
+                    pro_bass_difficulty: 3,
+                    pro_vocals_difficulty: 4
 
 song2 = Song.create artist: "Muse",
-            name: "New Born",
-            genre: "Alternative",
-            bass_difficulty: 5,
-            drums_difficulty: 6,
-            guitar_difficulty: 0,
-            keyboard_difficulty: 1,
-            vocals_difficulty: 2,
-            song_difficulty: 3,
-            pro_keyboard_difficulty: 4,
-            pro_drums_difficulty: 5,
-            pro_guitar_difficulty: 6,
-            pro_bass_difficulty: 0,
-            pro_vocals_difficulty: 1
+                    shortname: "born",
+                    name: "New Born",
+                    genre: "Alternative",
+                    bass_difficulty: 5,
+                    drums_difficulty: 6,
+                    guitar_difficulty: 0,
+                    keyboard_difficulty: 1,
+                    vocals_difficulty: 2,
+                    song_difficulty: 3,
+                    pro_keyboard_difficulty: 4,
+                    pro_drums_difficulty: 5,
+                    pro_guitar_difficulty: 6,
+                    pro_bass_difficulty: 0,
+                    pro_vocals_difficulty: 1
 
 song3 = Song.create artist: "Nine Inch Nails",
+                    shortname: "down",
                     name: "Down in It",
                     genre: "Industrial",
                     bass_difficulty: 5,
