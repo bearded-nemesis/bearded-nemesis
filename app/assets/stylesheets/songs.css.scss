@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#filter li {
+  padding:0 14px 0 10px;
+}
+
 .popover.left .arrow {
   top:47px;
 }

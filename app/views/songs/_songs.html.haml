@@ -1,32 +1,17 @@
 = will_paginate @songs
 
 #filter
-  .btn-group
+  .btn-group.pull-left
     %a.btn.dropdown-toggle{:href => "#", "data-toggle" => "dropdown"}
       Filter
       %span.caret
     %ul.dropdown-menu{:role => "menu"}
-      %li        
-        %label.checkbox
-          %input{:type => "checkbox", :value => "Rock Band 1"}
-          Rock Band 1
-      %li        
-        %label.checkbox
-          %input{:type => "checkbox", :value => "Rock Band 2"}
-          Rock Band 2
-      %li        
-        %label.checkbox
-          %input{:type => "checkbox"}
-          Rock Band 3
-      %li        
-        %label.checkbox
-          %input{:type => "checkbox"}
-          Rock Band Network
-      %li        
-        %label.checkbox
-          %input{:type => "checkbox"}
-          Downloadable Content
-  #submit-filter.btn
+      - Song::SOURCES.each do |source|
+        %li        
+          %label.checkbox
+            %input{:type => "checkbox", :value => source}
+            = source
+  #submit-filter.btn.pull-left
     Submit
 
 %table.table.table-striped
