@@ -2,7 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.modal-body .form-actions {
+.popover.left .arrow {
+  top:47px;
+}
+
+.popover-content .form-actions {
   display:none;
 }
 
@@ -13,8 +17,17 @@
   text-align: center;
 }
 
-.modal-body .control-label {
-  padding-top:3px;
+.popover-content .control-group {
+  margin:0;
+}
+
+.popover-content .control-label {
+  padding:0;
+  width:100px;
+}
+
+.popover-content .controls {
+  margin-left:120px;
 }
 
 .star-rating,
@@ -27,8 +40,8 @@
 
 .star-rating{
   position:relative;
-  width:125px;
-  height:25px;
+  width:75px;
+  height:15px;
   overflow:hidden;
   list-style:none;
   margin:0;
@@ -46,8 +59,8 @@
   top:0;
   left:0;
   text-indent:-1000em;
-  height:25px;
-  line-height:25px;
+  height:15px;
+  line-height:15px;
   outline:none;
   overflow:hidden;
   border: none;

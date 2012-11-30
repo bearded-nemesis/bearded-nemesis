@@ -6,21 +6,19 @@ $(->
   $('.add-ratings').click((evt)->
     evt.preventDefault()
     
+    self = this
+    
     url = $(this).attr("href")
     method = $(this).data("httpMethod")
-    
-    $modal = $("#ratings-modal") 
-    $modal.find("form").attr("action", url).attr("method", method)
     
     if (method == "PUT")
       $.get(url, (data)->
         rating.parse(data)
-                
-        $modal.modal('show')        
+        showPopup(self, url, method)        
       )
     else
       rating.parse {}
-      $modal.modal('show')            
+      showPopup(self, url, method)
   )
   
   $(".star-rating a").click((evt)->
@@ -30,17 +28,12 @@ $(->
     $wrapper.find("a").removeClass("current-rating")
     $wrapper.siblings("[type=hidden]").val($(this).text())
     
-    $(this).addClass("current-rating")       
+    $(this).addClass("current-rating")
+    
+    $('#ratings-popup form').submit()
   )
   
-  $('#ratings-modal form').ajaxForm(-> 
-    $("#ratings-modal").modal("hide")   
-  )
-  
-  $('#save-ratings').click(->
-    $('#ratings-modal form').submit()  
-    rating.parse {}  
-  )
+  $('#ratings-popup form').ajaxForm()
 
   $('.ownership').click((evt)->
     evt.preventDefault()
@@ -52,9 +45,24 @@ $(->
       link.toggleClass "label-success"
       link.text if does_own then "No" else "Yes"
   )  
+  
+  $("#ratings-popup .close").click((evt)->
+    $(this).closest("#ratings-popup").removeClass("show")
+  )
 
   ko.applyBindings(rating) 
 )
+
+showPopup = (self, url, method) ->
+  $popup = $("#ratings-popup") 
+  $popup.find("form").attr("action", url).attr("method", method)
+  
+  pos = $(self).position()
+
+  $popup.css({
+      top: (pos.top - 39) + "px",
+      left: (pos.left - 254) + "px"
+  }).addClass('show')
 
 ko.bindingHandlers.checkStarRating = {
   update: (element, valueAccessor, allBindingsAccessor) ->
