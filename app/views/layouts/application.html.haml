@@ -30,7 +30,7 @@
               - if user_signed_in?
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#", id: "dLabel", role: "button"}
-                    = image_tag avatar_url(current_user, 20)
+                    = image_tag avatar_url(current_user, 20), :alt => "Gravitar"
                     %b.caret
                   %ul.dropdown-menu{role: "menu", "aria-labelledby" => "dLabel"}
                     %li= link_to "Details", user_path(current_user)
