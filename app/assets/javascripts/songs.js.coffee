@@ -49,6 +49,16 @@ $(->
   $("#ratings-popup .close").click((evt)->
     $(this).closest("#ratings-popup").removeClass("show")
   )
+  
+  $("#submit-filter").click((evt)->
+    $aggregate = $("#filter input:checked")
+    
+    filter = ""
+    filter += $(input).val() + "," for input in $aggregate           
+    filter = filter.replace(/\ /g,"+")
+    
+    window.location = "/songs?filter=" + filter 
+  )
 
   ko.applyBindings(rating) 
 )

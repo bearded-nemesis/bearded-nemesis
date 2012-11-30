@@ -5,7 +5,13 @@ class SongsController < ApplicationController
   # GET /songs
   # GET /songs.json
   def index
-    @songs = Song.paginate(:page => params[:page], :per_page => 100)
+    if (params[:filter])
+      filters = params[:filter].split(",")
+      @songs = Song.where("source in (?)", filters).paginate(:page => params[:page], :per_page => 100)
+    else
+      @songs = Song.paginate(:page => params[:page], :per_page => 100)
+    end    
+    
     prepare_song_list
 
     respond_to do |format|
