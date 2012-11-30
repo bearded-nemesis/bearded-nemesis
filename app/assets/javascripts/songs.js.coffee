@@ -38,7 +38,8 @@ $(->
   )
   
   $('#save-ratings').click(->
-    $('#ratings-modal form').submit()    
+    $('#ratings-modal form').submit()  
+    rating.parse {}  
   )
 
   $('.ownership').click((evt)->
