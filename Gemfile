@@ -39,7 +39,7 @@ end
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-gem "rglpk", "~> 0.2.6"
+gem "heroku-rglpk", git: "https://github.com/andrewmains12/heroku-rglpk"
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
