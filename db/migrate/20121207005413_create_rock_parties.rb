@@ -4,7 +4,7 @@ class CreateRockParties < ActiveRecord::Migration
       t.string :name
       t.string :location
       t.datetime :eventDate
-      t.User :eventHost
+      t.references :user
 
       t.timestamps
     end
