@@ -23,10 +23,13 @@ $(->
   
   $(".star-rating a").click((evt)->
     evt.preventDefault()      
-    
-    $wrapper = $(this).closest(".star-rating");
+
+    $wrapper = $(this).closest("ul")
     $wrapper.find("a").removeClass("current-rating")
-    $wrapper.siblings("[type=hidden]").val($(this).text())
+    $wrapper.siblings("#rating_" + $wrapper.data("hiddenField")).val($(this).text())
+
+
+    # $wrapper = $(this).closest(".star-rating");
     
     $(this).addClass("current-rating")
     
@@ -75,7 +78,7 @@ showPopup = (self, url, method) ->
 
   $popup.css({
       top: (pos.top - 39) + "px",
-      left: (pos.left - 254) + "px"
+      left: (pos.left - 360) + "px"
   }).addClass('show')
 
 ko.bindingHandlers.checkStarRating = {
