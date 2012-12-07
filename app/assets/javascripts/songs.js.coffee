@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(->    
-  $('.add-ratings').click((evt)->
+  $(".add-ratings").click((evt)->
     evt.preventDefault()
     
     self = this
@@ -58,6 +58,10 @@ $(->
     filter = filter.replace(/\ /g,"+")
     
     window.location = "/songs?filter=" + filter 
+  )
+
+  $("#filter .dropdown-menu").click((evt)->
+    evt.stopPropagation()  
   )
 
   ko.applyBindings(rating) 

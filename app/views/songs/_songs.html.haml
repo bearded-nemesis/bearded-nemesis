@@ -9,8 +9,7 @@
       - Song::SOURCES.each do |source|
         %li        
           %label.checkbox
-            %input{:type => "checkbox", :value => source}
-            = source
+            = filter_checkbox(source)
   #submit-filter.btn.pull-left
     Submit
 
