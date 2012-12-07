@@ -1,0 +1,2 @@
+module RockPartiesHelper
+end

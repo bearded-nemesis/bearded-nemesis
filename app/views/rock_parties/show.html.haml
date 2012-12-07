@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @rock_party.name
+%p
+  %b Location:
+  = @rock_party.location
+%p
+  %b Eventdate:
+  = @rock_party.eventDate
+%p
+  %b Eventhost:
+  = @rock_party.eventHost
+
+= link_to 'Edit', edit_rock_party_path(@rock_party)
+\|
+= link_to 'Back', rock_parties_path
