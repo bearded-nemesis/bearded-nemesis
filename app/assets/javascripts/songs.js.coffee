@@ -60,6 +60,10 @@ $(->
     window.location = "/songs?filter=" + filter 
   )
 
+  $("#filter .dropdown-menu").click((evt)->
+    evt.stopPropagation()  
+  )
+
   ko.applyBindings(rating) 
 )
 
