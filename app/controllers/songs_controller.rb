@@ -22,8 +22,7 @@ class SongsController < ApplicationController
 
   def mine
     @songs = Song.includes(:ratings, :users)
-      .where("(ratings.user_id IS NULL OR ratings.user_id = ?) AND (songs_users.user_id = ?)",
-        current_user.id, current_user.id)
+      .where("(songs_users.user_id = ?)", current_user.id)
       .paginate(:page => params[:page], :per_page => 100)
     
     prepare_song_list
