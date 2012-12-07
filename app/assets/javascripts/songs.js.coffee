@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(->    
-  $('.add-ratings').click((evt)->
+  $(".add-ratings").click((evt)->
     evt.preventDefault()
     
     self = this
