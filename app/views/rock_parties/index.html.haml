@@ -1,25 +1,26 @@
-%h1 Listing rock_parties
+.span12
+  %h3 List of rock parties
 
-%table
-  %tr
-    %th Name
-    %th Location
-    %th Eventdate
-    %th Eventhost
-    %th
-    %th
-    %th
-
-  - @rock_parties.each do |rock_party|
+  %table.table.table-striped
     %tr
-      %td= rock_party.name
-      %td= rock_party.location
-      %td= rock_party.eventDate
-      %td= rock_party.eventHost
-      %td= link_to 'Show', rock_party
-      %td= link_to 'Edit', edit_rock_party_path(rock_party)
-      %td= link_to 'Destroy', rock_party, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Rock party', new_rock_party_path
+      %th Name
+      %th Location
+      %th Date
+      %th Host
+      %th
+      %th
+      %th
+  
+    - @rock_parties.each do |rock_party|
+      %tr
+        %td= rock_party.name
+        %td= rock_party.location
+        %td= rock_party.eventDate
+        %td= rock_party.user.email
+        %td= link_to 'Show', rock_party
+        %td= link_to 'Edit', edit_rock_party_path(rock_party)
+        %td= link_to 'Destroy', rock_party, method: :delete, data: { confirm: 'Are you sure?' }
+  
+  %br
+  
+  = link_to 'New Rock party', new_rock_party_path

@@ -40,7 +40,7 @@ class RockPartiesController < ApplicationController
   # POST /rock_parties
   # POST /rock_parties.json
   def create
-    @rock_party = RockParty.new(params[:rock_party])
+    @rock_party = RockParty.new(params[:rock_party].merge(user: current_user))
 
     respond_to do |format|
       if @rock_party.save
