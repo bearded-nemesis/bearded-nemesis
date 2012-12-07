@@ -13,8 +13,8 @@ module SongsHelper
     end
   end
   
-  def filter_checkbox(source)
-    if @filters.include?(source)
+  def filter_checkbox(source)    
+    if @filters && @filters.include?(source)
       content_tag(:input, type: "checkbox", checked: "checked", value: source) do
         source
       end
