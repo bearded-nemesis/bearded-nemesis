@@ -14,7 +14,8 @@ class SongsController < ApplicationController
   end
 
   def search
-    build_song_list Song.where("name LIKE ?", params[:term] + '%')
+    @term = params[:term]
+    build_song_list Song.where("name LIKE ?", @term + '%')
   end
 
   def mine
@@ -124,7 +125,7 @@ class SongsController < ApplicationController
     prepare_song_list
 
     respond_to do |format|
-      format.html { render action: "index" } # index.html.erb
+      format.html
       format.json { render json: @songs }
     end
   end

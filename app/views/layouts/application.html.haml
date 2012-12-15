@@ -27,6 +27,9 @@
                       %li= link_to "Users", admin_users_path
                       %li= link_to "Whitelists", admin_whitelists_path
             %ul.nav.pull-right
+              %li
+                %form.navbar-search#song-search
+                  %input.search-query{type: "text", placeholder: "Search for songs..."}
               - if user_signed_in?
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#", id: "dLabel", role: "button"}
