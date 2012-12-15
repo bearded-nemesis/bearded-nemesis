@@ -15,7 +15,7 @@ class SongsController < ApplicationController
 
   def search
     @term = params[:term]
-    build_song_list Song.where("name LIKE ?", @term + '%')
+    build_song_list Song.where("UPPER(name) LIKE UPPER(?)", @term + '%')
   end
 
   def mine
