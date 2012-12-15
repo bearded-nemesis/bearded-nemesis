@@ -11,6 +11,7 @@ BeardedNemesis::Application.routes.draw do
 
     collection do
       get :mine
+      get "search/:term" => "songs#search"
     end
 
     member do
