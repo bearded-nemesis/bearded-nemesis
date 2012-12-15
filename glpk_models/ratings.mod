@@ -4,8 +4,8 @@ set instruments;
 set players;
 
 param ratings{players, songs, instruments};
-param player_count;
-param max_songs;
+param player_count; /* How many players do we have? */
+param max_songs; /* How many songs do we want? */
 
 var results{players, songs, instruments}, binary;
 var selected_songs{songs}, binary;
