@@ -7,20 +7,21 @@ class SongsController < ApplicationController
   def index
     if (params[:filter] && params[:filter] != "")
       @filters = params[:filter].split(",")
-      build_song_list Song.where("source in (?)", @filters)
+      build_song_list Song.where("source in (?)", @filters).order(:name)
     else
-      build_song_list Song
+      build_song_list Song.order(:name)
     end
   end
 
   def search
     @term = params[:term]
-    build_song_list Song.where("UPPER(name) LIKE UPPER(?)", @term + '%')
+    build_song_list Song.where("UPPER(name) LIKE UPPER(?)", @term + '%').order(:name)
   end
 
   def mine
     build_song_list Song.includes(:users)
       .where("(songs_users.user_id = ?)", current_user.id)
+      .order(:name)
   end
 
   # GET /songs/1
