@@ -2,7 +2,12 @@ BeardedNemesis::Application.routes.draw do
   namespace :admin do resources :whitelists end
 
   devise_for :users, path: "accounts"
-  resources :users
+  resources :users do
+    member do
+      get :import
+      post :do_import
+    end
+  end
 
   resources :friendships
 
