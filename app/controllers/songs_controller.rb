@@ -21,7 +21,7 @@ class SongsController < ApplicationController
   def mine
     build_song_list Song.includes(:users)
       .where("(songs_users.user_id = ?)", current_user.id)
-      .order(:name)
+      .order("name")
   end
 
   # GET /songs/1
