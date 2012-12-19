@@ -3,11 +3,12 @@ task :update_songs => :environment do
   require 'nokogiri'
   require 'open-uri'
 
+  existing_songs = Song.select(:shortname).map {|item| item.shortname}
   songs = JSON.parse(open('http://services.rockband.com/leaderboard_data/rb3/xbox/song_list.json').read)
 
   songs.each do |item|
     shortname = item["shortname"]
-    next if Song.find_by_shortname shortname
+    next if existing_songs.any? {|existing| existing == shortname}
 
     url = 'http://www.rockband.com/songs/' + shortname
     puts "Getting #{url}..."
