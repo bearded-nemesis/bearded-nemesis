@@ -3,9 +3,7 @@ task :update_songs => :environment do
   require 'nokogiri'
   require 'open-uri'
 
-  #songs = JSON.parse(open('http://services.rockband.com/leaderboard_data/rb3/<platform>/song_list.json'))
-  songs = JSON.parse('[{"shortname": "yourbetrayal", "fullname": "Your Betrayal"},
-{"shortname": "yourdecision", "fullname": "Your Decision"}]')
+  songs = JSON.parse(open('http://services.rockband.com/leaderboard_data/rb3/xbox/song_list.json').read)
 
   songs.each do |item|
     shortname = item["shortname"]
@@ -26,16 +24,21 @@ task :update_songs => :environment do
 
     song.song_difficulty = difficulty doc.css('.band-difficulty li>span')[0].get_attribute('class')
 
-    %Q[guitar bass drums keys vocals].each do |instrument|
-      song.send("#{instrument}_difficulty=",
-                doc.css(".basic-difficulties li.#{instrument}>span")[0].get_attribute('class'))
-      song.send("pro_#{instrument}_difficulty=",
-                doc.css(".pro-difficulties li.#{instrument}>span")[0].get_attribute('class'))
+    %W[guitar bass drums keys vocals].each do |instrument|
+      song.send("#{instrument_field instrument}_difficulty=",
+                difficulty(doc.css(".basic-difficulties li.#{instrument}>span")[0].get_attribute('class')))
+      song.send("pro_#{instrument_field instrument}_difficulty=",
+                difficulty(doc.css(".pro-difficulties li.#{instrument}>span")[0].get_attribute('class')))
     end
 
     puts "Adding #{song.name}..."
-    Song.save
+    song.save!
   end
+end
+
+def instrument_field(instrument)
+  return "keyboard" if instrument == "keys"
+  instrument
 end
 
 def difficulty(diff)
