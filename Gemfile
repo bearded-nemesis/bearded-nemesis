@@ -42,6 +42,7 @@ end
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem "heroku-rglpk", git: "https://github.com/bearded-nemesis/heroku-rglpk.git"
+gem "newrelic_rpm"
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
