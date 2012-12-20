@@ -166,6 +166,7 @@ DEPENDENCIES
   heroku-rglpk!
   jquery-rails
   newrelic_rpm
+  nokogiri
   pg
   rails (= 3.2.8)
   rspec (= 2.5.0)
