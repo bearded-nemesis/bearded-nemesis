@@ -25,6 +25,7 @@ class RockPartiesController < ApplicationController
   # GET /rock_parties/new.json
   def new
     @rock_party = RockParty.new
+    @users = User.where(['id <> ?', current_user.id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class RockPartiesController < ApplicationController
   # GET /rock_parties/1/edit
   def edit
     @rock_party = RockParty.find(params[:id])
+    @users = User.where(['id <> ?', current_user.id])
   end
 
   # POST /rock_parties
@@ -57,7 +59,12 @@ class RockPartiesController < ApplicationController
   # PUT /rock_parties/1.json
   def update
     @rock_party = RockParty.find(params[:id])
-
+    
+    params[:attendees].each do |user_id|
+      user = User.find(user_id)
+      @rock_party.users << user
+    end    
+    
     respond_to do |format|
       if @rock_party.update_attributes(params[:rock_party])
         format.html { redirect_to @rock_party, notice: 'Rock party was successfully updated.' }

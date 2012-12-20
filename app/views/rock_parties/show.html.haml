@@ -18,13 +18,12 @@
           = @rock_party.eventDate
         %p
           %b Host:
-          = @rock_party.user.email
+          = @rock_party.user.email unless @rock_party.user.nil?
     .span4
       %fieldset
         %legend Attendees
-        %select#attendees
-          %option
-            Test
+        - @rock_party.users do |user|
+          %span= user.email
   .row-fluid  
     .span12
       = link_to 'Edit', edit_rock_party_path(@rock_party)

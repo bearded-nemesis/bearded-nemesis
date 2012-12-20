@@ -18,5 +18,13 @@
     = f.label :eventDate, "Date", :class => "control-label"
     .controls
       = f.text_field :eventDate
+  .control-group
+    %label.control-label Attendees
+    .controls
+      %select#attendees{:name => "attendees[]", :multiple => "multiple"}
+        - @users.each do |user|
+          %option{:value => user.id}
+            = user.email
+          
   .form-actions    
     = f.submit 'Save', :class => "btn"
