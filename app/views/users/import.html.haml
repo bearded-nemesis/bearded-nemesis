@@ -1,0 +1,9 @@
+%h1 Import songs you own
+%p
+  Enter songs you own, one per line, in the box below.
+  Each line should contain the song name, a tab, and then the artist.
+  This form accepts up to 1000 songs.
+
+=form_tag do_import_user_path(@user) do
+  %textarea#songs{style: "width: 100%;", rows: 30, name: "songs"}
+  %input{type: "submit"}

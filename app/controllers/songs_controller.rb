@@ -1,37 +1,27 @@
 class SongsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_song, except: [:index, :mine, :new, :create]
+  before_filter :get_song, except: [:index, :mine, :new, :create, :search]
 
   # GET /songs
   # GET /songs.json
   def index
     if (params[:filter] && params[:filter] != "")
       @filters = params[:filter].split(",")
-      @songs = Song.where("source in (?)", @filters).paginate(:page => params[:page], :per_page => 100)
+      build_song_list Song.where("source in (?)", @filters).order(:name)
     else
-      @songs = Song.paginate(:page => params[:page], :per_page => 100)
-    end    
-    
-    prepare_song_list
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @songs }
+      build_song_list Song.order(:name)
     end
   end
 
-  def mine
-    @songs = Song.includes(:ratings, :users)
-      .where("(ratings.user_id IS NULL OR ratings.user_id = ?) AND (songs_users.user_id = ?)",
-        current_user.id, current_user.id)
-      .paginate(:page => params[:page], :per_page => 100)
-    
-    prepare_song_list
+  def search
+    @term = params[:term]
+    build_song_list Song.where("UPPER(name) LIKE UPPER(?)", @term + '%').order(:name)
+  end
 
-    respond_to do |format|
-      format.html { render action: "index" }
-      format.json { render json: @songs }
-    end
+  def mine
+    build_song_list Song.includes(:users)
+      .where("(songs_users.user_id = ?)", current_user.id)
+      .order("name")
   end
 
   # GET /songs/1
@@ -128,5 +118,16 @@ class SongsController < ApplicationController
 
   def get_song
     @song = Song.find params[:id]
+  end
+
+  def build_song_list(song_query)
+    @songs = song_query.paginate(:page => params[:page], :per_page => 100)
+
+    prepare_song_list
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @songs }
+    end
   end
 end

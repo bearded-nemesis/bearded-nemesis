@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  INSTRUMENTS = [:guitar, :bass, :drums, :keyboard, :vocals]
+
   def prepare_song_list
     @owned_songs = current_user.songs
     @rated_songs = current_user.ratings

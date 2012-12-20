@@ -5,105 +5,27 @@
       %ul
         - @rating.errors.full_messages.each do |msg|
           %li= msg
-      
-  .control-group
-    = f.label :guitar, :class => "control-label"
-    .controls
-      %ul.star-rating
-        - (1..5).each do |i|
-          %li
-            %a{"class" => "star#{i}", "data-bind" => "checkStarRating: guitar, ratingIndex: #{i}"}= i
-      = f.hidden_field :guitar, "data-bind" => "value: guitar"      
-      
-  .control-group
-    = f.label :bass, :class => "control-label"
-    .controls
-      %ul.star-rating
-        - (1..5).each do |i|
-          %li
-            %a{"class" => "star#{i}", "data-bind" => "checkStarRating: bass, ratingIndex: #{i}"}= i
-      = f.hidden_field :bass, "data-bind" => "value: bass"
-      
-  .control-group
-    = f.label :drums, :class => "control-label"
-    .controls
-      %ul.star-rating
-        - (1..5).each do |i|
-          %li
-            %a{"class" => "star#{i}", "data-bind" => "checkStarRating: drums, ratingIndex: #{i}"}= i
-      = f.hidden_field :drums, "data-bind" => "value: drums"
-      
-  .control-group
-    = f.label :vocals, :class => "control-label"
-    .controls
-      %ul.star-rating
-        - (1..5).each do |i|
-          %li
-            %a{"class" => "star#{i}", "data-bind" => "checkStarRating: vocals, ratingIndex: #{i}"}= i
-      = f.hidden_field :vocals, "data-bind" => "value: vocals"
-      
-  .control-group
-    = f.label :keyboard, :class => "control-label"
-    .controls
-      %ul.star-rating
-        - (1..5).each do |i|
-          %li
-            %a{"class" => "star#{i}", "data-bind" => "checkStarRating: keyboard, ratingIndex: #{i}"}= i
-      = f.hidden_field :keyboard, "data-bind" => "value: keyboard"
-      
-  .control-group
-    = f.label :pro_guitar, :class => "control-label"
-    .controls
-      %ul.star-rating
-        - (1..5).each do |i|
-          %li
-            %a{"class" => "star#{i}", "data-bind" => "checkStarRating: pro_guitar, ratingIndex: #{i}"}= i
-      = f.hidden_field :pro_guitar, "data-bind" => "value: pro_guitar"
-      
-  .control-group
-    = f.label :pro_bass, :class => "control-label"
-    .controls
-      %ul.star-rating
-        - (1..5).each do |i|
-          %li
-            %a{"class" => "star#{i}", "data-bind" => "checkStarRating: pro_bass, ratingIndex: #{i}"}= i
-      = f.hidden_field :pro_bass, "data-bind" => "value: pro_bass"
-      
-  .control-group
-    = f.label :pro_drums, :class => "control-label"
-    .controls
-      %ul.star-rating
-        - (1..5).each do |i|
-          %li
-            %a{"class" => "star#{i}", "data-bind" => "checkStarRating: pro_drums, ratingIndex: #{i}"}= i
-      = f.hidden_field :pro_drums, "data-bind" => "value: pro_drums"
-      
-  .control-group
-    = f.label :pro_vocals, :class => "control-label"
-    .controls
-      %ul.star-rating
-        - (1..5).each do |i|
-          %li
-            %a{"class" => "star#{i}", "data-bind" => "checkStarRating: pro_vocals, ratingIndex: #{i}"}= i
-      = f.hidden_field :pro_vocals, "data-bind" => "value: pro_vocals"
-      
-  .control-group
-    = f.label :pro_keyboard, :class => "control-label"
-    .controls
-      %ul.star-rating
-        - (1..5).each do |i|
-          %li
-            %a{"class" => "star#{i}", "data-bind" => "checkStarRating: pro_keyboard, ratingIndex: #{i}"}= i
-      = f.hidden_field :pro_keyboard, "data-bind" => "value: pro_keyboard"
 
   .control-group
-    = f.label :overall, :class => "control-label"
     .controls
-      %ul.star-rating
-        - (1..5).each do |i|
-          %li
-            %a{"class" => "star#{i}", "data-bind" => "checkStarRating: overall, ratingIndex: #{i}"}= i
-      = f.hidden_field :overall, "data-bind" => "value: overall"
-  
+      .rating
+        Amateur
+      .rating
+        Pro
+  - ApplicationController::INSTRUMENTS.each do |instrument|
+    .control-group
+      = f.label instrument, :class => "control-label"
+      .controls
+        %ul.star-rating.rating{"data-hidden-field" => instrument}
+          - (1..5).each do |i|
+            %li
+              %a{"class" => "star#{i}", "data-bind" => "checkStarRating: #{instrument}, ratingIndex: #{i}"}= i
+        = f.hidden_field instrument, "data-bind" => "value: #{instrument}"
+        %ul.star-rating.rating{"data-hidden-field" => "pro_#{instrument}"}
+          - (1..5).each do |i|
+            %li
+              %a{"class" => "star#{i}", "data-bind" => "checkStarRating: pro_#{instrument}, ratingIndex: #{i}"}= i
+        = f.hidden_field "pro_#{instrument}", "data-bind" => "value: pro_#{instrument}"
+
   .form-actions    
     = f.submit 'Save', :class => "btn"

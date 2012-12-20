@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :get_user, except: [:index]
+
   # GET /users
   # GET /users.json
   def index
@@ -13,7 +15,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
     @friendships = Friendship.where(user_id: @user).includes(:friend)
     @friended_by = @user.inverse_friends
 
@@ -25,14 +26,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
   end
 
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
-
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -42,5 +40,32 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def import
+  end
+
+  def do_import
+    raise "Too many songs" if params[:songs].lines.count > 1000
+
+    params[:songs].lines do |line|
+      title, artist = line.split "\t"
+
+      puts title
+      puts artist
+
+      song = Song.where "UPPER(name) = UPPER(?) AND UPPER(artist) = UPPER(?)", title.strip, artist.strip
+      @user.songs << song unless song.nil?
+    end
+
+    @user.save
+
+    redirect_to mine_songs_path
+  end
+
+  private
+
+  def get_user
+    @user = User.find(params[:id])
   end
 end
