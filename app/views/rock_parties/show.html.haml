@@ -1,0 +1,31 @@
+%p#notice= notice
+
+.span8.offset2
+  .row-fluid
+    .span12
+      %h3 
+        = @rock_party.name
+
+  .row-fluid
+    .span4
+      %fieldset
+        %legend Details
+        %p
+          %b Location:
+          = @rock_party.location
+        %p
+          %b Date:
+          = @rock_party.eventDate
+        %p
+          %b Host:
+          = @rock_party.user.email unless @rock_party.user.nil?
+    .span4
+      %fieldset
+        %legend Attendees
+        - @rock_party.users do |user|
+          %span= user.email
+  .row-fluid  
+    .span12
+      = link_to 'Edit', edit_rock_party_path(@rock_party)
+      \|
+      = link_to 'Back', rock_parties_path

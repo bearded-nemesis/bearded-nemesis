@@ -1,4 +1,6 @@
 BeardedNemesis::Application.routes.draw do
+  resources :rock_parties
+
   namespace :admin do resources :whitelists end
 
   devise_for :users, path: "accounts"
