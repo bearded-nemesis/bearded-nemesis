@@ -59,11 +59,13 @@ class RockPartiesController < ApplicationController
   # PUT /rock_parties/1.json
   def update
     @rock_party = RockParty.find(params[:id])
-    
-    params[:attendees].each do |user_id|
-      user = User.find(user_id)
-      @rock_party.users << user
-    end    
+
+    if params[:attendees]
+      params[:attendees].each do |user_id|
+        user = User.find(user_id)
+        @rock_party.users << user
+      end
+    end
     
     respond_to do |format|
       if @rock_party.update_attributes(params[:rock_party])
