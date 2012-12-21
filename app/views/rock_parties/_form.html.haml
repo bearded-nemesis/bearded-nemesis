@@ -17,14 +17,15 @@
   .control-group
     = f.label :eventDate, "Date", :class => "control-label"
     .controls
-      = f.text_field :eventDate
+      %input#event-date{:type => "text", :class => "input-small", :value => get_event_date(@rock_party.eventDate)}
+      %input#event-time{:type => "text", :class => "input-small", :value => get_event_time(@rock_party.eventDate)}
+      = f.hidden_field :eventDate, :id => "eventDate"
   .control-group
     %label.control-label Attendees
     .controls
-      %select#attendees{:name => "attendees[]", :multiple => "multiple"}
+      %select#attendees{:name => "attendees[]", :multiple => "multiple", "data-placeholder" => "Select attendees.."}
         - @users.each do |user|
-          %option{:value => user.id}
-            = user.email
+          = attendee_option(user)
           
   .form-actions    
     = f.submit 'Save', :class => "btn"

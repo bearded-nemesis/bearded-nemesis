@@ -1,9 +1,3 @@
-GIT
-  remote: https://github.com/bearded-nemesis/heroku-rglpk.git
-  revision: 760859ce23c6e9d253324a584da6ee351700c48f
-  specs:
-    heroku-rglpk (0.2.1)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -200,7 +194,6 @@ DEPENDENCIES
   devise
   factory_girl_rails
   haml-rails
-  heroku-rglpk!
   jquery-rails
   newrelic_rpm
   nokogiri

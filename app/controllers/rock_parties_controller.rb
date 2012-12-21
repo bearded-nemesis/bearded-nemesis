@@ -44,6 +44,14 @@ class RockPartiesController < ApplicationController
   def create
     @rock_party = RockParty.new(params[:rock_party].merge(user: current_user))
 
+    # Add attendees to rock party
+    if params[:attendees]
+      params[:attendees].each do |user_id|
+        user = User.find(user_id)
+        @rock_party.users << user
+      end
+    end
+
     respond_to do |format|
       if @rock_party.save
         format.html { redirect_to @rock_party, notice: 'Rock party was successfully created.' }
@@ -59,6 +67,9 @@ class RockPartiesController < ApplicationController
   # PUT /rock_parties/1.json
   def update
     @rock_party = RockParty.find(params[:id])
+
+    # Remove all attendees and add the ones being submitted via post
+    @rock_party.users.delete_all
 
     if params[:attendees]
       params[:attendees].each do |user_id|
