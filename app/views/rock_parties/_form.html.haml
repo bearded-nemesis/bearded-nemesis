@@ -21,7 +21,7 @@
   .control-group
     %label.control-label Attendees
     .controls
-      %select#attendees{:name => "attendees[]", :multiple => "multiple"}
+      %select#attendees{:name => "attendees[]", :multiple => "multiple", "data-placeholder" => "Select attendees.."}
         - @users.each do |user|
           %option{:value => user.id}
             = user.email
