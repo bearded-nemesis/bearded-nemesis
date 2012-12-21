@@ -23,7 +23,7 @@
       %fieldset
         %legend Attendees
         %ul
-          - @rock_party.users do |user|
+          - @rock_party.users.each do |user|
             %li= user.email
   .row-fluid  
     .span12
