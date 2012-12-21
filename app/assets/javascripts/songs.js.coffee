@@ -13,7 +13,7 @@ $(->
     
     if (method == "PUT")
       $.get(url, (data)->
-        rating.parse(data)
+        rating.parse data
         showPopup(self, url, method)        
       )
     else
