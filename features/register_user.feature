@@ -4,5 +4,11 @@ Feature: Registering users
 
   Scenario: Email address is not on the whitelist
     Given I am on the signup page
-    And I register a user
+    When I register a user
     Then I should see "Email is not on our invitation list"
+
+  Scenario: Email address is on whitelist
+    Given the email is on the whitelist
+    And I am on the signup page
+    When I register a user
+    Then I should see "Logout"
