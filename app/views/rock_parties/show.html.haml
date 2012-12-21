@@ -22,8 +22,9 @@
     .span4
       %fieldset
         %legend Attendees
-        - @rock_party.users do |user|
-          %span= user.email
+        %ul
+          - @rock_party.users do |user|
+            %li= user.email
   .row-fluid  
     .span12
       = link_to 'Edit', edit_rock_party_path(@rock_party)
