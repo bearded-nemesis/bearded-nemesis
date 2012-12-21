@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207005413) do
+ActiveRecord::Schema.define(:version => 20121220232952) do
 
   create_table "admin_whitelists", :force => true do |t|
     t.string   "email"
@@ -51,6 +51,11 @@ ActiveRecord::Schema.define(:version => 20121207005413) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "rock_parties_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "rock_party_id"
   end
 
   create_table "songs", :force => true do |t|
