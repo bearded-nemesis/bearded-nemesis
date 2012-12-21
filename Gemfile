@@ -33,8 +33,7 @@ end
 gem 'jquery-rails'
 
 group :test do
-  gem 'rspec', '2.5.0'
-  gem 'webrat', '0.7.1'
+  gem 'rspec', '2.12.0'
   gem 'factory_girl_rails'
   gem 'cucumber-rails', require: false
   gem 'capybara'
