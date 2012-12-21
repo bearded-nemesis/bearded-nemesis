@@ -5,7 +5,7 @@
 $(->    
   $("#attendees").chosen()
   $("#event-date").datepicker()
-  $("#event-time").timepickr()
+  $("#event-time").timepickr({resetOnBlur:false})
 
   $("#event-date").change(updateEventDate)
   $("#event-time").blur(updateEventDate)
