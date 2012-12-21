@@ -12,14 +12,14 @@ module RockPartiesHelper
   end
 
   def get_event_datetime(eventDate)
-    return @rock_party.eventDate.strftime("%m/%d/%Y %I:%M %P") unless @rock_party.eventDate.nil?
+    return eventDate.strftime("%m/%d/%Y %I:%M %P") unless eventDate.nil?
   end
 
   def get_event_date(eventDate)
-    return @rock_party.eventDate.strftime("%m/%d/%Y") unless @rock_party.eventDate.nil?
+    return eventDate.strftime("%m/%d/%Y") unless eventDate.nil?
   end
 
   def get_event_time(eventDate)
-    return @rock_party.eventDate.strftime("%I:%M %P") unless @rock_party.eventDate.nil?
+    return eventDate.strftime("%I:%M %P") unless eventDate.nil?
   end
 end

@@ -15,7 +15,7 @@
       %tr
         %td= rock_party.name
         %td= rock_party.location
-        %td= rock_party.eventDate
+        %td= get_event_datetime(rock_party.eventDate)
         %td= rock_party.user.email unless rock_party.user.nil?
         %td= link_to 'Show', rock_party
         %td= link_to 'Edit', edit_rock_party_path(rock_party)
