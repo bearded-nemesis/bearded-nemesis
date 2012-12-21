@@ -68,11 +68,13 @@ class RockPartiesController < ApplicationController
   def update
     @rock_party = RockParty.find(params[:id])
 
-    # Add attendees to rock party
+    # Add attendees to rock party if not included
     if params[:attendees]
       params[:attendees].each do |user_id|
         user = User.find(user_id)
-        @rock_party.users << user
+        unless @rock_party.users.include?(user)
+          @rock_party.users << user
+        end
       end
     end
     
