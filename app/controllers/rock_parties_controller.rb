@@ -44,6 +44,7 @@ class RockPartiesController < ApplicationController
   def create
     @rock_party = RockParty.new(params[:rock_party].merge(user: current_user))
 
+    # Add attendees to rock party
     if params[:attendees]
       params[:attendees].each do |user_id|
         user = User.find(user_id)
@@ -67,6 +68,7 @@ class RockPartiesController < ApplicationController
   def update
     @rock_party = RockParty.find(params[:id])
 
+    # Add attendees to rock party
     if params[:attendees]
       params[:attendees].each do |user_id|
         user = User.find(user_id)
