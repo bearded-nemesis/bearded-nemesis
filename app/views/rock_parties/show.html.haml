@@ -15,7 +15,7 @@
           = @rock_party.location
         %p
           %b Date:
-          = @rock_party.eventDate
+          = get_event_datetime(@rock_party.eventDate)
         %p
           %b Host:
           = @rock_party.user.email unless @rock_party.user.nil?
