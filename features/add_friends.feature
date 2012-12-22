@@ -16,3 +16,9 @@ Feature: Adding friends
     When I add "other@example.com" as a friend
     And I am on my details page
     Then I should see "other@example.com"
+
+  Scenario: Cannot add a friend twice
+    Given I am logged in as "me@example.com"
+    And I am on the user list page
+    When I add "other@example.com" as a friend
+    Then I should not see the add friend link for "other@example.com"

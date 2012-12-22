@@ -10,6 +10,6 @@
     %tr
       %th= image_tag avatar_url(user, 24)
       %td= link_to user.email, user
-      %td= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, "data-user-id" => user.id
+      %td= add_friend_link user
 
 %br

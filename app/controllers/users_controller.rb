@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.where(['id <> ?', current_user.id])
+    @friends = current_user.friends
 
     respond_to do |format|
       format.html # index.html.erb
