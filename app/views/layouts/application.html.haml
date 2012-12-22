@@ -38,6 +38,7 @@
                     %b.caret
                   %ul.dropdown-menu{role: "menu", "aria-labelledby" => "dLabel"}
                     %li= link_to "Details", user_path(current_user)
+                    %li= link_to "My Songs", mine_songs_path
                     %li= link_to "Import Songs", import_user_path(current_user)
                 %li= link_to "Logout", destroy_user_session_url, :method => :delete
               - else
