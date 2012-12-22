@@ -16,6 +16,8 @@ Feature: Adding friends
     When I add "other@example.com" as a friend
     And I am on my details page
     Then I should see "other@example.com"
+    When I am on the user page for "other@example.com"
+    Then I should see "me@example.com"
 
   Scenario: Cannot add a friend twice
     Given I am logged in as "me@example.com"
