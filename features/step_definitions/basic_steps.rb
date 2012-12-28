@@ -2,6 +2,10 @@ Then /^I should see "(.*?)"$/ do |arg1|
   page.has_content? arg1
 end
 
+Then /^I should not see "(.*?)"$/ do |arg1|
+  page.should_not have_content(arg1)
+end
+
 Given /^the following users$/ do |users|
   users.hashes.each do |item|
     Admin::Whitelist.create! item
