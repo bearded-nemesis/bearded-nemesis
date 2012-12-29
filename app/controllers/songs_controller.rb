@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_song, except: [:index, :mine, :new, :create, :search]
+  before_filter :authorize_admin!, only: [:new, :edit]
 
   # GET /songs
   # GET /songs.json
@@ -111,6 +112,10 @@ class SongsController < ApplicationController
   end
 
   private
+
+  def authorize_admin!
+    raise ActionController::RoutingError.new('Not Found') unless current_user.is_admin?
+  end
 
   def current_user_owns_song
     @song.users.exists? current_user

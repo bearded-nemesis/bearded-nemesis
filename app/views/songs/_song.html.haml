@@ -14,5 +14,9 @@
       "data-http-method" => get_ratings_method(@rated_songs.find {|rated| rated.song == song})}
       Rate
   %td= link_to 'Details', song
-  %td= link_to 'Edit', edit_song_path(song)
-  %td= link_to 'Remove', song, method: :delete, data: { confirm: 'Are you sure?' }
+  %td
+    - if is_user_admin?
+      =link_to 'Edit', edit_song_path(song)
+  %td
+    - if is_user_admin?
+      =link_to 'Remove', song, method: :delete, data: { confirm: 'Are you sure?' }

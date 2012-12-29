@@ -22,6 +22,11 @@
       = f.text_field :genre
 
   .control-group
+    = f.label :shortname, class: "control-label"
+    .controls
+      = f.text_field :shortname
+
+  .control-group
     = f.label :year, :class => "control-label"
     .controls
       = f.number_field :year

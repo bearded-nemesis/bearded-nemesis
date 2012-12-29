@@ -38,6 +38,29 @@ Then /^song "(.*?)" should not be owned by me$/ do |song_name|
   get_mark_song_as_owned_span(song_name).should have_content("No")
 end
 
+When /^I remove song "(.*?)"$/ do |song_name|
+  song = Song.find_by_name song_name
+  path = song_path song
+  link = find :css, "a[href='#{path}'][data-method='delete']"
+  link.click
+end
+
+When /^I am on the edit page for song "(.*?)"$/ do |song_name|
+  song = Song.find_by_name song_name
+  begin
+    visit edit_song_path(song)
+  rescue ActionController::RoutingError
+
+  end
+end
+
+When /^I am on the new song page$/ do
+  begin
+    visit new_song_path
+  rescue ActionController::RoutingError
+
+  end
+end
 
 private
 
