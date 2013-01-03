@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @playlist.name
+%p
+  %b User:
+  = @playlist.user
+%p
+  %b Amount of songs:
+  = @playlist.amount_of_songs
+%p
+  %b Include unrated songs:
+  = @playlist.include_unrated_songs
+%p
+  %b Unrated songs rating:
+  = @playlist.unrated_songs_rating
+
+= link_to 'Edit', edit_playlist_path(@playlist)
+\|
+= link_to 'Back', playlists_path

@@ -1,4 +1,6 @@
 BeardedNemesis::Application.routes.draw do
+  resources :playlists
+
   resources :rock_parties
 
   namespace :admin do resources :whitelists end

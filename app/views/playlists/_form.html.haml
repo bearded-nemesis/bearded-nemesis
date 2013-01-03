@@ -1,0 +1,25 @@
+= form_for @playlist do |f|
+  - if @playlist.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@playlist.errors.count, "error")} prohibited this playlist from being saved:"
+      %ul
+        - @playlist.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :user
+    = f.text_field :user
+  .field
+    = f.label :amount_of_songs
+    = f.number_field :amount_of_songs
+  .field
+    = f.label :include_unrated_songs
+    = f.check_box :include_unrated_songs
+  .field
+    = f.label :unrated_songs_rating
+    = f.number_field :unrated_songs_rating
+  .actions
+    = f.submit 'Save'
