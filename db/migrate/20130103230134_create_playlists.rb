@@ -3,9 +3,9 @@ class CreatePlaylists < ActiveRecord::Migration
     create_table :playlists do |t|
       t.string :name
       t.references :user
-      t.int :amountOfSongs
-      t.bool :includeUnratedSongs
-      t.int :unratedSongsRating
+      t.integer :amountOfSongs
+      t.boolean :includeUnratedSongs
+      t.integer :unratedSongsRating
 
       t.timestamps
     end
