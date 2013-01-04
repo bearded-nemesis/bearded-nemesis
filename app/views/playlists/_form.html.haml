@@ -6,20 +6,26 @@
         - @playlist.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :amount_of_songs
-    = f.number_field :amount_of_songs
-  .field
-    = f.label :include_unrated_songs
-    = f.check_box :include_unrated_songs
-  .field
-    = f.label :unrated_songs_rating
-    = f.number_field :unrated_songs_rating
-  .actions
-    = f.submit 'Save'
+  .control-group
+    = f.label :name, :class => "control-label"
+    .controls
+      = f.text_field :name
+  .control-group
+    = f.label :user, :class => "control-label"
+    .controls
+      = f.text_field :user
+  .control-group
+    = f.label :amount_of_songs, :class => "control-label"
+    .controls
+      = f.number_field :amount_of_songs
+  .control-group
+    = f.label :include_unrated_songs, :class => "control-label"
+    .controls
+      = f.check_box :include_unrated_songs
+  .control-group
+    = f.label :unrated_songs_rating, :class => "control-label"
+    .controls
+      = f.number_field :unrated_songs_rating
+
+  .form-actions
+    = f.submit 'Save', :class => "btn"
