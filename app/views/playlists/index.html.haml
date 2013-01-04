@@ -15,7 +15,7 @@
     - @playlists.each do |playlist|
       %tr
         %td= playlist.name
-        %td= playlist.user.email
+        %td= playlist.user.email unless playlist.user.nil?
         %td= playlist.amount_of_songs
         %td= playlist.include_unrated_songs
         %td= playlist.unrated_songs_rating
