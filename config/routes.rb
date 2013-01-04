@@ -1,4 +1,6 @@
 BeardedNemesis::Application.routes.draw do
+  resources :playlists
+
   resources :rock_parties
 
   namespace :admin do resources :whitelists end
@@ -19,6 +21,7 @@ BeardedNemesis::Application.routes.draw do
     collection do
       get :mine
       get "search/:term" => "songs#search"
+      get "autocomplete" => "songs#autocomplete"
     end
 
     member do

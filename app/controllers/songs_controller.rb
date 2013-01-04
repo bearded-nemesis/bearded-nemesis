@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_song, except: [:index, :mine, :new, :create, :search]
+  before_filter :get_song, except: [:index, :mine, :new, :create, :search, :autocomplete]
   before_filter :authorize_admin!, only: [:new, :edit]
 
   # GET /songs
@@ -91,6 +91,12 @@ class SongsController < ApplicationController
       format.html { redirect_to songs_url }
       format.json { head :no_content }
     end
+  end
+
+  def autocomplete
+    @songs = Song.where("UPPER(name) LIKE UPPER(?)", '%' + params["term"] + '%').limit(params["rows"]).select([:id, :name])
+
+    render json: @songs
   end
 
   def own
