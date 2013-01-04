@@ -21,6 +21,7 @@ BeardedNemesis::Application.routes.draw do
     collection do
       get :mine
       get "search/:term" => "songs#search"
+      get "autocomplete" => "songs#autocomplete"
     end
 
     member do
