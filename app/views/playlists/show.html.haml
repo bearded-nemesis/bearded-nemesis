@@ -16,6 +16,10 @@
   %b Unrated songs rating:
   = @playlist.unrated_songs_rating
 
+%ol
+  - @playlist.playlist_songs.each do |playlist_song|
+    %li= playlist_song.song.name
+
 = link_to 'Edit', edit_playlist_path(@playlist)
 \|
 = link_to 'Back', playlists_path
