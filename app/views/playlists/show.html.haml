@@ -1,25 +1,35 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @playlist.name
-%p
-  %b User:
-  = @playlist.user.email
-%p
-  %b Amount of songs:
-  = @playlist.amount_of_songs
-%p
-  %b Include unrated songs:
-  = @playlist.include_unrated_songs
-%p
-  %b Unrated songs rating:
-  = @playlist.unrated_songs_rating
+.span8.offset2
+  .row-fluid
+    .span12
+      %h3
+        = @playlist.name
 
-%ol
-  - @playlist.playlist_songs.each do |playlist_song|
-    %li= playlist_song.song.name
-
-= link_to 'Edit', edit_playlist_path(@playlist)
-\|
-= link_to 'Back', playlists_path
+  .row-fluid
+    .span4
+      %fieldset
+        %legend Details
+        %p
+          %b User:
+          = @playlist.user.email
+        %p
+          %b Amount of songs:
+          = @playlist.amount_of_songs
+        %p
+          %b Include unrated songs:
+          = @playlist.include_unrated_songs
+        %p
+          %b Unrated songs rating:
+          = @playlist.unrated_songs_rating
+    .span4
+      %fieldset
+        %legend Songs
+        %ol
+          - @playlist.playlist_songs.each do |playlist_song|
+            %li= playlist_song.song.name
+  .row-fluid
+    .span12
+      = link_to 'Edit', edit_playlist_path(@playlist)
+      \|
+      = link_to 'Back', playlists_path
