@@ -25,10 +25,10 @@
   .control-group
     %label.control-label Songs
     .controls
-      %ul
+      %input#add-song-text{:type => "text"}
+      %ul#songs
         - @playlist.playlist_songs.each do |playlist_song|
           %li= playlist_song.song.name
-        %li Add Song
 
   .form-actions
     = f.submit 'Save', :class => "btn"
