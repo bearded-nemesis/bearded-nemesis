@@ -1,27 +1,28 @@
-%h1 Listing playlists
+.span12
+  %h3 Listing playlists
 
-%table.table.table-striped
-  %tr
-    %th Name
-    %th User
-    %th Amount of songs
-    %th Include unrated songs
-    %th Unrated songs rating
-    %th
-    %th
-    %th
-
-  - @playlists.each do |playlist|
+  %table.table.table-striped
     %tr
-      %td= playlist.name
-      %td= playlist.user
-      %td= playlist.amount_of_songs
-      %td= playlist.include_unrated_songs
-      %td= playlist.unrated_songs_rating
-      %td= link_to 'Show', playlist
-      %td= link_to 'Edit', edit_playlist_path(playlist)
-      %td= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' }
+      %th Name
+      %th User
+      %th Amount of songs
+      %th Include unrated songs
+      %th Unrated songs rating
+      %th
+      %th
+      %th
 
-%br
+    - @playlists.each do |playlist|
+      %tr
+        %td= playlist.name
+        %td= playlist.user
+        %td= playlist.amount_of_songs
+        %td= playlist.include_unrated_songs
+        %td= playlist.unrated_songs_rating
+        %td= link_to 'Show', playlist
+        %td= link_to 'Edit', edit_playlist_path(playlist)
+        %td= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' }
 
-= link_to 'New Playlist', new_playlist_path
+  %br
+
+  = link_to 'New Playlist', new_playlist_path
