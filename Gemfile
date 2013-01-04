@@ -13,6 +13,7 @@ end
 
 group :development, :test do
   gem "sqlite3"
+  gem "rb-readline"
 end
 
 gem 'will_paginate'
