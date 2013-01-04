@@ -60,6 +60,20 @@ class PlaylistsController < ApplicationController
   def update
     @playlist = Playlist.find(params[:id])
 
+    # Remove all songs and add the ones being submitted via post
+    @playlist.playlist_songs.delete_all
+
+    if params[:songs]
+      params[:songs].each do |song_id|
+        song = Song.find(song_id)
+
+        playlist_song = PlaylistSong.new
+        playlist_song.song = song
+
+        @playlist.playlist_songs << playlist_song
+      end
+    end
+
     respond_to do |format|
       if @playlist.update_attributes(params[:playlist])
         format.html { redirect_to @playlist, notice: 'Playlist was successfully updated.' }

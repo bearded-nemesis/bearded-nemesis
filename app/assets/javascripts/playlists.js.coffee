@@ -21,13 +21,14 @@ $(->
       )
 
     select: (event, ui) ->
-      $("<li></li>").html(ui.item.label).prependTo($("#songs"))
+      $hidden = $("<input>").attr("type", "hidden").attr("name", "songs[]").val(ui.item.value)
+      $("<li>").append(ui.item.label).append($hidden).prependTo($("#songs"))
       this.value = ""
       return false
   }).data( "autocomplete" )._renderItem = ( ul, item ) ->
-    return $( "<li></li>" )
+    return $( "<li>" )
       .data( "item.autocomplete", item )
-      .append( $( "<a></a>" ).html(item.label) )
+      .append( $( "<a>" ).html(item.label) )
       .appendTo( ul )
 )
 
