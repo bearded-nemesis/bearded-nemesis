@@ -40,7 +40,7 @@ class PlaylistsController < ApplicationController
   # POST /playlists
   # POST /playlists.json
   def create
-    @playlist = Playlist.new(params[:playlist])
+    @playlist = Playlist.new(params[:playlist].merge(user: current_user))
 
     respond_to do |format|
       if @playlist.save
