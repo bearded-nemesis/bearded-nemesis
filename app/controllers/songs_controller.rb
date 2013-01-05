@@ -94,7 +94,7 @@ class SongsController < ApplicationController
   end
 
   def autocomplete
-    @songs = Song.where("UPPER(name) LIKE UPPER(?)", '%' + params["term"] + '%').limit(params["rows"]).select([:id, :name])
+    @songs = Song.where("UPPER(name) LIKE UPPER(?)", '%' + params[:term] + '%').limit(params[:rows]).select([:id, :name])
 
     render json: @songs
   end

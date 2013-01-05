@@ -6,16 +6,23 @@ $(->
   $addSong = $("#add-song-text")
 
   if $addSong.length > 0
+    playlistId = $("form[data-playlistid]").data("playlistid")
+
     $addSong.autocomplete({
       source: (request, response) ->
         $.get(
           "/songs/autocomplete",
           {
             rows: 12,
-            term: request.term
+            term: request.term,
+            playlistId: playlistId
           },
           (data) ->
             response($.map(data, (item) ->
+              # If song is already in list, return
+              if $("input[name='songs[]'][value="+item.id+"]").length > 0
+                return;
+
               return {
                 label: highlight(item.name, request.term),
                 value: item.id
