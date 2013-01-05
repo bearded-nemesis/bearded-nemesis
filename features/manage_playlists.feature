@@ -11,6 +11,9 @@ Feature: Manage playlists
       | name      |
       | Dummy     |
       | Delete Me |
+    And the following songs
+      | name     | artist   |
+      | Foo Song | The Foos |
 
   Scenario: Adding a new playlist
     Given I am logged in as "user@example.com"
@@ -30,3 +33,14 @@ Feature: Manage playlists
     When I remove playlist "Delete Me"
     And I am on the playlist list page
     Then I should not see "Delete Me"
+
+  @javascript
+  Scenario: Adding a song to a playlist
+    Given I am logged in as "user@example.com"
+    When I am on the edit page for playlist "Dummy"
+    And I enter the following songs
+      | Name     |
+      | Foo Song |
+    And I click "Save"
+    And I am on the detail page for playlist "Dummy"
+    Then I should see "Foo Song"

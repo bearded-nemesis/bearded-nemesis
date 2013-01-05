@@ -25,7 +25,7 @@
   .control-group
     %label.control-label Songs
     .controls
-      %input#add-song-text{:type => "text"}
+      %input#add-song-text{:type => "text", :name => "add-song"}
       %ul#songs
         - @playlist.playlist_songs.each do |playlist_song|
           %li
