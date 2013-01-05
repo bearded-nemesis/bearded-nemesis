@@ -96,4 +96,8 @@ class PlaylistsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def generate
+
+  end
 end

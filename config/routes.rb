@@ -1,5 +1,9 @@
 BeardedNemesis::Application.routes.draw do
-  resources :playlists
+  resources :playlists do
+    collection do
+      get :generate
+    end
+  end
 
   resources :rock_parties
 

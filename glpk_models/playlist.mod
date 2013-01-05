@@ -17,6 +17,7 @@ s.t. song_usage:
 
 solve;
 
+/*
 for {s in songs: selected_songs[s] = 1} {
 	printf "%s\n", s;
 }
@@ -36,3 +37,4 @@ param ratings :=
 		  NATHAN     5      2      3    1        5
 ;
 end;
+*/

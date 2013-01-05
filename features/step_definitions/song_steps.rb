@@ -62,10 +62,62 @@ When /^I am on the new song page$/ do
   end
 end
 
+Given /^(\d+) random songs$/ do |song_count|
+  songs = []
+
+  (0...song_count.to_i).map do
+    songs << { "name" => (0...16).map{65.+(rand(26)).chr}.join }
+  end
+
+  create_songs songs
+end
+
+Given /^I own all the songs$/ do
+  Song.all.each do |song|
+    song.users << @current_user
+    song.save!
+  end
+end
+
+Given /^all the songs have random ratings$/ do
+  users = User.all
+
+  Song.all.each do |song|
+    users.each do |user|
+      rating = Rating.new user: user, song: song
+      rating.bass = Random.rand(6)
+      rating.drums = Random.rand(6)
+      rating.guitar = Random.rand(6)
+      rating.keyboard = Random.rand(6)
+      rating.vocals = Random.rand(6)
+      rating.overall = Random.rand(6)
+      rating.pro_keyboard = Random.rand(6)
+      rating.pro_drums = Random.rand(6)
+      rating.pro_guitar = Random.rand(6)
+      rating.pro_bass = Random.rand(6)
+      rating.pro_vocals = Random.rand(6)
+      rating.save!
+    end
+  end
+end
+
+
 private
 
 def get_mark_song_as_owned_span(song_name)
   song = Song.find_by_name song_name
   path = own_song_path song
   find :css, "span[data-url='#{path}']"
+end
+
+def create_songs(songs)
+  songs.each do |elem|
+    item = elem.clone
+
+    item["artist"] ||= "Dummy Artist"
+    item["genre"] ||= "Rock"
+    item["shortname"] ||= item["name"]
+
+    Song.create! item
+  end
 end
