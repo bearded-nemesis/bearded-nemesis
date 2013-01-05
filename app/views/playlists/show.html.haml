@@ -12,7 +12,7 @@
         %legend Details
         %p
           %b User:
-          = @playlist.user.email
+          = @playlist.user.email unless @playlist.user.nil?
         %p
           %b Amount of songs:
           = @playlist.amount_of_songs
