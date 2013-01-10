@@ -1,6 +1,15 @@
 %h3 Sign in
   
 = form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal"} do |f|
+
+  - flash.each do |name, msg|
+    .alert.alert-error.fade.in
+      %strong Error!
+      = msg
+      %button.close{:type => "button", "data-dismiss" => "alert"}
+        &times;
+
+
   .control-group
     = f.label :email, :class => "control-label"
     .controls

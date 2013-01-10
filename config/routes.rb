@@ -1,4 +1,6 @@
 BeardedNemesis::Application.routes.draw do
+  devise_for :views
+
   resources :playlists do
     collection do
       get :generate
