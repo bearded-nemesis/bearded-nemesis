@@ -31,7 +31,7 @@
               - if user_signed_in?
                 %li
                   %form.navbar-search#song-search
-                    %input.search-query{type: "text", placeholder: "Search for songs..."}
+                    %input.search-query{type: "text", placeholder: "Search for songs.."}
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#", id: "dLabel", role: "button"}
                     = image_tag avatar_url(current_user, 20), :alt => "Gravitar"

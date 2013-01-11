@@ -10,6 +10,7 @@
  *
  *= require jquery.ui.all
  *= require ../javascripts/bootstrap/css/bootstrap.min.css
+ *= require_tree ./vendor
  *= require_self
  *= require base
  */

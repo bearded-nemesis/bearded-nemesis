@@ -3,45 +3,23 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(->
-  $addSong = $("#add-song-text")
+  onCallback = (data, request, response) ->
+    response($.map(data, (item) ->
+      # If song is already in list, return
+      if $("input[name='songs[]'][value="+item.id+"]").length > 0
+        return;
 
-  if $addSong.length > 0
-    playlistId = $("form[data-playlistid]").data("playlistid")
+      return {
+        label: highlight(item.name, request.term),
+        value: item.id
+      }
+    ))
 
-    $addSong.autocomplete({
-      source: (request, response) ->
-        $.get(
-          "/songs/autocomplete",
-          {
-            rows: 12,
-            term: request.term,
-            playlistId: playlistId
-          },
-          (data) ->
-            response($.map(data, (item) ->
-              # If song is already in list, return
-              if $("input[name='songs[]'][value="+item.id+"]").length > 0
-                return;
+  onSelect = (event, ui, $textbox) ->
+    $hidden = $("<input>").attr("type", "hidden").attr("name", "songs[]").val(ui.item.value)
+    $("<li>").append(ui.item.label).append($hidden).prependTo($("#songs"))
+    $textbox.val("")
+    return false
 
-              return {
-                label: highlight(item.name, request.term),
-                value: item.id
-              }
-            ))
-        )
-
-      select: (event, ui) ->
-        $hidden = $("<input>").attr("type", "hidden").attr("name", "songs[]").val(ui.item.value)
-        $("<li>").append(ui.item.label).append($hidden).prependTo($("#songs"))
-        this.value = ""
-        return false
-    }).data( "autocomplete" )._renderItem = ( ul, item ) ->
-      return $( "<li>" )
-        .data( "item.autocomplete", item )
-        .append( $( "<a>" ).html(item.label) )
-        .appendTo( ul )
+  $playlistSongsAutocomplete = beard.songAutocomplete("#add-song-text", onCallback, onSelect)
 )
-
-highlight = (s, t) ->
-  matcher = new RegExp("("+$.ui.autocomplete.escapeRegex(t)+")", "ig" )
-  return s.replace(matcher, "<strong>$1</strong>")
