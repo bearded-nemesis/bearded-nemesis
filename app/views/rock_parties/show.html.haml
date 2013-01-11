@@ -1,32 +1,33 @@
 %p#notice= notice
 
 .span8.offset2
-  .row-fluid
-    .span12
-      %h3 
-        = @rock_party.name
+  .box-layout
+    .row-fluid
+      .span12
+        %h3
+          = @rock_party.name
 
-  .row-fluid
-    .span4
-      %fieldset
-        %legend Details
-        %p
-          %b Location:
-          = @rock_party.location
-        %p
-          %b Date:
-          = get_event_datetime(@rock_party.eventDate)
-        %p
-          %b Host:
-          = @rock_party.user.email unless @rock_party.user.nil?
-      %fieldset
-        %legend Playlists
-    .span4
-      %fieldset
-        %legend Attendees
-        %ul
-          - @rock_party.users.each do |user|
-            %li= user.email
+    .row-fluid
+      .span4
+        %fieldset
+          %legend Details
+          %p
+            %b Location:
+            = @rock_party.location
+          %p
+            %b Date:
+            = get_event_datetime(@rock_party.eventDate)
+          %p
+            %b Host:
+            = @rock_party.user.email unless @rock_party.user.nil?
+        %fieldset
+          %legend Playlists
+      .span4
+        %fieldset
+          %legend Attendees
+          %ul
+            - @rock_party.users.each do |user|
+              %li= user.email
   .row-fluid  
     .span12
       = link_to 'Edit', edit_rock_party_path(@rock_party)

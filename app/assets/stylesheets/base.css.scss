@@ -32,3 +32,17 @@ section#main {
 .controls > .field_with_errors {
   display:table !important;
 }
+
+.box-layout {
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  margin: 40px auto 20px;
+  padding: 19px 29px 29px;
+
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
