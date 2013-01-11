@@ -16,8 +16,8 @@ end
 
 Given /^I am logged in as "(.*?)"$/ do |email|
   visit new_user_session_path
-  fill_in 'Email', with: email
-  fill_in 'Password', with: "password"
+  fill_in 'user_email', with: email
+  fill_in 'user_password', with: "password"
   click_button 'Sign in'
 
   @current_user = User.find_by_email email
