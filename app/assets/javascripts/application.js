@@ -16,4 +16,3 @@
 //= require jquery.ui.all
 //= require bootstrap/js/bootstrap.js
 //= require bootstrap/js/bootstrap-dropdown.js
-//= require_tree .

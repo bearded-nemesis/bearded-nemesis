@@ -11,34 +11,5 @@
  *= require jquery.ui.all
  *= require ../javascripts/bootstrap/css/bootstrap.min.css
  *= require_self
- *= require_tree .
+ *= require base
  */
-
-body {
-  padding-top:60px;
-}
-
-body > footer {
-  padding: 70px 0;
-  margin-top: 70px;
-  border-top: 1px solid #E5E5E5;
-  background-color: whiteSmoke;
-}
-
-.navbar-inverse .brand {
-  color:#fff;
-  font-family: 'Permanent Marker', cursive;
-  font-size:22px;
-}
-
-.field_with_errors {
-  display:inline !important;
-}
-
-.field_with_errors > label {
-  color:#ff0000;
-}
-
-.controls > .field_with_errors {
-  display:table !important;
-}
