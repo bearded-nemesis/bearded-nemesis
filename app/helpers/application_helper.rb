@@ -11,4 +11,8 @@ module ApplicationHelper
       "//gravatar.com/avatar/#{gravatar_id}.png?s=#{size || 48}"
     end
   end
+
+  def get_menu_link(text, path, entity)
+    content_tag "li", link_to(text, path), :class => ("active" unless entity != controller.controller_name)
+  end
 end
