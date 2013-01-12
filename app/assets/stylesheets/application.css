@@ -13,4 +13,5 @@
  *= require_tree ./vendor
  *= require_self
  *= require base
+ *= require_tree .
  */
