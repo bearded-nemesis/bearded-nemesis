@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.widget
+//= require jquery.ui.autocomplete
 //= require jquery.ui.datepicker
 //= require bootstrap/js/bootstrap.js
 //= require bootstrap/js/bootstrap-dropdown.js
