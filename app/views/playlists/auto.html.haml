@@ -1,0 +1,21 @@
+
+=form_tag generate_playlist_path(@playlist) do
+  .field
+    %label{for: "song_count"}
+    %input{name: "song_count"}
+
+  %h3 Players
+  %table
+    %thead
+      %tr
+        %th &nbsp;
+        - @playlist.players.each do |player|
+          %th= player.email
+    %tbody
+      - ApplicationController::INSTRUMENTS.each do |instrument|
+        %tr
+          %td= instrument
+          - @playlist.players.each do |player|
+            %td= radio_button_tag "instrument_#{player.id}", instrument
+
+  %input{type: "submit"}

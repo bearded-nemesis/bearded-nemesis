@@ -113,15 +113,15 @@ rating = {
     pro_keyboard: ko.observable(),
     overall: ko.observable(),    
     parse: (data) ->
-      this.guitar(data.guitar)
-      this.bass(data.bass)
-      this.drums(data.drums)
-      this.vocals(data.vocals)
-      this.keyboard(data.keyboard)
-      this.pro_guitar(data.pro_guitar)
-      this.pro_bass(data.pro_bass)
-      this.pro_drums(data.pro_drums)
-      this.pro_vocals(data.pro_vocals)
-      this.pro_keyboard(data.pro_keyboard)
-      this.overall(data.overall)
+      this.guitar(data.guitar || 0)
+      this.bass(data.bass || 0)
+      this.drums(data.drums || 0)
+      this.vocals(data.vocals || 0)
+      this.keyboard(data.keyboard || 0)
+      this.pro_guitar(data.pro_guitar || 0)
+      this.pro_bass(data.pro_bass || 0)
+      this.pro_drums(data.pro_drums || 0)
+      this.pro_vocals(data.pro_vocals || 0)
+      this.pro_keyboard(data.pro_keyboard || 0)
+      this.overall(data.overall || 0)
 }
