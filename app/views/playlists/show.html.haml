@@ -25,6 +25,12 @@
             = @playlist.unrated_songs_rating
       .span4
         %fieldset
+          %legend Players
+          %ul
+            - @playlist.users.each do |user|
+              %li= user.email
+      .span4
+        %fieldset
           %legend Songs
           = link_to 'Auto-add songs', auto_playlist_path(@playlist)
           %ol

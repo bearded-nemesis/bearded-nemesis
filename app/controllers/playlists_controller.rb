@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_playlist, except: [:index, :new, :create]
+  before_filter :get_other_users, except: [:index, :show]
 
   # GET /playlists
   # GET /playlists.json
@@ -42,6 +43,14 @@ class PlaylistsController < ApplicationController
   def create
     @playlist = Playlist.new(params[:playlist].merge(user: current_user))
 
+    # Add players to playlist
+    if params[:players]
+      params[:players].each do |user_id|
+        user = User.find(user_id)
+        @playlist.users << user
+      end
+    end
+
     respond_to do |format|
       if @playlist.save
         format.html { redirect_to @playlist, notice: 'Playlist was successfully created.' }
@@ -67,6 +76,16 @@ class PlaylistsController < ApplicationController
         playlist_song.song = song
 
         @playlist.playlist_songs << playlist_song
+      end
+    end
+
+    # Remove all players and add the ones being submitted via post
+    @playlist.users.delete_all
+
+    if params[:players]
+      params[:players].each do |user_id|
+        user = User.find(user_id)
+        @playlist.users << user
       end
     end
 

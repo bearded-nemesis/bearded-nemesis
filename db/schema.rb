@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(:version => 20130117004615) do
   add_index "playlist_songs", ["playlist_id"], :name => "index_playlist_songs_on_playlist_id"
   add_index "playlist_songs", ["song_id"], :name => "index_playlist_songs_on_song_id"
 
+  create_table "playlist_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "playlist_id"
+  end
+
+  add_index "playlist_users", ["playlist_id", "user_id"], :name => "index_playlist_users_on_playlist_id_and_user_id"
+  add_index "playlist_users", ["user_id", "playlist_id"], :name => "index_playlist_users_on_user_id_and_playlist_id"
+
   create_table "playlists", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
