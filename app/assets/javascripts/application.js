@@ -18,5 +18,7 @@
 //= require bootstrap/js/bootstrap.js
 //= require bootstrap/js/bootstrap-dropdown.js
 //= require_tree ./vendor
-//= require base
 //= require_tree .
+//= require_tree ./models
+//= require_tree ./widgets
+//= require base
