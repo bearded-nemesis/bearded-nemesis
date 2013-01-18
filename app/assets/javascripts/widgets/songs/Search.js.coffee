@@ -6,7 +6,7 @@ class Beard.Songs.Search
     return unless this.textbox$.length > 0
 
     this.textbox$.autocomplete(
-      {source: this._source, select: this._select}
+      {source: this._source, select: this._select, focus: this._focus}
     ).data( "autocomplete" )
       ._renderItem = (ul, item) ->
         $("<li>")
@@ -30,6 +30,9 @@ class Beard.Songs.Search
 
   _select: (event, ui) =>
     this.selection event, ui, this.textbox$ if this.selection
+
+  _focus: (event, ui) =>
+    ui.item.value = ui.item.text
 
   _highlight: (s, t) ->
     matcher = new RegExp("("+$.ui.autocomplete.escapeRegex(t)+")", "ig" )
