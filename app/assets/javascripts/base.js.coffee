@@ -5,7 +5,7 @@
 $(->
   onSelect = (event, ui, $textbox) ->
     $textbox.val(ui.item.text)
-    return false
+    false
 
-  $globalSongsAutocomplete = new Beard.Songs.Search("#song-search .search-query", null, onSelect)
+  new Beard.Songs.Search("#song-search .search-query", null, onSelect)
 )

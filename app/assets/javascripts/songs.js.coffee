@@ -2,45 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-class Beard.Songs.Search
-  constructor: (textboxSelector, onCallback, onSelect) ->
-    $textbox = $(textboxSelector)
-
-    if $textbox.length <= 0
-      console.log "Textbox with the selector ["+textboxSelector+"] not found."
-      return
-
-    $textbox.autocomplete(
-      {source: this._source, select: this._select}
-    ).data( "autocomplete" )
-      ._renderItem = (ul, item) ->
-        return $("<li>")
-          .data("item.autocomplete", item)
-          .append( $("<a>" ).html(item.label))
-          .appendTo(ul)
-
-  _source: (request, response) ->
-    $.get("/songs/autocomplete", {rows:12, term:request.term}, (data) =>
-      if this.onCallback
-        this.onCallback(data, request, response)
-      else
-        response($.map(data, (item) =>
-          return {
-            text: item.name,
-            label: this._highlight(item.name, request.term),
-            value: item.id
-          }
-        ))
-    )
-
-  _select: (event, ui) ->
-    if this.onSelect
-      this.onSelect(event, ui, $textbox)
-
-  _highlight: (s, t) ->
-    matcher = new RegExp("("+$.ui.autocomplete.escapeRegex(t)+")", "ig" )
-    return s.replace(matcher, "<strong>$1</strong>")
-
 $(->    
   $(".add-ratings").click((evt)->
     evt.preventDefault()
