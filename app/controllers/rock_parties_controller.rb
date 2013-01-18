@@ -1,4 +1,6 @@
 class RockPartiesController < ApplicationController
+  before_filter :get_other_users, except: [:index, :show]
+
   # GET /rock_parties
   # GET /rock_parties.json
   def index
@@ -25,7 +27,6 @@ class RockPartiesController < ApplicationController
   # GET /rock_parties/new.json
   def new
     @rock_party = RockParty.new
-    @users = User.where(['id <> ?', current_user.id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,7 +37,6 @@ class RockPartiesController < ApplicationController
   # GET /rock_parties/1/edit
   def edit
     @rock_party = RockParty.find(params[:id])
-    @users = User.where(['id <> ?', current_user.id])
   end
 
   # POST /rock_parties

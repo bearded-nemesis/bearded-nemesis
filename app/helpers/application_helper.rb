@@ -15,4 +15,16 @@ module ApplicationHelper
   def get_menu_link(text, path, entity)
     content_tag "li", link_to(text, path), :class => ("active" unless entity != controller.controller_name)
   end
+
+  def user_select_option(availableUsers, user)
+    if availableUsers && availableUsers.include?(user)
+      content_tag(:option, selected: "selected", value: user.id) do
+        user.email
+      end
+    else
+      content_tag(:option, value: user.id) do
+        user.email
+      end
+    end
+  end
 end

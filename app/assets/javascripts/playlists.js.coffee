@@ -22,4 +22,6 @@ $(->
     return false
 
   $playlistSongsAutocomplete = new Beard.Songs.Search("#add-song-text", onCallback, onSelect)
+
+  $("#players").chosen()
 )

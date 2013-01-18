@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
     @song = Song.first
     @rating = @song.ratings.build user: current_user
   end
+
+  def get_other_users
+    @users = User.where(['id <> ?', current_user.id])
+  end
 end
