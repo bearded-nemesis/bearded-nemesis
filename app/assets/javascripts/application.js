@@ -18,6 +18,5 @@
 //= require bootstrap/js/bootstrap.js
 //= require bootstrap/js/bootstrap-dropdown.js
 //= require_tree ./vendor
-//= require beard.js
 //= require base
 //= require_tree .
