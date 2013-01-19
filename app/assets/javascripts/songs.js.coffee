@@ -28,7 +28,7 @@ $(->
 
     $wrapper = $(this).closest("ul")
     $wrapper.find("a").removeClass("current-rating")
-    $wrapper.siblings("#rating_" + $wrapper.data("hiddenField")).val($(this).text())
+    $wrapper.siblings("#rating_" + $wrapper.data("hiddenField")).val($(this).text()).change()
 
 
     # $wrapper = $(this).closest(".star-rating");
