@@ -1,21 +1,39 @@
+.span12
+  %h3 Auto-add songs
 
-=form_tag generate_playlist_path(@playlist) do
-  .field
-    %label{for: "song_count"}
-    %input{name: "song_count"}
+  =form_tag generate_playlist_path(@playlist) do
+    .row-fluid
+      .span3
+        %h4 Details
+        .field
+          = label_tag "song_count"
+          = number_field_tag "song_count", 10, min: 1, required: true
 
-  %h3 Players
-  %table
-    %thead
-      %tr
-        %th &nbsp;
-        - @playlist.players.each do |player|
-          %th= player.email
-    %tbody
-      - ApplicationController::INSTRUMENTS.each do |instrument|
-        %tr
-          %td= instrument
-          - @playlist.players.each do |player|
-            %td= radio_button_tag "instrument_#{player.id}", instrument
+        .field
+          = label_tag "included_unrated"
+          = check_box "include_unrated", true, checked: true
 
-  %input{type: "submit"}
+        .field
+          = label_tag "default_rating"
+          = number_field_tag "default_rating", 3, min: 0, max: 5, required: true
+
+      .span9
+        %h4 Players
+        %table
+          %thead
+            %tr
+              %th &nbsp;
+              - @playlist.players.each do |player|
+                %th= player.email
+          %tbody
+            - ApplicationController::INSTRUMENTS.each do |instrument|
+              %tr
+                %td= instrument
+                - @playlist.players.each do |player|
+                  %td= radio_button_tag "instrument_#{player.id}", instrument
+              %tr
+                %td= "#{instrument} (Pro)"
+                - @playlist.players.each do |player|
+                  %td= radio_button_tag "instrument_#{player.id}", "pro_#{instrument}"
+
+    = submit_tag

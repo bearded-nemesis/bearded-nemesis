@@ -132,7 +132,7 @@ class PlaylistsController < ApplicationController
       songs.each do |song|
         ratings[song] ||= {}
         rating = player_ratings.find {|rating| rating.song.id == song} || {}
-        ratings[song][player.id] = rating[instrument] || 0
+        ratings[song][player.id] = rating[instrument] || params[:default_rating]
       end
     end
 
