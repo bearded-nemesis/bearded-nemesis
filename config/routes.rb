@@ -28,7 +28,7 @@ BeardedNemesis::Application.routes.draw do
     collection do
       get :mine
       get "search" => "songs#search"
-      get "search/:term" => "songs#search"
+      get "search/:term" => "songs#search", constraints: { term: /.*/ }
       get "autocomplete" => "songs#autocomplete"
     end
 
