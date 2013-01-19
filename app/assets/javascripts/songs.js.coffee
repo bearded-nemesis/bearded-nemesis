@@ -3,48 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(->
-  rating = new Beard.Models.Songs.Rating()
-
-  $(".add-ratings").click((evt)->
-    evt.preventDefault()
-    
-    self = this
-    
-    url = $(this).attr("href")
-    method = $(this).data("httpMethod")
-    
-    if (method == "PUT")
-      $.get(url, (data)->
-        rating.parse data
-        showPopup(self, url, method)        
-      )
-    else
-      rating.parse {}
-      showPopup(self, url, method)
-  )
-  
-  $(".star-rating a").click((evt)->
-    evt.preventDefault()      
-
-    $wrapper = $(this).closest("ul")
-    $wrapper.find("a").removeClass("current-rating")
-    $wrapper.siblings("#rating_" + $wrapper.data("hiddenField")).val($(this).text()).change()
-
-
-    # $wrapper = $(this).closest(".star-rating");
-    
-    $(this).addClass("current-rating")
-
-    $('#ratings-popup form').submit()
-  )
-  
-  $('#ratings-popup form').ajaxForm({
-    success: (data, status, xhr, form) ->
-      if(data.url != undefined)
-        form.attr("action", data.url).attr("method", "PUT")
-        $ratingsPopup.opener.attr("href", data.url).data("httpMethod", "PUT")
-  })
-
   $('.ownership').click((evt)->
     evt.preventDefault()
     link = $(this)
@@ -54,11 +12,6 @@ $(->
     $.post url, {'does_own': !does_own}, (data)->
       link.toggleClass "label-success"
       link.text if does_own then "No" else "Yes"
-  )  
-  
-  $("#ratings-popup .close").click((evt)->
-    $ratingsPopup.opener = null
-    $ratingsPopup.removeClass("show")
   )
   
   $("#submit-filter").click((evt)->
@@ -75,29 +28,5 @@ $(->
     evt.stopPropagation()
   )
 
-  $ratingsPopup = $("#ratings-popup")
-
-  showPopup = (self, url, method) ->
-    $ratingsPopup.find("form").attr("action", url).attr("method", method)
-    pos = $(self).position()
-    $ratingsPopup.opener = $(self)
-    $ratingsPopup.css({
-    top: (pos.top - 39) + "px",
-    left: (pos.left - 360) + "px"
-    }).addClass('show')
-
-  ko.applyBindings(rating)
+  ratingsPopup = new Beard.Widgets.Songs.RatingsWindow "#ratings-popup"
 )
-
-ko.bindingHandlers.checkStarRating = {
-  update: (element, valueAccessor, allBindingsAccessor) ->
-    value = valueAccessor()
-    allBindings = allBindingsAccessor()         
-    valueUnwrapped = ko.utils.unwrapObservable(value)         
-    ratingIndex = allBindings.ratingIndex
-    
-    if (valueUnwrapped == ratingIndex)  
-      $(element).addClass("current-rating")
-    else
-      $(element).removeClass("current-rating")    
-}
