@@ -2,7 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-$(->    
+$(->
+  rating = new Beard.Models.Songs.Rating()
+
   $(".add-ratings").click((evt)->
     evt.preventDefault()
     
@@ -98,30 +100,4 @@ ko.bindingHandlers.checkStarRating = {
       $(element).addClass("current-rating")
     else
       $(element).removeClass("current-rating")    
-}
-
-rating = {
-    guitar: ko.observable(),
-    bass: ko.observable(),
-    drums: ko.observable(),
-    vocals: ko.observable(),
-    keyboard: ko.observable(),
-    pro_guitar: ko.observable(),
-    pro_bass: ko.observable(),
-    pro_drums: ko.observable(),
-    pro_vocals: ko.observable(),
-    pro_keyboard: ko.observable(),
-    overall: ko.observable(),    
-    parse: (data) ->
-      this.guitar(data.guitar || 0)
-      this.bass(data.bass || 0)
-      this.drums(data.drums || 0)
-      this.vocals(data.vocals || 0)
-      this.keyboard(data.keyboard || 0)
-      this.pro_guitar(data.pro_guitar || 0)
-      this.pro_bass(data.pro_bass || 0)
-      this.pro_drums(data.pro_drums || 0)
-      this.pro_vocals(data.pro_vocals || 0)
-      this.pro_keyboard(data.pro_keyboard || 0)
-      this.overall(data.overall || 0)
 }

@@ -1,11 +1,11 @@
-class Beard.Songs.Search
+class Beard.Widgets.Songs.Search
   constructor: (textboxSelector, onCallback, onSelect) ->
     this.selection = onSelect
-    this.textbox$ = $(textboxSelector)
+    @textbox$ = $(textboxSelector)
 
-    return unless this.textbox$.length > 0
+    return unless @textbox$.length > 0
 
-    this.textbox$.autocomplete(
+    @textbox$.autocomplete(
       {source: this._source, select: this._select, focus: this._focus}
     ).data( "autocomplete" )
       ._renderItem = (ul, item) ->
@@ -29,7 +29,7 @@ class Beard.Songs.Search
         response label
 
   _select: (event, ui) =>
-    this.selection event, ui, this.textbox$ if this.selection
+    this.selection event, ui, @textbox$ if this.selection
 
   _focus: (event, ui) =>
     ui.item.value = ui.item.text

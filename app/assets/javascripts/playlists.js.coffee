@@ -21,7 +21,7 @@ $(->
     $textbox.val("")
     return false
 
-  $playlistSongsAutocomplete = new Beard.Songs.Search("#add-song-text", onCallback, onSelect)
+  new Beard.Widgets.Songs.Search("#add-song-text", onCallback, onSelect)
 
   $("#players").chosen()
 )
