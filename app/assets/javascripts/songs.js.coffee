@@ -4,7 +4,7 @@
 
 $ = jQuery
 
-$(->
+$ ->
   $("#submit-filter").click (evt)->
     $aggregate = $("#filter input:checked")
     
@@ -19,4 +19,3 @@ $(->
 
   $('.ownership').ajaxToggle()
   ratingsPopup = new Beard.Widgets.Songs.RatingsWindow "#ratings-popup"
-)
