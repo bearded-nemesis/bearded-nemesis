@@ -10,8 +10,8 @@
           = number_field_tag "song_count", 10, min: 1, required: true
 
         .field
-          = label_tag "included_unrated"
-          = check_box "include_unrated", true, checked: true
+          = label_tag "include_unrated"
+          = check_box_tag "include_unrated", true, checked: true
 
         .field
           = label_tag "default_rating"
@@ -36,4 +36,4 @@
                 - @playlist.players.each do |player|
                   %td= radio_button_tag "instrument_#{player.id}", "pro_#{instrument}"
 
-    = submit_tag
+    = submit_tag "Add songs"

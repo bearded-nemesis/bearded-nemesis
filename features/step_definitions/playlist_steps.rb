@@ -26,7 +26,7 @@ When /^I am on the edit page for playlist "(.*?)"$/ do |playlist_name|
   end
 end
 
-When /^I am on the detail page for playlist "(.*?)"$/ do |playlist_name|
+When /^I am on the detail[s]? page for playlist "(.*?)"$/ do |playlist_name|
   playlist = Playlist.find_by_name playlist_name
   begin
     visit playlist_path(playlist)
@@ -43,6 +43,21 @@ end
 Then /^I should not see "(.*?)" in autocomplete$/ do |song_name|
   enter_song_in_autocomplete(song_name)
   page.evaluate_script(%Q{ $('.ui-menu-item a:visible:contains("#{song_name}")').length <= 0; }).should be_true
+end
+
+When /^I choose the following instruments for each player$/ do |table|
+  table.hashes.each do |item|
+    id = item[:user] =~ /^me$/i ? @current_user.id : User.find_by_email(user_email)
+    choose "instrument_#{id}_#{item[:instrument]}"
+  end
+end
+
+Given /^playlist "([^"]*)" has the following songs$/ do |playlist_name, table|
+  playlist = Playlist.find_by_name playlist_name
+  table.hashes.each do |item|
+    playlist.songs.create song: Song.find_by_name(item[:song])
+  end
+  playlist.save
 end
 
 private

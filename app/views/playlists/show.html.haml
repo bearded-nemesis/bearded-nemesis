@@ -34,7 +34,7 @@
           %legend Songs
           = link_to 'Auto-add songs', auto_playlist_path(@playlist)
           %ol
-            - @playlist.playlist_songs.each do |playlist_song|
+            - @playlist.songs.each do |playlist_song|
               %li= playlist_song.song.name
     .row-fluid
       .span12
