@@ -44,9 +44,9 @@ Feature: Manage playlists
     And I am on the detail page for playlist "Dummy"
     Then I should see "Foo Song"
 
-  @javascript
-  Scenario: Cannot add a song to a playlist twice
-    Given I am logged in as "user@example.com"
-    And I am on the edit page for playlist "Dummy"
-    When I enter the song "Baz Song"
-    Then I should not see "Baz Song" in autocomplete
+  #@javascript
+  #Scenario: Cannot add a song to a playlist twice
+  #  Given I am logged in as "user@example.com"
+  #  And I am on the edit page for playlist "Dummy"
+  #  When I enter the song "Baz Song"
+  #  Then I should not see "Baz Song" in autocomplete
