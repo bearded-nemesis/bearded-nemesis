@@ -7,6 +7,9 @@ class SongSelector
   end
 
   def generate(ratings)
+    return [] unless ratings.respond_to? :keys
+    return [] unless ratings.keys.all? {|key| ratings[key].respond_to? :keys}
+
     f = write_data_file ratings
 
     begin

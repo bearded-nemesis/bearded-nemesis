@@ -88,15 +88,18 @@ Feature: Adding songs to playlists
     Given I am on the details page for playlist "Sample"
     And I click "Auto-add songs"
     And I enter the following information
-      | Song count | #genre_filter |
-      | 2          | Genre 2       |
+      | Song count |
+      | 2          |
+    And I select the following values from "Genre filter"
+      | value    |
+      | Genre 12 |
     And I choose the following instruments for each player
       | user | instrument |
       | me   | bass       |
     And I click "Add songs"
-    Then I should see "Song 2"
+    Then I should see "Song 12"
     And I should not see "Song 3"
     And I should not see "Song 5"
     And I should not see "Song 10"
-    And I should not see "Song 12"
+    And I should not see "Song 2"
     And I should not see "Song 13"

@@ -1,6 +1,10 @@
 require "spec_helper"
 
 describe Playlist do
+  before(:each) do
+    #FactoryGirl.reload
+  end
+
   describe "players" do
     it "should return all users" do
       first_user = FactoryGirl.create :user
@@ -110,17 +114,17 @@ describe Playlist do
       end
     end
 
-    describe "with filters" do
-      it "should only use songs with the specified genres" do
-        @generator.should_receive :generate do |arg|
-          arg.keys.should include(@songs[5].id)
-          arg.keys.should include(@songs[11].id)
-          arg.keys.should include(@songs[13].id)
-          arg.keys.length.should eq(3)
-        end
+    it "should only use filtered songs" do
+      @generator.should_receive :generate do |arg|
+        arg.keys.should include(@songs[2].id)
+        arg.keys.should include(@songs[4].id)
+        arg.keys.should include(@songs[9].id)
+        arg.keys.length.should eq(3)
+      end
 
-        filters = { genre: ["Genre 5", "Genre 11", "Genre 13"]}
-        @playlist.add_generated_songs @generator, {@user.id => :bass}, filters: filters
+      genres = [@songs[2].genre, @songs[4].genre, @songs[9].genre]
+      @playlist.add_generated_songs @generator, {@user.id => :bass} do |song|
+        genres.include? song.genre
       end
     end
   end

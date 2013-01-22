@@ -17,8 +17,10 @@ class Playlist < ActiveRecord::Base
     remove_unrated = options[:remove_unrated]
     default_rating = options[:default_rating] || 3
 
+    songs_to_use = block_given? ? user.songs.select {|song| yield song } : user.songs
+
     existing_songs = songs.map {|song| song.song.id}
-    songs_ids = user.songs.map {|song| song.id}.uniq - existing_songs
+    songs_ids = songs_to_use.map {|song| song.id}.uniq - existing_songs
     ratings = {}
 
     songs_to_remove = []

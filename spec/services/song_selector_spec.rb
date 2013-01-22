@@ -12,4 +12,16 @@ describe SongSelector do
     songs.should include(1)
     songs.length.should eq(1)
   end
+
+  it "should return an empty array if no ratings are entered" do
+    selector = SongSelector.new 1
+    songs = selector.generate nil
+    songs.should be_empty
+  end
+
+  it "should return an empty array if ratings have no players" do
+    selector = SongSelector.new 1
+    songs = selector.generate({ 1 => nil })
+    songs.should be_empty
+  end
 end

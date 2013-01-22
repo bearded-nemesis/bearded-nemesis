@@ -33,6 +33,12 @@ When /^I enter the following information$/ do |table|
   end
 end
 
+When /^I select the following values from "([^"]*)"$/ do |selector, table|
+  table.hashes.each do |item|
+    select item[:value], from: selector
+  end
+end
+
 When /^I uncheck "([^"]*)"$/ do |selector|
   uncheck selector
 end

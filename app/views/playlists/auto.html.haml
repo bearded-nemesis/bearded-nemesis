@@ -17,6 +17,10 @@
           = label_tag "default_rating"
           = number_field_tag "default_rating", 3, min: 0, max: 5, required: true
 
+        .field
+          = label_tag "genre_filter"
+          = select_tag("genre_filter", options_for_select(@genres), multiple: true)
+
       .span9
         %h4 Players
         %table

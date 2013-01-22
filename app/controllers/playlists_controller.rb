@@ -112,12 +112,14 @@ class PlaylistsController < ApplicationController
   end
 
   def auto
-
+    @genres = Song.uniq.pluck :genre
   end
 
   def generate
-    remove_unrated = (not params[:include_unrated])
-    default_rating = params[:default_rating]
+    options = {
+      remove_unrated: (not params[:include_unrated]),
+      default_rating: params[:default_rating]
+    }
     player_instruments = {}
     params.keys.map do |key|
       if (match = /instrument_(\d*)/.match key)
@@ -129,7 +131,10 @@ class PlaylistsController < ApplicationController
     song_count = params[:song_count].to_i
 
     generator = SongSelector.new song_count
-    @playlist.add_generated_songs generator, player_instruments, remove_unrated, default_rating
+
+    @playlist.add_generated_songs generator, player_instruments, options do |song|
+      params[:genre_filter] ? params[:genre_filter].include?(song.genre) : true
+    end
     @playlist.save
 
     redirect_to playlist_path(@playlist)
