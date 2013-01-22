@@ -13,7 +13,10 @@ class Playlist < ActiveRecord::Base
     users + [user]
   end
 
-  def add_generated_songs(generator, player_instruments, remove_unrated, default_rating)
+  def add_generated_songs(generator, player_instruments, options = {})
+    remove_unrated = options[:remove_unrated]
+    default_rating = options[:default_rating] || 3
+
     existing_songs = songs.map {|song| song.song.id}
     songs_ids = user.songs.map {|song| song.id}.uniq - existing_songs
     ratings = {}
@@ -33,7 +36,9 @@ class Playlist < ActiveRecord::Base
     end
 
     ratings.delete_if {|song| songs_to_remove.include? song}
-    selected_songs = Song.find generator.generate(ratings)
+    found_songs = generator.generate(ratings)
+    return unless found_songs.respond_to? :each
+    selected_songs = Song.find found_songs
 
     selected_songs.each do |song|
       data = { song: song }
