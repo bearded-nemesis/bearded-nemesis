@@ -10,7 +10,7 @@ $(->
         return;
 
       return {
-        label: highlight(item.name, request.term),
+        label: search._highlight(item.name, request.term),
         value: item.id
       }
     ))
@@ -21,7 +21,7 @@ $(->
     $textbox.val("")
     return false
 
-  new Beard.Widgets.Songs.Search("#add-song-text", onCallback, onSelect)
+  search = new Beard.Widgets.Songs.Search("#add-song-text", onCallback, onSelect)
 
   $("#players").chosen()
 )

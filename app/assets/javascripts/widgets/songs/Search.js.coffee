@@ -1,6 +1,7 @@
 class Beard.Widgets.Songs.Search
   constructor: (textboxSelector, onCallback, onSelect) ->
     this.selection = onSelect
+    this.callback = onCallback
     @textbox$ = $(textboxSelector)
 
     return unless @textbox$.length > 0
@@ -16,8 +17,8 @@ class Beard.Widgets.Songs.Search
 
   _source: (request, response) =>
     $.get "/songs/autocomplete", {rows:12, term:request.term}, (data) =>
-      if this.onCallback
-        this.onCallback data, request, response
+      if this.callback
+        this.callback data, request, response
       else
         label = $.map data, (item) =>
           {
