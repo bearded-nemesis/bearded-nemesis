@@ -33,6 +33,7 @@
         %fieldset
           %legend Songs
           = link_to 'Auto-add songs', auto_playlist_path(@playlist)
+          = link_to 'Manage', manage_playlist_path(@playlist)
           %ol
             - @playlist.songs.each do |playlist_song|
               %li= playlist_song.song.name

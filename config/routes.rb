@@ -5,6 +5,8 @@ BeardedNemesis::Application.routes.draw do
     member do
       get :auto
       post :generate
+
+      get :manage
     end
   end
 

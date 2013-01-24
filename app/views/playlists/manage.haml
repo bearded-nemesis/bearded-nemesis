@@ -1,0 +1,16 @@
+%p#notice= notice
+
+.span8.offset2
+  .box-layout
+    .row-fluid
+      .span12
+        %h3
+          = @playlist.name
+
+    .row-fluid
+      .span12
+        %fieldset
+          %legend Manage Songs
+          %ol
+            - @playlist.songs.each do |playlist_song|
+              %li= playlist_song.song.name
