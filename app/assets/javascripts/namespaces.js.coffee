@@ -1,2 +1,6 @@
 window.Beard =
-  Songs: {}
+  Widgets: {}
+  Models: {}
+
+Beard.Widgets.Songs = {}
+Beard.Models.Songs = {}

@@ -1,8 +1,8 @@
-$(->
+$ = jQuery
+
+$ ->
   $('.dropdown-toggle').dropdown()
 
-  $('#song-search').submit((evt) ->
+  $('#song-search').submit (evt) ->
     evt.preventDefault()
-    window.location = "/songs/search/" + $(this).find("input").val()
-  )
-)
+    window.location = "/songs/search/" + $(evt.target).find("input").val()

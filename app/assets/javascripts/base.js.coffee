@@ -7,5 +7,5 @@ $(->
     $textbox.val(ui.item.text)
     false
 
-  new Beard.Songs.Search("#song-search .search-query", null, onSelect)
+  new Beard.Widgets.Songs.Search("#song-search .search-query", null, onSelect)
 )

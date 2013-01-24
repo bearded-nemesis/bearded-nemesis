@@ -33,7 +33,7 @@
     .controls
       %input#add-song-text{:type => "text", :name => "add-song"}
       %ul#songs
-        - @playlist.playlist_songs.each do |playlist_song|
+        - @playlist.songs.each do |playlist_song|
           %li
             = playlist_song.song.name
             %input{:type => "hidden", :name => "songs[]", :value => playlist_song.song.id}

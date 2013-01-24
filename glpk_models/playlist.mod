@@ -17,24 +17,4 @@ s.t. song_usage:
 
 solve;
 
-/*
-for {s in songs: selected_songs[s] = 1} {
-	printf "%s\n", s;
-}
-
-
-data;
-
-set songs := BURN GUILTY BREATH LAST MEDICATE ;
-set players := BILL ANDY NATHAN ;
-
-param max_songs := 3;
-
-param ratings :=
-	[*,*]: BURN GUILTY BREATH LAST MEDICATE :=
-			BILL     1      4      2    3        5
-			ANDY     2      3      5    5        5
-		  NATHAN     5      2      3    1        5
-;
 end;
-*/

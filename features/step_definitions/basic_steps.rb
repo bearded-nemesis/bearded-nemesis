@@ -8,19 +8,17 @@ end
 
 Given /^the following users$/ do |users|
   users.hashes.each do |item|
-    Admin::Whitelist.create! email: item["email"]
-    User.create! item.merge(password: "password",
-                            password_confirmation: "password")
+    FactoryGirl.create :user, item
   end
 end
 
 Given /^I am logged in as "(.*?)"$/ do |email|
-  visit new_user_session_path
-  fill_in 'user_email', with: email
-  fill_in 'user_password', with: "password"
-  click_button 'Sign in'
-
+  log_in email
   @current_user = User.find_by_email email
+end
+
+When /^I am logged in$/ do
+  log_in @current_user.email
 end
 
 When /^I click "(.*?)"$/ do |text|
@@ -33,4 +31,23 @@ When /^I enter the following information$/ do |table|
       fill_in element, with: item[element]
     end
   end
+end
+
+When /^I select the following values from "([^"]*)"$/ do |selector, table|
+  table.hashes.each do |item|
+    select item[:value], from: selector
+  end
+end
+
+When /^I uncheck "([^"]*)"$/ do |selector|
+  uncheck selector
+end
+
+private
+
+def log_in(email, password = nil)
+  visit new_user_session_path
+  fill_in 'user_email', with: email
+  fill_in 'user_password', with: (password || "password")
+  click_button 'Sign in'
 end

@@ -101,6 +101,28 @@ Given /^all the songs have random ratings$/ do
   end
 end
 
+Given /^there are (\d+) songs$/ do |count|
+  FactoryGirl.create_list :song, count.to_i
+end
+
+When /^I own the following songs$/ do |table|
+  table.hashes.each do |song|
+    song = Song.find_by_name song[:name]
+    song.users << @current_user
+    song.save!
+  end
+end
+
+When /^I have rated the following songs$/ do |table|
+  table.hashes.each do |item|
+    song = Song.find_by_name item[:name]
+    rating = Rating.where(user_id: @current_user, song_id: song).first
+    rating ||= Rating.new user: @current_user, song: song
+    rating[item[:instrument].to_sym] = item[:rating].to_i
+    rating.save
+  end
+end
+
 
 private
 
