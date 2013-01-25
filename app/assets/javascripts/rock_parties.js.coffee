@@ -7,3 +7,5 @@ $ = jQuery
 $ ->
   $("#attendees").chosen()
   new Beard.Widgets.DateTimePicker "#event-date", "#event-time", "#eventDate"
+
+  $("#add-playlist").click =>
