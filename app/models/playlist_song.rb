@@ -11,4 +11,18 @@ class PlaylistSong < ActiveRecord::Base
   attr_accessible :bass_rocker, :drums_rocker, :guitar_rocker,
                   :keyboard_rocker, :vocals_rocker,
                   :song, :playlist
+
+  def instrument_for(user)
+    return nil if user.nil?
+
+    ApplicationController::INSTRUMENTS.each do |instrument|
+      return instrument if send(instrument.to_s + "_rocker") == user
+    end
+
+    nil
+
+    #methods.each do |method|
+    #  return method.to_s.gsub(/_rocker/, "").to_sym if method =~ /_rocker/ and send(method) == user
+    #end
+  end
 end

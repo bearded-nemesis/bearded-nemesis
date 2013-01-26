@@ -47,7 +47,7 @@ end
 
 When /^I choose the following instruments for each player$/ do |table|
   table.hashes.each do |item|
-    id = item[:user] =~ /^me$/i ? @current_user.id : User.find_by_email(user_email)
+    id = get_player item[:user]
     choose "instrument_#{id}_#{item[:instrument]}"
   end
 end
@@ -60,6 +60,31 @@ Given /^playlist "([^"]*)" has the following songs$/ do |playlist_name, table|
   playlist.save
 end
 
+When /^the following songs are in playlist "([^"]*)"$/ do |playlist_name, table|
+  playlist = Playlist.find_by_name playlist_name
+
+  table.hashes.each do |item|
+    song = playlist.songs.build song: Song.find_by_name(item[:name])
+
+    table.headers.drop(1).each do |element|
+      key = ("#{item[element]}_rocker=").to_sym
+      song.send key, get_player(element)
+    end
+
+    song.save!
+  end
+end
+
+When /^I give a (\d+) star rating$/ do |rating|
+  fill_in "Rating", with: rating
+end
+
+Then /^my rating for "(.*?)" on "(.*?)" should be (\d+)$/ do |instrument, song, value|
+  song = Song.find_by_name song
+  rating = Rating.where(song_id: song, user_id: @current_user).first
+  rating[instrument.to_sym].should eq(value.to_i)
+end
+
 private
 
 def enter_song_in_autocomplete(song_name)
@@ -67,4 +92,8 @@ def enter_song_in_autocomplete(song_name)
   fill_in "add-song", with:song_name
   page.execute_script %Q{ $('input[data-autocomplete]').trigger("keydown") }
   sleep 1
+end
+
+def get_player(email)
+  email =~ /^me$/i ? @current_user : User.find_by_email(email)
 end

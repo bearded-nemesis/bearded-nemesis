@@ -111,6 +111,10 @@ class PlaylistsController < ApplicationController
     end
   end
 
+  def play
+    render :layout => "mobile"
+  end
+
   def auto
     @genres = Song.uniq.pluck :genre
   end

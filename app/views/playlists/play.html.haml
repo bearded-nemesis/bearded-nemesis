@@ -1,0 +1,11 @@
+%div{"ng-controller" => "PerformanceCtrl", "ng-cloak" => "", "ng-init" => "load(#{@playlist.id})"}
+  %h3 {{playlist.name}}
+
+  .song-name
+    {{currentSong.name}}
+  .song-rating
+    = label_tag "rating", "Rating"
+    = text_field_tag "rating", "", "ng-model" => "currentSong.rating.value"
+  .song-nav
+    %a{href: "#", "ng-click" => "rate()"}
+      {{linkText}}

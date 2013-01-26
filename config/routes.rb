@@ -1,10 +1,17 @@
 BeardedNemesis::Application.routes.draw do
   devise_for :views
 
+  resources :performances do
+    member do
+      post :rate
+    end
+  end
+
   resources :playlists do
     member do
       get :auto
       post :generate
+      get :play
     end
   end
 
