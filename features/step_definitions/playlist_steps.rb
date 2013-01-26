@@ -79,14 +79,6 @@ When /^I change the select for "([^"]*)" to "([^"]*)"$/ do |song, instrument|
   select instrument, :from => "#{User.find(@current_user.id).email}[#{song}]"
 end
 
-When /^I give a (\d+) star rating$/ do |rating|
-  choose "rating_#{rating}"
-end
-
-Then /^I should see the "([^"]*)" option for "([^"]*)" selected$/ do |instrument, song|
-  field_labeled("#{User.find(@current_user.id).email}[#{song}]").find(:xpath, "//option[@value = '#{instrument}'][@selected = 'selected']").should be_present
-end
-
 private
 
 def enter_song_in_autocomplete(song_name)

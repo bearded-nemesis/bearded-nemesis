@@ -17,19 +17,3 @@ window.beard.services.factory(
       $resource '/performances/:id.json'
   ]
 )
-
-
-
-#($resource)->                       # all dependencies are passed as functions
-#  $resource '/playlists/:playlistId/:action.json', {}, {
-#  "get": { method: 'GET', params: { action: "" } },
-#  "songs": { method: 'GET', params: { action: "songs" } }
-#  }
-
-
-#return $resource('/cakephp/demo_comments/:action/:id/:page/:limit:format', { id:'@id', 'page' : '@page', 'limit': '@limit' }, {
-#'initialize' : { method: 'GET', params: { action : 'initialize', format: '.json' }, isArray : true },
-#'save': { method: 'POST', params: { action: 'create', format: '.json' } },
-#'query' : { method: 'GET', params: { action : 'read', format: '.json' } , isArray : true },
-#'update': { method: 'PUT', params: { action: 'update', format: '.json' } },
-#}

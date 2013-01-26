@@ -15,3 +15,16 @@
  *= require_self
  *= require base
  */
+
+.mobile-item {
+    font-size: 4em;
+}
+
+.mobile-item input {
+    height: 5em;
+    width: 5em;
+}
+
+.mobile-item div {
+    line-height: 2em;
+}
