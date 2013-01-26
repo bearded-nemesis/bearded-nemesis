@@ -21,4 +21,15 @@ class PlaylistSongController < ApplicationController
       render json: playlist_song.errors, status: :unprocessable_entity
     end
   end
+
+  # DELETE /playlistsong/1
+  # DELETE /playlistsong/1.json
+  def destroy
+    @playlist_song.destroy
+
+    respond_to do |format|
+      format.html { redirect_to playlists_url }
+      format.json { head :no_content }
+    end
+  end
 end

@@ -43,12 +43,14 @@
                 %th Name
                 - @playlist.players.each do |player|
                   %th= player.email
+                %th
             %tbody
               - @playlist.songs.each do |playlist_song|
                 %tr
                   %td= playlist_song.song.name
                   - @playlist.players.each do |player|
                     %td= instrument_select_list(playlist_song, player)
+                  %td= link_to "Remove", playlist_song, method: :delete, data: { confirm: 'Are you sure?' }
     .row-fluid
       .span12
         = link_to 'Edit', edit_playlist_path(@playlist)
