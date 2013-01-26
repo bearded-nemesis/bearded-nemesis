@@ -30,7 +30,9 @@ class PerformancesController < ApplicationController
   def rate
     playlist = Playlist.find params[:id]
     song = playlist.songs.where(song_id: params[:song]).first
-    rating = current_user.ratings.build song: song.song
+
+    rating = current_user.ratings.where(song_id: song.song).first
+    rating ||= current_user.ratings.build song: song.song
     rating.send "#{song.instrument_for(current_user)}=", params[:rating]
     rating.save
     render nothing: true
