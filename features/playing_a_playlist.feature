@@ -32,3 +32,20 @@ Feature: Plyaing a playlist
     And my rating for "drums" on "Song 1" should be 4
     And I should not have a rating for drums on "Song 2"
     And my rating for "drums" on "Song 3" should be 2
+
+  @user
+  @javascript
+  Scenario: Playing a playlist with existing ratings
+    Given I am on the details page for playlist "Sample"
+    And I have rated the following songs
+      | name    | instrument | rating |
+      | Song 1  | drums      | 3      |
+      | Song 3  | drums      | 1      |
+    And I click "Play" within the content
+    Then the performance song rating should be 3
+    And I click "Next >>"
+    Then the performance song rating should be 1
+    And I give a 2 star rating
+    And I click "Finish"
+    Then I should see "Details"
+    And my rating for "drums" on "Song 3" should be 2

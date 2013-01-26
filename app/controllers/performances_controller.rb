@@ -7,7 +7,8 @@ class PerformancesController < ApplicationController
 
     songs = playlist.songs.map do |item|
       instrument = item.instrument_for(current_user)
-      rating = current_user.ratings.where(user_id: item).first
+      rating = current_user.ratings.where(song_id: item.song).first
+
       {
           name: item.song.name,
           id: item.song.id,

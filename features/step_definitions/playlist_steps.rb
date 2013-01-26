@@ -80,7 +80,7 @@ When /^I change the select for "([^"]*)" to "([^"]*)"$/ do |song, instrument|
 end
 
 When /^I give a (\d+) star rating$/ do |rating|
-  fill_in "Rating", with: rating
+  choose "rating_#{rating}"
 end
 
 Then /^I should see the "([^"]*)" option for "([^"]*)" selected$/ do |instrument, song|
