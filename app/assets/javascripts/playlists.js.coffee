@@ -4,19 +4,17 @@
 
 $(->
   onCallback = (data, request, response) ->
-    response($.map(data, (item) ->
+    response $.map data, (item) ->
       # If song is already in list, return
-      if $("input[name='songs[]'][value="+item.id+"]").length > 0
-        return;
+      return if $("input[name='songs[]'][value="+item.id+"]").length > 0
 
       return {
         label: search._highlight(item.name, request.term),
-        value: item.id
+        id: item.id
       }
-    ))
 
   onSelect = (event, ui, $textbox) ->
-    $hidden = $("<input>").attr("type", "hidden").attr("name", "songs[]").val(ui.item.value)
+    $hidden = $("<input>").attr("type", "hidden").attr("name", "songs[]").val(ui.item.id)
     $("<li>").append(ui.item.label).append($hidden).prependTo($("#songs"))
     $textbox.val("")
     return false
