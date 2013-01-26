@@ -36,7 +36,7 @@
       .span12
         %fieldset
           %legend Songs
-          = link_to 'Auto-add songs', auto_playlist_path(@playlist), :class => "btn"
+          = link_to 'Auto-add songs', auto_playlist_path(@playlist), :id => "auto-add-songs", :class => "btn pull-right"
           %table.table.table-striped
             %thead
               %tr
