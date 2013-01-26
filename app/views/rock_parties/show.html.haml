@@ -29,8 +29,29 @@
       .span4
         %fieldset
           %legend Playlists
+          %ul
+            %li
+              %a{:href => "#create-playlist-popup", "data-toggle" => "modal"}
+                Add New Playlist
   .row-fluid  
     .span12
       = link_to 'Edit', edit_rock_party_path(@rock_party)
       \|
       = link_to 'Back', rock_parties_path
+
+#create-playlist-popup.modal.hide.fade
+  .modal-header
+    %button.close{:type => "button", "data-dismiss" => "modal"}
+      x
+    %h3
+      Add New Playlist
+  .modal-body
+    %form{:method => "post", :action => ""}
+      %label{:for => "playlist-name"}
+        Name:
+      %input#playlist-name{:type => "text", :name => "playlist-name"}
+  .modal-footer
+    %button.btn{:type => "button", "data-dismiss" => "modal"}
+      cancel
+    %button.btn.btn-primary#add-playlist{:type => "button"}
+      Add
