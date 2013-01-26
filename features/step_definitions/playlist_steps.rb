@@ -64,8 +64,8 @@ When /^I change the select for "([^"]*)" to "([^"]*)"$/ do |song, instrument|
   select instrument, :from => "#{User.find(@current_user.id).email}[#{song}]"
 end
 
-Then /^I should see the "([^"]*)" option for "([^"]*)" selected$/ do |song, instrument|
-  field_labeled("#{User.find(@current_user.id).email}[#{song}]").find(:xpath, ".//option[@selected = 'selected'][text() = '#{instrument}']").should be_present
+Then /^I should see the "([^"]*)" option for "([^"]*)" selected$/ do |instrument, song|
+  field_labeled("#{User.find(@current_user.id).email}[#{song}]").find(:xpath, "//option[@value = '#{instrument}'][@selected = 'selected']").should be_present
 end
 
 private

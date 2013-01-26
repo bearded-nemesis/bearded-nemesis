@@ -25,10 +25,13 @@ class PlaylistSongController < ApplicationController
   # DELETE /playlistsong/1
   # DELETE /playlistsong/1.json
   def destroy
-    @playlist_song.destroy
+    playlist_song = PlaylistSong.find params[:id]
+    playlist = playlist_song.playlist
+
+    playlist_song.destroy
 
     respond_to do |format|
-      format.html { redirect_to playlists_url }
+      format.html { redirect_to playlist_url playlist }
       format.json { head :no_content }
     end
   end

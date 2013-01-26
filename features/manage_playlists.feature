@@ -52,6 +52,14 @@ Feature: Manage playlists
       | song   |
       | Song 1 |
     And I am on the detail page for playlist "Dummy"
-    When I change the select for "Song 1" to "guitar"
+    When I change the select for "Song 1" to "drums"
+    Then I should see the "drums" option for "Song 1" selected
+
+  @user
+  Scenario: Removing a playlist song
+    Given playlist "Dummy" has the following songs
+      | song   |
+      | Song 1 |
     And I am on the detail page for playlist "Dummy"
-    Then I should see the "Song 1" option for "guitar" selected
+    And I click "Remove"
+    Then I should not see "Song 1"
