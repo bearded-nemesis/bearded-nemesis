@@ -4,7 +4,7 @@ Feature: Plyaing a playlist
   I want to go through each song in a mobile friendly way
 
   Background:
-    Given there are 3 songs
+    Given there are 4 songs
     And I own the following songs
       | name    |
       | Song 1  |
@@ -30,5 +30,5 @@ Feature: Plyaing a playlist
     And I click "Finish"
     Then I should see "Details"
     And my rating for "drums" on "Song 1" should be 4
-    And I should not have a rating for drums on Song 2
-    And my rating for drums on Song 3 should be 2
+    And I should not have a rating for drums on "Song 2"
+    And my rating for "drums" on "Song 3" should be 2

@@ -1,5 +1,6 @@
 class PerformancesController < ApplicationController
   before_filter :authenticate_user!
+  skip_before_filter  :verify_authenticity_token, only: [:rate]
 
   def show
     playlist = Playlist.find params[:id]
@@ -16,7 +17,7 @@ class PerformancesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json {
         render json: {
           name: playlist.name,
@@ -30,7 +31,6 @@ class PerformancesController < ApplicationController
   def rate
     playlist = Playlist.find params[:id]
     song = playlist.songs.where(song_id: params[:song]).first
-
     rating = current_user.ratings.where(song_id: song.song).first
     rating ||= current_user.ratings.build song: song.song
     rating.send "#{song.instrument_for(current_user)}=", params[:rating]

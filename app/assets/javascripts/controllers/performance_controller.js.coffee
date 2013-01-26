@@ -14,21 +14,20 @@ class PerformanceController
         @$scope.currentSong = @$scope.playlist.songs[0]
 
   rate: =>
-    data = {}
-    data[@$scope.currentSong.instrument] = @$scope.currentSong.rating.value
+    data = { song: @$scope.currentSong.id, rating: @$scope.currentSong.rating.value }
 
-    @$http.post "/songs/" + @$scope.currentSong.id + "/ratings", data
+    post = @$http.post "/performances/" + @$scope.playlist.id + "/rate", data
+    post.success () =>
+      @$scope.currentSongIndex++
 
-    @$scope.currentSongIndex++
+      if @$scope.currentSongIndex == @$scope.playlist.songs.length
+        location.href = "/playlists/#{@$scope.playlist.id}"
+        return
 
-    if @$scope.currentSongIndex == @$scope.playlist.songs.length
-      location.href = "/playlists/#{@$scope.playlist.id}"
-      return
+      if @$scope.currentSongIndex == @$scope.playlist.songs.length - 1
+        @$scope.linkText = "Finish"
 
-    if @$scope.currentSongIndex == @$scope.playlist.songs.length - 1
-      @$scope.linkText = "Finish"
-
-    @$scope.currentSong = @$scope.playlist.songs[@$scope.currentSongIndex]
+      @$scope.currentSong = @$scope.playlist.songs[@$scope.currentSongIndex]
 
 
 

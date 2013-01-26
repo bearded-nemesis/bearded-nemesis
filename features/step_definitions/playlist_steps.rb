@@ -83,12 +83,6 @@ When /^I give a (\d+) star rating$/ do |rating|
   fill_in "Rating", with: rating
 end
 
-Then /^my rating for "(.*?)" on "(.*?)" should be (\d+)$/ do |instrument, song, value|
-  song = Song.find_by_name song
-  rating = Rating.where(song_id: song, user_id: @current_user).first
-  rating[instrument.to_sym].should eq(value.to_i)
-end
-
 Then /^I should see the "([^"]*)" option for "([^"]*)" selected$/ do |instrument, song|
   field_labeled("#{User.find(@current_user.id).email}[#{song}]").find(:xpath, "//option[@value = '#{instrument}'][@selected = 'selected']").should be_present
 end
