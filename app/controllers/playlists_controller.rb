@@ -140,10 +140,6 @@ class PlaylistsController < ApplicationController
     redirect_to playlist_path(@playlist)
   end
 
-  def manage
-
-  end
-
   private
 
   def load_playlist

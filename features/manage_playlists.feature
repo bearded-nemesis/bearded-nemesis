@@ -4,21 +4,16 @@ Feature: Manage playlists
   I want to manage available playlists
 
   Background:
-    Given the following users
-      | email            |
-      | user@example.com |
-    And the following playlists
+    Given there are 2 songs
+    Given the following playlists
       | name      |
       | Dummy     |
       | Delete Me |
-    And the following songs
-      | name     | artist   |
-      | Foo Song | The Foos |
-      | Baz Song | The Bazs |
+    And I am logged in
 
+  @user
   Scenario: Adding a new playlist
-    Given I am logged in as "user@example.com"
-    And I am on the playlist list page
+    Given I am on the playlist list page
     When I click "New Playlist"
     And I enter the following information
       | Name         | Amount of songs |
@@ -28,25 +23,35 @@ Feature: Manage playlists
     Then I should see "Foo Playlist"
     And I should see "5"
 
+  @user
   Scenario: Removing a playlist
-    Given I am logged in as "user@example.com"
-    And I am on the playlist list page
+    Given I am on the playlist list page
     When I remove playlist "Delete Me"
     And I am on the playlist list page
     Then I should not see "Delete Me"
 
+  @user
   @javascript
   Scenario: Adding a song to a playlist
-    Given I am logged in as "user@example.com"
-    And I am on the edit page for playlist "Dummy"
-    When I enter the song "Foo Song"
+    Given I am on the edit page for playlist "Dummy"
+    When I enter the song "Song 1"
     And I click "Save"
     And I am on the detail page for playlist "Dummy"
-    Then I should see "Foo Song"
+    Then I should see "Song 1"
 
+  @user
   @javascript
   Scenario: Cannot add a song to a playlist twice
-    Given I am logged in as "user@example.com"
-    And I am on the edit page for playlist "Dummy"
-    When I enter the song "Baz Song"
-    Then I should not see "Baz Song" in autocomplete
+    Given I am on the edit page for playlist "Dummy"
+    When I enter the song "Song 2"
+    Then I should not see "Song 2" in autocomplete
+
+  @user
+  Scenario: Changing the instrument a user is playing on a song
+    Given playlist "Dummy" has the following songs
+      | song   |
+      | Song 1 |
+    And I am on the detail page for playlist "Dummy"
+    When I change the select for "Song 1" to "guitar"
+    And I am on the detail page for playlist "Dummy"
+    Then I should see the "Song 1" option for "guitar" selected

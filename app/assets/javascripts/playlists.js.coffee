@@ -24,4 +24,18 @@ $(->
   search = new Beard.Widgets.Songs.Search("#add-song-text", onCallback, onSelect)
 
   $("#players").chosen()
+  $(".instrument-select").change((evt)->
+    select = $(evt.target)
+    url = select.data("url");
+    player = select.data("player");
+    instrument = select.val();
+
+    $.ajax({
+      url: url,
+      type: "PUT",
+      data: {'player': player, 'instrument': instrument},
+      success: (data)->
+        console.log "Instrument has been updated."
+    })
+  )
 )

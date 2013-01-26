@@ -31,12 +31,24 @@
               %li= user.email
       .span4
         %fieldset
+          %legend Stats
+    .row-fluid
+      .span12
+        %fieldset
           %legend Songs
-          = link_to 'Auto-add songs', auto_playlist_path(@playlist)
-          = link_to 'Manage', manage_playlist_path(@playlist)
-          %ol
-            - @playlist.songs.each do |playlist_song|
-              %li= playlist_song.song.name
+          = link_to 'Auto-add songs', auto_playlist_path(@playlist), :class => "btn"
+          %table.table.table-striped
+            %thead
+              %tr
+                %th Name
+                - @playlist.players.each do |player|
+                  %th= player.email
+            %tbody
+              - @playlist.songs.each do |playlist_song|
+                %tr
+                  %td= playlist_song.song.name
+                  - @playlist.players.each do |player|
+                    %td= instrument_select_list(playlist_song, player)
     .row-fluid
       .span12
         = link_to 'Edit', edit_playlist_path(@playlist)
