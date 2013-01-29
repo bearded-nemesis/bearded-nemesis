@@ -57,6 +57,8 @@ BeardedNemesis::Application.routes.draw do
 
   root :to => "home#index"
 
+  mount JasmineRails::Engine => "/specs" unless Rails.env.production?
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

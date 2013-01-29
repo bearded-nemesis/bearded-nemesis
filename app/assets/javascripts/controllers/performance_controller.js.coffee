@@ -1,4 +1,4 @@
-class PerformanceController
+class window.beard.impl.PerformanceController
   constructor: (@$scope, performanceService, @$http) ->
     @$scope.song = "name": "Foo bar!"
     @$scope.linkText = "Next >>"
@@ -37,7 +37,7 @@ window.beard.controllers.controller(
     '$scope'                     # The controller has two dependencies. Angular's '$scope', and ..
     'performanceService'            # The date displayer service
     '$http'
-    PerformanceController
+    beard.impl.PerformanceController
 
   ]
 )

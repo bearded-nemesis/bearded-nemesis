@@ -9,6 +9,7 @@
 window.beard = {
   services: angular.module "beard.services", ["ngResource"]
   controllers: angular.module "beard.controllers", ["beard.services"]
+  impl: {}
 }
 
 angular.module("beard", ['beard.services', 'beard.controllers'])
