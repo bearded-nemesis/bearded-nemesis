@@ -60,12 +60,23 @@ Given /^playlist "([^"]*)" has the following songs$/ do |playlist_name, table|
   playlist.save
 end
 
-When /^I change the select for "([^"]*)" to "([^"]*)"$/ do |song, instrument|
-  select instrument, :from => "#{User.find(@current_user.id).email}[#{song}]"
+When /^the following songs are in playlist "([^"]*)"$/ do |playlist_name, table|
+  playlist = Playlist.find_by_name playlist_name
+
+  table.hashes.each do |item|
+    song = playlist.songs.build song: Song.find_by_name(item[:name])
+
+    table.headers.drop(1).each do |element|
+      key = ("#{item[element]}_rocker=").to_sym
+      song.send key, get_player(element)
+    end
+
+    song.save!
+  end
 end
 
-Then /^I should see the "([^"]*)" option for "([^"]*)" selected$/ do |instrument, song|
-  field_labeled("#{User.find(@current_user.id).email}[#{song}]").find(:xpath, "//option[@value = '#{instrument}'][@selected = 'selected']").should be_present
+When /^I change the select for "([^"]*)" to "([^"]*)"$/ do |song, instrument|
+  select instrument, :from => "#{User.find(@current_user.id).email}[#{song}]"
 end
 
 private
@@ -75,4 +86,8 @@ def enter_song_in_autocomplete(song_name)
   fill_in "add-song", with:song_name
   page.execute_script %Q{ $('input[data-autocomplete]').trigger("keydown") }
   sleep 1
+end
+
+def get_player(email)
+  email =~ /^me$/i ? @current_user : User.find_by_email(email)
 end

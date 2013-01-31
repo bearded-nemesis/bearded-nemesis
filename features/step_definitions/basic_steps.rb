@@ -25,6 +25,12 @@ When /^I click "(.*?)"$/ do |text|
   click_link_or_button text
 end
 
+When /^I click "([^"]*)" within the content$/ do |text|
+  within "#main" do
+    click_link_or_button text
+  end
+end
+
 When /^I enter the following information$/ do |table|
   table.hashes.each do |item|
     table.headers.each do |element|

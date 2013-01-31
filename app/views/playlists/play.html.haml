@@ -1,0 +1,15 @@
+.mobile-item{"ng-controller" => "PerformanceCtrl", "ng-cloak" => "", "ng-init" => "load(#{@playlist.id})"}
+  %h3 {{playlist.name}}
+
+  .song-name
+    {{currentSong.name}}
+  .song-rating
+    = radio_button_tag "rating", "0", false, id: "rating_0", "ng-model" => "currentSong.rating.value"
+    = radio_button_tag "rating", "1", false, id: "rating_1", "ng-model" => "currentSong.rating.value"
+    = radio_button_tag "rating", "2", false, id: "rating_2", "ng-model" => "currentSong.rating.value"
+    = radio_button_tag "rating", "3", false, id: "rating_3", "ng-model" => "currentSong.rating.value"
+    = radio_button_tag "rating", "4", false, id: "rating_4", "ng-model" => "currentSong.rating.value"
+    = radio_button_tag "rating", "5", false, id: "rating_5", "ng-model" => "currentSong.rating.value"
+  .song-nav
+    %a{href: "#", "ng-click" => "rate()"}
+      {{linkText}}

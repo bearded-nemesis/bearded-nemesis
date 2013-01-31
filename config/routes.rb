@@ -1,10 +1,17 @@
 BeardedNemesis::Application.routes.draw do
   devise_for :views
 
+  resources :performances do
+    member do
+      post :rate
+    end
+  end
+
   resources :playlists do
     member do
       get :auto
       post :generate
+      get :play
     end
   end
 
@@ -49,6 +56,8 @@ BeardedNemesis::Application.routes.draw do
   end
 
   root :to => "home#index"
+
+  mount JasmineRails::Engine => "/specs" unless Rails.env.production?
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

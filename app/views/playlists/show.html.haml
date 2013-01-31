@@ -6,6 +6,7 @@
       .span12
         %h3
           = @playlist.name
+          = link_to "Play", play_playlist_path(@playlist)
 
     .row-fluid
       .span4

@@ -10,7 +10,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require namespaces.js
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.widget
@@ -19,6 +18,10 @@
 //= require bootstrap/js/bootstrap.js
 //= require bootstrap/js/bootstrap-collapse.js
 //= require bootstrap/js/bootstrap-dropdown.js
-//= require_tree ./vendor
+//= require vendor/angular.js
+//= require_tree ./vendor/
+//= require namespaces.js
+//= require_tree ./controllers/
+//= require_tree ./services/
 //= require_tree .
 //= require base
