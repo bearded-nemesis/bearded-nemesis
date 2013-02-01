@@ -1,7 +1,7 @@
 class window.beard.impl.PerformanceController
   constructor: (@$scope, performanceService, @$http) ->
     @$scope.song = "name": "Foo bar!"
-    @$scope.linkText = "Next >>"
+    @$scope.linkText = "Next"
     @$scope.rate = this.rate
     @$scope.playlist
     @$scope.currentSong
