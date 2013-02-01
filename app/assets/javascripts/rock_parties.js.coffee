@@ -9,3 +9,7 @@ $ ->
   new Beard.Widgets.DateTimePicker "#event-date", "#event-time", "#eventDate"
 
   $("#add-playlist").click =>
+    $("#create-playlist-popup form").ajaxSubmit
+      success: (data, status, xhr) =>
+        $("<li><a href='" + xhr.getResponseHeader("location") + "'>" + data.name + "</a></li>").insertBefore("#addPlaylist")
+        $("#create-playlist-popup").modal("hide")

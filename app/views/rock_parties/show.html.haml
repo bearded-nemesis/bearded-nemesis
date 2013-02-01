@@ -30,7 +30,7 @@
         %fieldset
           %legend Playlists
           %ul
-            %li
+            %li#addPlaylist
               %a{:href => "#create-playlist-popup", "data-toggle" => "modal"}
                 Add New Playlist
   .row-fluid  
@@ -46,10 +46,9 @@
     %h3
       Add New Playlist
   .modal-body
-    %form{:method => "post", :action => ""}
-      %label{:for => "playlist-name"}
-        Name:
-      %input#playlist-name{:type => "text", :name => "playlist-name"}
+    = form_for Playlist.new, :url => playlists_path(:format => "json") do |f|
+      = f.label :name
+      = f.text_field :name
   .modal-footer
     %button.btn{:type => "button", "data-dismiss" => "modal"}
       cancel
