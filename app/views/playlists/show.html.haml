@@ -15,15 +15,6 @@
           %p
             %b User:
             = @playlist.user.email unless @playlist.user.nil?
-          %p
-            %b Amount of songs:
-            = @playlist.amount_of_songs
-          %p
-            %b Include unrated songs:
-            = @playlist.include_unrated_songs
-          %p
-            %b Unrated songs rating:
-            = @playlist.unrated_songs_rating
       .span4
         %fieldset
           %legend Players
