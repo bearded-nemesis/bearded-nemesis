@@ -5,23 +5,13 @@
     %tr
       %th Name
       %th User
-      %th Amount of songs
-      %th Include unrated songs
-      %th Unrated songs rating
-      %th
-      %th
       %th
 
     - @playlists.each do |playlist|
       %tr
-        %td= playlist.name
+        %td= link_to playlist.name, playlist
         %td= playlist.user.email unless playlist.user.nil?
-        %td= playlist.amount_of_songs
-        %td= playlist.include_unrated_songs
-        %td= playlist.unrated_songs_rating
-        %td= link_to 'Show', playlist
-        %td= link_to 'Edit', edit_playlist_path(playlist)
-        %td= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Play', play_playlist_path(playlist)
 
   %br
 
