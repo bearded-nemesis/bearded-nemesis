@@ -16,12 +16,11 @@ Feature: Manage playlists
     Given I am on the playlist list page
     When I click "New Playlist"
     And I enter the following information
-      | Name         | Amount of songs |
-      | Foo Playlist | 5               |
+      | Name         |
+      | Foo Playlist |
     And I click "Save"
     And I am on the playlist list page
     Then I should see "Foo Playlist"
-    And I should see "5"
 
   @user
   Scenario: Removing a playlist
