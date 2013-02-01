@@ -10,7 +10,7 @@
  *
  *= require jquery.ui.autocomplete
  *= require jquery.ui.datepicker
- *= require ../javascripts/bootstrap/css/bootstrap.min.css
+ *= require ../javascripts/bootstrap/css/bootstrap.css
  *= require_tree ./vendor
  *= require_self
  *= require base
