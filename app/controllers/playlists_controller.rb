@@ -91,7 +91,7 @@ class PlaylistsController < ApplicationController
   end
 
   def play
-    render :layout => "mobile"
+
   end
 
   def auto

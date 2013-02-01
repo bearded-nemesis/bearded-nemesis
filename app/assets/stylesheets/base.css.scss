@@ -55,6 +55,15 @@ section#main {
   display: none;
 }
 
+.btn-xxlarge {
+  padding: 18px 23px;
+  font-size: 30px;
+  line-height: normal;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
 @media (max-width: 979px) {
   body,
   section#main {
@@ -86,7 +95,7 @@ section#main {
     }
   }
 
-  .row-fluid .offset3:first-child,
+  .row-fluid .offset2:first-child,
   .row-fluid .offset3:first-child {
     margin-left: 0;
   }

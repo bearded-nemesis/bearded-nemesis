@@ -5,3 +5,37 @@
 #auto-add-songs {
   margin-top:-58px;
 }
+
+#performance-wrapper {
+  .song-details {
+    margin-top: 30px;
+
+    li {
+      font-size: 2em;
+      line-height: 1.2em;
+
+      strong {
+        color:#ccc;
+      }
+    }
+  }
+
+  .song-rating {
+    margin-top:40px;
+    text-align: center;
+
+    input {
+      height:3em;
+      width:3em;
+    }
+  }
+
+  .song-nav {
+    margin-top:40px;
+    text-align: center;
+  }
+
+  .btn.btn-primary {
+    color:#fff;
+  }
+}

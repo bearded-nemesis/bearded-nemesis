@@ -25,7 +25,7 @@ Feature: Plyaing a playlist
     Given I am on the details page for playlist "Sample"
     And I click "Play" within the content
     When I give a 4 star rating
-    And I click "Next >>"
+    And I click "Next"
     And I give a 2 star rating
     And I click "Finish"
     Then I should see "Details"
@@ -44,7 +44,7 @@ Feature: Plyaing a playlist
     And I click "Play" within the content
     Then I should see "Song 1"
     Then the performance song rating should be 3
-    And I click "Next >>"
+    And I click "Next"
     Then the performance song rating should be 1
     And I give a 2 star rating
     And I click "Finish"
