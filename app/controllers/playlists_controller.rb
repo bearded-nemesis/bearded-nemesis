@@ -43,13 +43,8 @@ class PlaylistsController < ApplicationController
   def create
     @playlist = Playlist.new(params[:playlist].merge(user: current_user))
 
-    # Add players to playlist
-    if params[:players]
-      params[:players].each do |user_id|
-        user = User.find(user_id)
-        @playlist.users << user
-      end
-    end
+    save_songs
+    save_players
 
     respond_to do |format|
       if @playlist.save
@@ -67,27 +62,11 @@ class PlaylistsController < ApplicationController
   def update
     # Remove all songs and add the ones being submitted via post
     @playlist.songs.delete_all
-
-    if params[:songs]
-      params[:songs].each do |song_id|
-        song = Song.find(song_id)
-
-        playlist_song = PlaylistSong.new
-        playlist_song.song = song
-
-        @playlist.songs << playlist_song
-      end
-    end
+    save_songs
 
     # Remove all players and add the ones being submitted via post
     @playlist.users.delete_all
-
-    if params[:players]
-      params[:players].each do |user_id|
-        user = User.find(user_id)
-        @playlist.users << user
-      end
-    end
+    save_players
 
     respond_to do |format|
       if @playlist.update_attributes(params[:playlist])
@@ -148,5 +127,27 @@ class PlaylistsController < ApplicationController
 
   def load_playlist
     @playlist = Playlist.find(params[:id])
+  end
+
+  def save_players
+    if params[:players]
+      params[:players].each do |user_id|
+        user = User.find(user_id)
+        @playlist.users << user
+      end
+    end
+  end
+
+  def save_songs
+    if params[:songs]
+      params[:songs].each do |song_id|
+        song = Song.find(song_id)
+
+        playlist_song = PlaylistSong.new
+        playlist_song.song = song
+
+        @playlist.songs << playlist_song
+      end
+    end
   end
 end
