@@ -11,18 +11,6 @@
     .controls
       = f.text_field :name
   .control-group
-    = f.label :amount_of_songs, :class => "control-label"
-    .controls
-      = f.number_field :amount_of_songs, :min => 0
-  .control-group
-    = f.label :include_unrated_songs, :class => "control-label"
-    .controls
-      = f.check_box :include_unrated_songs
-  .control-group
-    = f.label :unrated_songs_rating, :class => "control-label"
-    .controls
-      = f.number_field :unrated_songs_rating, :min => 0
-  .control-group
     %label.control-label Users
     .controls
       %select#players{:name => "players[]", :multiple => "multiple", "data-placeholder" => "Select players.."}
