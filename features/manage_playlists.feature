@@ -24,14 +24,27 @@ Feature: Manage playlists
 
   @user
   Scenario: Removing a playlist
-    Given I am on the playlist list page
-    When I remove playlist "Delete Me"
+    Given I am on the detail page for playlist "Delete Me"
+    When I click "Delete"
     And I am on the playlist list page
     Then I should not see "Delete Me"
 
   @user
   @javascript
-  Scenario: Adding a song to a playlist
+  Scenario: Adding a song to a new playlist
+    Given I am on the playlist list page
+    When I click "New Playlist"
+    And I enter the following information
+      | Name         |
+      | Foo Playlist |
+    When I enter the song "Song 1"
+    And I click "Save"
+    And I am on the detail page for playlist "Foo Playlist"
+    Then I should see "Song 1"
+
+  @user
+  @javascript
+  Scenario: Adding a song to a current playlist
     Given I am on the edit page for playlist "Dummy"
     When I enter the song "Song 1"
     And I click "Save"

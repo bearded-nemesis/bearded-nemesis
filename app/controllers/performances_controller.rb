@@ -11,6 +11,7 @@ class PerformancesController < ApplicationController
 
       {
           name: item.song.name,
+          artist: item.song.artist,
           id: item.song.id,
           instrument: instrument,
           rating: rating ? { id: rating.id, value: rating.send(instrument.to_sym) } : {}
