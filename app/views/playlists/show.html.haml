@@ -38,7 +38,7 @@
         %fieldset
           %legend Songs
           = link_to 'Auto-add songs', auto_playlist_path(@playlist), :id => "auto-add-songs", :class => "btn pull-right"
-          %table.table.table-striped
+          %table.table.table-striped.collapse-on-tablet
             %thead
               %tr
                 %th Name
@@ -50,7 +50,9 @@
                 %tr
                   %td= playlist_song.song.name
                   - @playlist.players.each do |player|
-                    %td= instrument_select_list(playlist_song, player)
+                    %td
+                      %span.show-on-tablet= player.email
+                      %span.clearfix= instrument_select_list(playlist_song, player)
                   %td= link_to "Remove", playlist_song, method: :delete, data: { confirm: 'Are you sure?' }
     .row-fluid
       .span12

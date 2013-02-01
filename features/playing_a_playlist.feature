@@ -42,6 +42,7 @@ Feature: Plyaing a playlist
       | Song 1  | drums      | 3      |
       | Song 3  | drums      | 1      |
     And I click "Play" within the content
+    Then I should see "Song 1"
     Then the performance song rating should be 3
     And I click "Next >>"
     Then the performance song rating should be 1

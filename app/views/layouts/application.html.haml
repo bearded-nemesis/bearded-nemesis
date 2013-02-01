@@ -9,9 +9,13 @@
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container-fluid
+          %a.btn.btn-navbar{"data-toggle"=>"collapse","data-target"=>".nav-collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
           %a.brand{:href => "/"}
             The Bearded Nemesis
-          .nav-collapse
+          .nav-collapse.collapse
             - if user_signed_in?
               %ul.nav
                 = get_menu_link "Songs", songs_url, "songs"

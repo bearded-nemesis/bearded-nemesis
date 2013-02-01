@@ -16,6 +16,7 @@
 //= require jquery.ui.autocomplete
 //= require jquery.ui.datepicker
 //= require bootstrap/js/bootstrap.js
+//= require bootstrap/js/bootstrap-collapse.js
 //= require bootstrap/js/bootstrap-dropdown.js
 //= require vendor/angular.js
 //= require_tree ./vendor/
