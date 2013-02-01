@@ -126,10 +126,14 @@ end
 Then /^my rating for "(.*?)" on "(.*?)" should be (\d+)$/ do |instrument, song, value|
   song = Song.find_by_name song
   rating = Rating.where(song_id: song, user_id: @current_user).first
+
+  puts instrument
+  p rating
+
   rating[instrument.to_sym].should eq(value.to_i)
 end
 
-When /^I should not have a rating for drums on "(.*?)"$/ do |song_name|
+When /^I should not have a rating for "(.*?)" on "(.*?)"$/ do |instrument, song_name|
   song = Song.find_by_name song_name
   rating = Rating.where(song_id: song, user_id: @current_user).first
   rating.should eq(nil) or rating[instrument.to_sym].should eq(value.to_i)

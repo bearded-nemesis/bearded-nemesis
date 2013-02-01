@@ -7,7 +7,7 @@ class PlaylistSongController < ApplicationController
     playlist_song = PlaylistSong.find params[:id]
     user = User.find params[:player]
 
-    ApplicationController::INSTRUMENTS.each do |instr|
+    ApplicationController::INSTRUMENTS_WITH_PRO.each do |instr|
       if params[:instrument] == instr.to_s
         playlist_song.send("#{params[:instrument]}_rocker=", user)
       elsif playlist_song.send("#{instr}_rocker") == user

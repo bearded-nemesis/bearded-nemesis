@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201010715) do
+ActiveRecord::Schema.define(:version => 20130201015138) do
 
   create_table "admin_whitelists", :force => true do |t|
     t.string   "email"
@@ -34,8 +34,13 @@ ActiveRecord::Schema.define(:version => 20130201010715) do
     t.integer  "drums_rocker_id"
     t.integer  "vocals_rocker_id"
     t.integer  "keyboard_rocker_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.integer  "pro_guitar_rocker_id"
+    t.integer  "pro_bass_rocker_id"
+    t.integer  "pro_drums_rocker_id"
+    t.integer  "pro_vocals_rocker_id"
+    t.integer  "pro_keyboard_rocker_id"
   end
 
   add_index "playlist_songs", ["playlist_id"], :name => "index_playlist_songs_on_playlist_id"
