@@ -30,10 +30,14 @@
         %fieldset
           %legend Playlists
           %ul
+            - @rock_party.playlists.each do |playlist|
+              %li
+                %a{:href => playlist_path(playlist)}
+                  = playlist.name
             %li#addPlaylist
               %a{:href => "#create-playlist-popup", "data-toggle" => "modal"}
                 Add New Playlist
-  .row-fluid  
+  .row-fluid
     .span12
       = link_to 'Edit', edit_rock_party_path(@rock_party)
       \|
@@ -49,6 +53,9 @@
     = form_for Playlist.new, :url => playlists_path(:format => "json") do |f|
       = f.label :name
       = f.text_field :name
+      %input{:type => "hidden",:name => "rock_party_id", :value => @rock_party.id}
+      - @rock_party.users.each do |user|
+        %input{:type => "hidden", :name => "players[]", :value => user.id}
   .modal-footer
     %button.btn{:type => "button", "data-dismiss" => "modal"}
       cancel

@@ -46,6 +46,7 @@ class PlaylistsController < ApplicationController
 
     save_songs
     save_players
+    save_rock_party
 
     respond_to do |format|
       if @playlist.save
@@ -136,6 +137,13 @@ class PlaylistsController < ApplicationController
         user = User.find(user_id)
         @playlist.users << user
       end
+    end
+  end
+
+  def save_rock_party
+    if params[:rock_party_id]
+      rock_party = RockParty.find(params[:rock_party_id])
+      @playlist.rock_party = rock_party
     end
   end
 
