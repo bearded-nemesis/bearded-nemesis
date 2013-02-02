@@ -53,6 +53,16 @@ Feature: Manage playlists
 
   @user
   @javascript
+  Scenario: Linking to a song from the playlist details
+    Given playlist "Dummy" has the following songs
+      | song   |
+      | Song 1 |
+    And I am on the detail page for playlist "Dummy"
+    When I click "Song 1"
+    Then I should see "Pro Bass difficulty"
+
+  @user
+  @javascript
   Scenario: Cannot add a song to a playlist twice
     Given I am on the edit page for playlist "Dummy"
     When I enter the song "Song 2"

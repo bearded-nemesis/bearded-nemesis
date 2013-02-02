@@ -11,7 +11,7 @@
               {{currentSong.artist}}
             %li
               %strong Name
-              {{currentSong.name}}
+              %a{"ng-href" => "/songs/{{currentSong.id}}"} {{currentSong.name}}
           .song-rating
             = radio_button_tag "rating", "0", false, id: "rating_0", "ng-model" => "currentSong.rating.value"
             = radio_button_tag "rating", "1", false, id: "rating_1", "ng-model" => "currentSong.rating.value"

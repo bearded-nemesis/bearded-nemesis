@@ -36,6 +36,14 @@ Feature: Plyaing a playlist
 
   @user
   @javascript
+  Scenario: Linking to song while playing
+    Given I am on the details page for playlist "Sample"
+    And I click "Play" within the content
+    When I click "Song 1"
+    Then I should see "Pro Bass difficulty"
+
+  @user
+  @javascript
   Scenario: Playing a playlist with existing ratings
     Given I am on the details page for playlist "Sample"
     And I have rated the following songs
