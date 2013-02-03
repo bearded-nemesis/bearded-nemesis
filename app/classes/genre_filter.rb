@@ -1,0 +1,9 @@
+class GenreFilter
+  def initialize(genre)
+    @genre = [genre].flatten.map {|item| item.downcase}
+  end
+
+  def filter(songs)
+    songs.select {|song| song.genre and @genre.include? song.genre.downcase }
+  end
+end
