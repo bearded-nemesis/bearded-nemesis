@@ -139,6 +139,17 @@ When /^I should not have a rating for "(.*?)" on "(.*?)"$/ do |instrument, song_
   rating.should eq(nil) or rating[instrument.to_sym].should eq(value.to_i)
 end
 
+Given /^the following songs have difficulties$/ do |table|
+  table.hashes.each do |item|
+    song = Song.find_by_name item[:name]
+
+    table.headers.drop(1).each do |instrument|
+      song.send "#{instrument}_difficulty=".to_sym, item[instrument]
+    end
+
+    song.save
+  end
+end
 
 private
 

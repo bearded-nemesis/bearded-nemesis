@@ -16,8 +16,8 @@ Feature: Manage playlists
     Given I am on the playlist list page
     When I click "New Playlist"
     And I enter the following information
-      | Name         |
-      | Foo Playlist |
+      | field | value        |
+      | Name  | Foo Playlist |
     And I click "Save"
     And I am on the playlist list page
     Then I should see "Foo Playlist"
@@ -35,8 +35,8 @@ Feature: Manage playlists
     Given I am on the playlist list page
     When I click "New Playlist"
     And I enter the following information
-      | Name         |
-      | Foo Playlist |
+      | field | value        |
+      | Name  | Foo Playlist |
     When I enter the song "Song 1"
     And I click "Save"
     And I am on the detail page for playlist "Foo Playlist"
