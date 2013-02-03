@@ -1,4 +1,6 @@
 class SongDifficultyFilter
+  attr_reader :instrument, :low, :high
+
   def initialize(instrument, options)
     @instrument = instrument
     @low = options[:low]
@@ -6,9 +8,8 @@ class SongDifficultyFilter
   end
 
   def filter(songs)
-    songs.reject do |song|
-      difficulty = song.send "#{@instrument}_difficulty"
-      difficulty < @low or difficulty > @high
+    songs.select do |song|
+      song.send("#{@instrument}_difficulty").between? @low, @high
     end
   end
 end

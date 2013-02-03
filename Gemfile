@@ -46,6 +46,9 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'capybara'
   gem 'database_cleaner'
+  gem "guard-rspec"
+  gem "spork-rails"
+  gem "guard-spork"
 end
 
 # To use ActiveModel has_secure_password
