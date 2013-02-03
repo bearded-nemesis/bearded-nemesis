@@ -29,8 +29,8 @@ Feature: Adding songs to playlists
     Given I am on the details page for playlist "Sample"
     And I click "Auto-add songs"
     And I enter the following information
-      | Song count |
-      | 2          |
+      | field      | value |
+      | Song count | 2     |
     And I choose the following instruments for each player
       | user | instrument |
       | me   | bass       |
@@ -47,8 +47,8 @@ Feature: Adding songs to playlists
     Given I am on the details page for playlist "Sample"
     And I click "Auto-add songs"
     And I enter the following information
-      | Song count |
-      | 2          |
+      | field      | value |
+      | Song count | 2     |
     And I uncheck "Include unrated"
     And I choose the following instruments for each player
       | user | instrument |
@@ -69,8 +69,8 @@ Feature: Adding songs to playlists
     And I am on the details page for playlist "Sample"
     And I click "Auto-add songs"
     And I enter the following information
-      | Song count |
-      | 2          |
+      | field      | value |
+      | Song count | 2     |
     And I uncheck "Include unrated"
     And I choose the following instruments for each player
       | user | instrument |
@@ -88,8 +88,8 @@ Feature: Adding songs to playlists
     Given I am on the details page for playlist "Sample"
     And I click "Auto-add songs"
     And I enter the following information
-      | Song count |
-      | 2          |
+      | field      | value |
+      | Song count | 2     |
     And I select the following values from "Genre filter"
       | value    |
       | Genre 12 |
@@ -101,5 +101,35 @@ Feature: Adding songs to playlists
     And I should not see "Song 3"
     And I should not see "Song 5"
     And I should not see "Song 10"
+    And I should not see "Song 2"
+    And I should not see "Song 13"
+
+  @user
+  Scenario: Don't include songs with filtered difficulty ratings
+    Given the following songs have difficulties
+      | name    | bass | pro_drums |
+      | Song 3  | 0    | 6         |
+      | Song 5  | 1    | 4         |
+      | Song 10 | 2    | 3         |
+      | Song 12 | 3    | 2         |
+      | Song 13 | 4    | 0         |
+    And I am on the details page for playlist "Sample"
+    And I click "Auto-add songs"
+    And I enter the following information
+      | field                        | value   |
+      | Song count                   | 5       |
+      | Difficulty filter low        | 1       |
+      | Difficulty filter high       | 3       |
+    And I select the following values from "Difficulty filter instrument"
+      | value     |
+      | pro_drums |
+    And I choose the following instruments for each player
+      | user | instrument |
+      | me   | pro_drums  |
+    And I click "Add songs"
+    Then I should see "Song 12"
+    And I should see "Song 10"
+    And I should not see "Song 5"
+    And I should not see "Song 3"
     And I should not see "Song 2"
     And I should not see "Song 13"

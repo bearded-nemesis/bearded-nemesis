@@ -25,6 +25,13 @@
           .field
             = label_tag "genre_filter"
             = select_tag("genre_filter", options_for_select(@genres), multiple: true)
+          .field
+            = label_tag "difficulty_filter_instrument"
+            = select_tag "difficulty_filter_instrument", options_for_select(ApplicationController::INSTRUMENTS_WITH_PRO)
+            = label_tag "difficulty_filter_low"
+            = number_field_tag "difficulty_filter_low", 0, min: 0, max: 6
+            = label_tag "difficulty_filter_high"
+            = number_field_tag "difficulty_filter_high", 6, min: 0, max: 6
 
         .span9
           %fieldset
