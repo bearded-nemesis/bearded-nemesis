@@ -1,4 +1,6 @@
 class GenreFilter
+  attr_reader :genre
+
   def initialize(genre)
     @genre = [genre].flatten.map {|item| item.downcase}
   end

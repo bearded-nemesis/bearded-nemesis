@@ -1,6 +1,28 @@
 require "spec_helper"
 
 describe SongFilterFactory do
+  describe "genre filters" do
+    before :each do
+      @params = { "filter_index" => "0",
+                  "filter[0].type" => "genre",
+                  "filter[0].genre" => "rock" }
+    end
+
+    it "should return a genre filter" do
+      factory = SongFilterFactory.new
+      filters = factory.create_filters @params
+      filters.length.should eq(1)
+      filters[0].class.name.should eq("GenreFilter")
+    end
+
+    it "should populate the genre filter" do
+      factory = SongFilterFactory.new
+      filters = factory.create_filters @params.merge("filter[0].genre" => "rock, jazz")
+      filters.length.should eq(1)
+      filters[0].genre.should include("rock", "jazz")
+    end
+  end
+
   describe "difficulty filters" do
     before :each do
       @params = { "filter_index" => "0",
