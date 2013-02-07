@@ -22,6 +22,7 @@ $(->
   search = new Beard.Widgets.Songs.Search("#add-song-text", onCallback, onSelect)
 
   $("#players").chosen()
+  $("#songs").sortable().disableSelection()
   $(".instrument-select").change((evt)->
     select = $(evt.target)
     url = select.data("url");
