@@ -7,6 +7,14 @@
   padding:0 14px 0 10px;
 }
 
+#actions {
+  margin-left: 40px;
+}
+
+#songs tr.selected td {
+  background:#ffc;
+}
+
 .popover.left .arrow {
   top:47px;
 }

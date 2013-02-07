@@ -8,4 +8,12 @@ $(->
     false
 
   new Beard.Widgets.Songs.Search("#song-search .search-query", null, onSelect)
+
+  window.keyManager = new Beard.Widgets.KeyManager
+
+  # SHIFT + S
+  window.keyManager.register('LogToConsole', 's', (evt) ->
+    console.log "WOOT! WOOT!"
+  , 'SHIFT')
+
 )
