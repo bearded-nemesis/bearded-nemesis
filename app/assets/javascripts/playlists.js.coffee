@@ -15,7 +15,7 @@ $(->
 
   onSelect = (event, ui, $textbox) ->
     $hidden = $("<input>").attr("type", "hidden").attr("name", "songs[]").val(ui.item.id)
-    $("<li>").append(ui.item.label).append($hidden).prependTo($("#songs"))
+    $("<li>").append(ui.item.label).append($hidden).appendTo($("#songs"))
     $textbox.val("")
     return false
 
