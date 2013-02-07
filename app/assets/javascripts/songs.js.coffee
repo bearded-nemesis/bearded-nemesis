@@ -19,3 +19,5 @@ $ ->
 
   $('.ownership').ajaxToggle()
   ratingsPopup = new Beard.Widgets.Songs.RatingsWindow "#ratings-popup"
+
+  tableActions = new Beard.Widgets.Songs.TableActions "#songs", "#actions"

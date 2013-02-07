@@ -13,8 +13,13 @@
   #submit-filter.btn.pull-left
     Submit
 
-%table.table.table-bordered.table-striped
+#actions.btn-group.pull-left
+  %button.btn.disabled Mark as owned
+  %button.btn.disabled Add to playlist
+
+%table#songs.table.table-bordered.table-striped
   %tr
+    %th
     %th Owned
     %th Name
     %th Artist
