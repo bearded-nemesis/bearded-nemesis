@@ -97,7 +97,7 @@ class PlaylistsController < ApplicationController
   end
 
   def auto
-    @genres = Song.uniq.pluck :genre
+    @genres = Song.uniq.pluck(:genre).sort
   end
 
   def generate
