@@ -152,10 +152,13 @@ class PlaylistsController < ApplicationController
   def save_songs
     if params[:songs]
       params[:songs].each do |song_id|
+        position = params[:position][0] if params[:position].present?
+
         song = Song.find(song_id)
 
         playlist_song = PlaylistSong.new
         playlist_song.song = song
+        playlist_song.position = position
 
         @playlist.songs << playlist_song
       end

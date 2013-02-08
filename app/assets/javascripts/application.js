@@ -15,6 +15,7 @@
 //= require jquery.ui.widget
 //= require jquery.ui.autocomplete
 //= require jquery.ui.datepicker
+//= require jquery.ui.sortable
 //= require bootstrap/js/bootstrap.js
 //= require bootstrap/js/bootstrap-collapse.js
 //= require bootstrap/js/bootstrap-dropdown.js
