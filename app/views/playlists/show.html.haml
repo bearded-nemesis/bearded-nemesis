@@ -32,13 +32,16 @@
           %table#songs.table.table-striped.collapse-on-tablet
             %thead
               %tr
+                %th.hidden-tablet
                 %th Name
                 - @playlist.players.each do |player|
                   %th= player.email
                 %th
             %tbody
-              - @playlist.songs.each do |playlist_song|
-                %tr
+              - @playlist.songs.sort_by{|e| e[:position]}.each do |playlist_song|
+                %tr{"data-id" => playlist_song.song.id}
+                  %td.hidden-tablet
+                    %span.ui-icon.ui-icon-arrowthick-2-n-s
                   %td
                     =link_to playlist_song.song.name, song_path(playlist_song)
                   - @playlist.players.each do |player|
