@@ -2,6 +2,14 @@
 
 = image_tag avatar_url(@user, 200)
 
+%ul.unstyled.song-details
+  %li
+    %strong Email
+    = @user.email
+  %li
+    %strong Name
+    = @user.name
+
 %h2 Friends
 %ul
   - @friendships.each do |friendship|

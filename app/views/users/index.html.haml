@@ -3,12 +3,14 @@
 %table
   %tr
     %th
+    %th Name
     %th Email Address
     %th
 
   - @users.each do |user|
     %tr
-      %th= image_tag avatar_url(user, 24)
+      %td= image_tag avatar_url(user, 24)
+      %td= user.name || "No name"
       %td= link_to user.email, user
       %td= add_friend_link user
 

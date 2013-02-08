@@ -11,3 +11,11 @@ Given /^I have the following friends$/ do |friends|
 
   @current_user.save!
 end
+
+Given /^I am on my user page$/ do
+  visit user_path(@current_user)
+end
+
+Given /^I am on my user edit page$/ do
+  visit edit_user_path(@current_user)
+end
