@@ -19,13 +19,13 @@
             = get_event_datetime(@rock_party.eventDate)
           %p
             %b Host:
-            = @rock_party.user.email unless @rock_party.user.nil?
+            = @rock_party.user.display_name unless @rock_party.user.nil?
       .span4
         %fieldset
           %legend Attendees
           %ul
             - @rock_party.users.each do |user|
-              %li= user.email
+              %li= user.display_name
       .span4
         %fieldset
           %legend Playlists

@@ -10,7 +10,7 @@
     - @playlists.each do |playlist|
       %tr
         %td= link_to playlist.name, playlist
-        %td= playlist.user.email unless playlist.user.nil?
+        %td= playlist.user.display_name unless playlist.user.nil?
         %td= link_to 'Play', play_playlist_path(playlist)
 
   %br

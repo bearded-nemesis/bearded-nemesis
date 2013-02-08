@@ -22,7 +22,7 @@
 %h2 Friended by:
 %ul
   - @user.inverse_friends.each do |user|
-    %li= user.email
+    %li= user.display_name
 
 = link_to 'Edit', edit_user_path(@user)
 \|

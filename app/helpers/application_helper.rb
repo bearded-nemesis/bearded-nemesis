@@ -19,11 +19,11 @@ module ApplicationHelper
   def user_select_option(availableUsers, user)
     if availableUsers && availableUsers.include?(user)
       content_tag(:option, selected: "selected", value: user.id) do
-        user.email
+        user.display_name
       end
     else
       content_tag(:option, value: user.id) do
-        user.email
+        user.display_name
       end
     end
   end

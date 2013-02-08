@@ -15,4 +15,17 @@ describe User do
 
     first_user.friends.count.should eq(1)
   end
+
+  describe "display name" do
+    it "should show the name if it exists" do
+      user = User.new email: "foo@example.com"
+      user.name = "Mr. Sinister"
+      user.display_name.should eq("Mr. Sinister (foo@example.com)")
+    end
+
+    it "should show only email if name isn't set" do
+      user = User.new email: "foo@example.com"
+      user.display_name.should eq("foo@example.com")
+    end
+  end
 end
