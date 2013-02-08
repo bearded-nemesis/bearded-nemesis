@@ -33,9 +33,7 @@ end
 
 When /^I enter the following information$/ do |table|
   table.hashes.each do |item|
-    table.headers.each do |element|
-      fill_in element, with: item[element]
-    end
+    fill_in item[:field], with: item[:value]
   end
 end
 

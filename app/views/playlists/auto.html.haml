@@ -5,6 +5,7 @@
         %h3 Auto-add songs
 
     =form_tag generate_playlist_path(@playlist) do
+      = hidden_field_tag "filter_index", "0,1"
       .row-fluid
         .span3
           %fieldset
@@ -23,8 +24,17 @@
             = number_field_tag "default_rating", 3, min: 0, max: 5, required: true
 
           .field
-            = label_tag "genre_filter"
-            = select_tag("genre_filter", options_for_select(@genres), multiple: true)
+            = hidden_field_tag "filter[0]type", "genre"
+            = label_tag "filter[0]genre", "Genre"
+            = select_tag("filter[0]genre", options_for_select(@genres), multiple: true)
+          .field
+            = hidden_field_tag "filter[1]type", "difficulty"
+            = label_tag "filter[1]instrument", "Instrument difficulty"
+            = select_tag "filter[1]instrument", options_for_select(ApplicationController::INSTRUMENTS_WITH_PRO), include_blank: true
+            = label_tag "filter[1]low", "Minimum difficulty"
+            = number_field_tag "filter[1]low", 0, min: 0, max: 6
+            = label_tag "filter[1]high", "Maximum difficulty"
+            = number_field_tag "filter[1]high", 6, min: 0, max: 6
 
         .span9
           %fieldset

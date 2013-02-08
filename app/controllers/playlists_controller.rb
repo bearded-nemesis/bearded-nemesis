@@ -115,10 +115,12 @@ class PlaylistsController < ApplicationController
     player_instruments.delete_if { |item| item.nil? }
     song_count = params[:song_count].to_i
 
+    p params
     generator = SongSelector.new song_count
+    filters = SongFilterFactory.new.create_filters params
 
     @playlist.add_generated_songs generator, player_instruments, options do |song|
-      params[:genre_filter] ? params[:genre_filter].include?(song.genre) : true
+      filters.all? {|filter| filter.nil? or filter.matches? song }
     end
     @playlist.save
 

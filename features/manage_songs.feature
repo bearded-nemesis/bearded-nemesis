@@ -18,8 +18,11 @@ Feature: Manage songs
     And I am on the song list page
     When I click "New Song"
     And I enter the following information
-      | Name      | Artist     | Genre     | Shortname |
-      | Foo2 Song | Foo Artist | Foo Genre | foosong   |
+      | field     | value      |
+      | Name      | Foo2 Song  |
+      | Artist    | Foo Artist |
+      | Genre     | Foo Genre  |
+      | Shortname | foosong    |
     And I click "Save"
     And I am on the song list page
     Then I should see "Foo2 Song"
