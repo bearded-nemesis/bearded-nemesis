@@ -13,9 +13,14 @@ Feature: Plyaing a playlist
     And the following playlists
       | name      |
       | Sample    |
+      | Sample 2  |
     And the following songs are in playlist "Sample"
       | name    | me        |
       | Song 1  | pro_drums |
+      | Song 3  | pro_drums |
+    And the following songs are in playlist "Sample 2"
+      | name    | me        |
+      | Song 1  |           |
       | Song 3  | pro_drums |
     And I am logged in
 
@@ -59,3 +64,10 @@ Feature: Plyaing a playlist
     And I click "Finish"
     Then I should see "Details"
     And my rating for "pro_drums" on "Song 3" should be 2
+
+    @user
+    @javascript
+    Scenario: Playing a playlist with sitting out one song
+      Given I am on the details page for playlist "Sample 2"
+      When I click "Play" within the content
+      Then I should see "Song 3"

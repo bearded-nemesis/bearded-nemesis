@@ -67,8 +67,10 @@ When /^the following songs are in playlist "([^"]*)"$/ do |playlist_name, table|
     song = playlist.songs.build song: Song.find_by_name(item[:name])
 
     table.headers.drop(1).each do |element|
-      key = ("#{item[element]}_rocker=").to_sym
-      song.send key, get_player(element)
+      if item[element] != ""
+        key = ("#{item[element]}_rocker=").to_sym
+        song.send key, get_player(element) if key
+      end
     end
 
     song.save!

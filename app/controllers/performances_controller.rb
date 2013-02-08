@@ -24,7 +24,7 @@ class PerformancesController < ApplicationController
         render json: {
           name: playlist.name,
           id: playlist.id,
-          songs: songs
+          songs: songs.find_all {|song| song[:instrument]}
         }
       }
     end
