@@ -6,5 +6,10 @@
         - @user.errors.full_messages.each do |msg|
           %li= msg
 
+  .control-group
+    = f.label :name, :class => "control-label"
+    .controls
+      = f.text_field :name
+
   .actions
     = f.submit 'Save'
