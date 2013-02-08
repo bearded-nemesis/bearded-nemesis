@@ -10,8 +10,7 @@
   - @users.each do |user|
     %tr
       %td= image_tag avatar_url(user, 24)
-      %td= user.name || "No name"
-      %td= link_to user.email, user
+      %td= link_to user.display_name, user
       %td= add_friend_link user
 
 %br

@@ -16,7 +16,7 @@
         %td= rock_party.name
         %td= rock_party.location
         %td= get_event_datetime(rock_party.eventDate)
-        %td= rock_party.user.email unless rock_party.user.nil?
+        %td= rock_party.user.display_name unless rock_party.user.nil?
         %td= link_to 'Show', rock_party
         %td= link_to 'Edit', edit_rock_party_path(rock_party)
         %td= link_to 'Destroy', rock_party, method: :delete, data: { confirm: 'Are you sure?' }

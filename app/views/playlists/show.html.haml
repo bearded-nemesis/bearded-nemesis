@@ -14,13 +14,13 @@
           %legend Details
           %p
             %b User:
-            = @playlist.user.email unless @playlist.user.nil?
+            = @playlist.user.display_name unless @playlist.user.nil?
       .span4
         %fieldset
           %legend Players
           %ul
             - @playlist.users.each do |user|
-              %li= user.email
+              %li= user.display_name
       .span4
         %fieldset
           %legend Stats

@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
     admin
   end
 
+  def display_name
+    return email if name.nil? or name.empty?
+    "#{name} (#{email})"
+  end
+
   private
 
   def whitelisted
