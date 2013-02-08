@@ -38,7 +38,7 @@
                   %th= player.email
                 %th
             %tbody
-              - @playlist.songs.sort_by{|e| e[:position]}.each do |playlist_song|
+              - @playlist.songs.sort_by{|e| e[:position] || 0}.each do |playlist_song|
                 %tr{"data-id" => playlist_song.song.id}
                   %td.hidden-tablet
                     %span.ui-icon.ui-icon-arrowthick-2-n-s
