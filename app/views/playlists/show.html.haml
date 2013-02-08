@@ -29,21 +29,24 @@
         %fieldset
           %legend Songs
           = link_to 'Auto-add songs', auto_playlist_path(@playlist), :id => "auto-add-songs", :class => "btn pull-right"
-          %table.table.table-striped.collapse-on-tablet
+          %table#songs.table.table-striped.collapse-on-tablet
             %thead
               %tr
+                %th.hidden-tablet
                 %th Name
                 - @playlist.players.each do |player|
                   %th= player.email
                 %th
             %tbody
-              - @playlist.songs.each do |playlist_song|
-                %tr
+              - @playlist.songs.sort_by{|e| e[:position]}.each do |playlist_song|
+                %tr{"data-id" => playlist_song.song.id}
+                  %td.hidden-tablet
+                    %span.ui-icon.ui-icon-arrowthick-2-n-s
                   %td
                     =link_to playlist_song.song.name, song_path(playlist_song)
                   - @playlist.players.each do |player|
                     %td
-                      %span.show-on-tablet= player.email
+                      %span.visible-tablet= player.email
                       %span.clearfix= instrument_select_list(playlist_song, player)
                   %td= link_to "Remove", playlist_song, method: :delete, data: { confirm: 'Are you sure?' }
     .row-fluid

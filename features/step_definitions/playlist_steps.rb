@@ -55,7 +55,7 @@ end
 Given /^playlist "([^"]*)" has the following songs$/ do |playlist_name, table|
   playlist = Playlist.find_by_name playlist_name
   table.hashes.each do |item|
-    playlist.songs.create song: Song.find_by_name(item[:song])
+    playlist.songs.create song: Song.find_by_name(item[:song]), position: 0
   end
   playlist.save
 end

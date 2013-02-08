@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20130208004259) do
     t.integer  "pro_drums_rocker_id"
     t.integer  "pro_vocals_rocker_id"
     t.integer  "pro_keyboard_rocker_id"
+    t.integer  "position"
   end
 
   add_index "playlist_songs", ["playlist_id"], :name => "index_playlist_songs_on_playlist_id"

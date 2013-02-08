@@ -18,7 +18,7 @@ class PlaylistSong < ActiveRecord::Base
                   :keyboard_rocker, :vocals_rocker,
                   :pro_bass_rocker, :pro_drums_rocker, :pro_guitar_rocker,
                   :pro_keyboard_rocker, :pro_vocals_rocker,
-                  :song, :playlist
+                  :song, :playlist, :position
 
   def instrument_for(user)
     return nil if user.nil?
