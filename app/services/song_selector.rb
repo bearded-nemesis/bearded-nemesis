@@ -8,6 +8,7 @@ class SongSelector
 
   def generate(ratings)
     return [] unless ratings.respond_to? :keys
+    return [] unless ratings.keys.count > 0
     return [] unless ratings.keys.all? {|key| ratings[key].respond_to? :keys}
 
     f = write_data_file ratings
@@ -20,7 +21,6 @@ class SongSelector
         value = Glpk_wrapper.glp_get_col_prim problem, i
 
         if value.to_i == 1 and (match = /selected_songs\[([0-9]+)\]/.match name)
-          puts name
           selected_song_ids << match[1].to_i
         end
       end

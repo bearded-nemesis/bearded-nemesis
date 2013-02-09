@@ -24,4 +24,10 @@ describe SongSelector do
     songs = selector.generate({ 1 => nil })
     songs.should be_empty
   end
+
+  it "should return an empty array if there are no available songs" do
+    selector = SongSelector.new 1
+    songs = selector.generate({ })
+    songs.should be_empty
+  end
 end

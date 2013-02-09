@@ -115,7 +115,6 @@ class PlaylistsController < ApplicationController
     player_instruments.delete_if { |item| item.nil? }
     song_count = params[:song_count].to_i
 
-    p params
     generator = SongSelector.new song_count
     filters = SongFilterFactory.new.create_filters params
 
