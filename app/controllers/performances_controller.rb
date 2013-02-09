@@ -4,9 +4,9 @@ class PerformancesController < ApplicationController
 
   def show
     playlist = Playlist.find params[:id]
-
-    songs = playlist.songs.map do |item|
+    songs = playlist.songs.select{ |s| s.instrument_for current_user }.map do |item|
       instrument = item.instrument_for(current_user)
+
       rating = current_user.ratings.where(song_id: item.song).first
 
       {
@@ -24,7 +24,7 @@ class PerformancesController < ApplicationController
         render json: {
           name: playlist.name,
           id: playlist.id,
-          songs: songs.find_all {|song| song[:instrument]}
+          songs: songs
         }
       }
     end
