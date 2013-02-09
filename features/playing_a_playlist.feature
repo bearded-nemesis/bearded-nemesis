@@ -32,6 +32,7 @@ Feature: Plyaing a playlist
     Then I should see "Song 1"
     When I give a 4 star rating
     And I click "Next"
+    Then I should see "Song 3"
     And I give a 2 star rating
     And I click "Finish"
     Then I should see "Details"
@@ -59,6 +60,7 @@ Feature: Plyaing a playlist
     Then I should see "Song 1"
     Then the performance song rating should be 3
     And I click "Next"
+    Then I should see "Song 3"
     Then the performance song rating should be 1
     And I give a 2 star rating
     And I click "Finish"

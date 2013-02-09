@@ -36,8 +36,8 @@ When /^I am on the detail[s]? page for playlist "(.*?)"$/ do |playlist_name|
 end
 
 When /^I enter the song "(.*?)"$/ do |song_name|
-  enter_song_in_autocomplete(song_name)
-  page.execute_script %Q{ $('.ui-menu-item a:contains("#{song_name}")').trigger("mouseenter").trigger("click"); }
+  fill_in_autocomplete '#add-song-text', song_name
+  choose_autocomplete 2, song_name
 end
 
 Then /^I should not see "(.*?)" in autocomplete$/ do |song_name|

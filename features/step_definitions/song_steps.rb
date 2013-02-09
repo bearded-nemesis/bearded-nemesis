@@ -128,7 +128,6 @@ Then /^my rating for "(.*?)" on "(.*?)" should be (\d+)$/ do |instrument, song, 
   rating = Rating.where(song_id: song, user_id: @current_user).first
 
   puts instrument
-  p rating
 
   rating[instrument.to_sym].should eq(value.to_i)
 end
