@@ -27,7 +27,7 @@ Feature: Adding songs to playlists
   @user
   Scenario: Auto adding songs for one user
     Given I am on the details page for playlist "Sample"
-    And I click "Auto-add songs"
+    And I click "Auto Add"
     And I enter the following information
       | field      | value |
       | Song count | 2     |
@@ -45,7 +45,7 @@ Feature: Adding songs to playlists
   @user
   Scenario: Auto adding songs excluding non-rated songs
     Given I am on the details page for playlist "Sample"
-    And I click "Auto-add songs"
+    And I click "Auto Add"
     And I enter the following information
       | field      | value |
       | Song count | 2     |
@@ -67,7 +67,7 @@ Feature: Adding songs to playlists
       | song    |
       | Song 12 |
     And I am on the details page for playlist "Sample"
-    And I click "Auto-add songs"
+    And I click "Auto Add"
     And I enter the following information
       | field      | value |
       | Song count | 2     |
@@ -86,7 +86,7 @@ Feature: Adding songs to playlists
   @user
   Scenario: Don't include filtered songs
     Given I am on the details page for playlist "Sample"
-    And I click "Auto-add songs"
+    And I click "Auto Add"
     And I enter the following information
       | field      | value |
       | Song count | 2     |
@@ -114,7 +114,7 @@ Feature: Adding songs to playlists
       | Song 12 | 3    | 2         |
       | Song 13 | 4    | 0         |
     And I am on the details page for playlist "Sample"
-    And I click "Auto-add songs"
+    And I click "Auto Add"
     And I enter the following information
       | field              | value   |
       | Song count         | 5       |
@@ -133,3 +133,15 @@ Feature: Adding songs to playlists
     And I should not see "Song 3"
     And I should not see "Song 2"
     And I should not see "Song 13"
+
+  @user
+  Scenario: Manually adding songs to a playlist from the details screen
+    Given I am on the details page for playlist "Sample"
+    When I click "Manual Add"
+    And I enter the following information
+      | field           | value  |
+      | add_song_search | Song 1 |
+    And I click "Song 10"
+    And I click "Close"
+    Then I should see "Song 10"
+    And I should not see "Song 1"

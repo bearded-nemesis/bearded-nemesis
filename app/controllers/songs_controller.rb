@@ -16,7 +16,18 @@ class SongsController < ApplicationController
 
   def search
     @term = params[:term]
-    build_song_list Song.where("UPPER(name) LIKE UPPER(?)", @term + '%').order(:name)
+    songs = Song.where("UPPER(songs.name) LIKE UPPER(?)", '%' + @term + '%')
+
+    if params[:mine]
+      songs = songs.includes(:users)
+        .where("(songs_users.user_id = ?)", current_user.id)
+    end
+
+    respond_to do |format|
+      format.html { build_song_list songs.order("songs.name") }
+      format.json { render json: songs.order("songs.name").limit(10) }
+    end
+
   end
 
   def mine

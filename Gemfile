@@ -22,6 +22,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'jquery-rails', "~> 2.2.0"
   gem 'jquery-ui-rails', "~> 3.0.1"
+  gem 'underscore-rails', "~> 1.4.3"
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -30,22 +31,24 @@ group :test, :development do
   gem "sqlite3"
   gem "rb-readline"
   gem 'rspec-rails', '~> 2.12.0'
-  gem "jasmine", "~> 1.3.1"
-  gem "jasmine-rails", "~> 0.3.2"
+  gem 'jasminerice'
   gem 'poltergeist', git: "https://github.com/jonleighton/poltergeist"
-end
-
-group :test do
   gem 'factory_girl_rails'
   gem 'cucumber-rails', require: false
   gem 'capybara'
+end
+
+group :test do
   gem 'database_cleaner'
 end
 
 group :development do
   gem "guard-rspec"
+  gem "guard-cucumber"
   gem "spork-rails"
   gem "guard-spork"
+  gem 'guard-jasmine'
+  gem 'rb-inotify', '~> 0.8.8'
 end
 
 # To use ActiveModel has_secure_password

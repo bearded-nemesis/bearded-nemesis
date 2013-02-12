@@ -5,4 +5,4 @@ describe 'PerformanceController', ->
     impl = window.beard.impl
 
     controller = new impl.PerformanceController scope, service, null
-    expect(scope.linkText).toEqual("Next >>")
+    expect(scope.linkText).toEqual("Next")

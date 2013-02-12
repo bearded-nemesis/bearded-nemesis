@@ -19,7 +19,7 @@
 //= require bootstrap/js/bootstrap.js
 //= require bootstrap/js/bootstrap-collapse.js
 //= require bootstrap/js/bootstrap-dropdown.js
-//= require vendor/angular.js
+//= require underscore
 //= require_tree ./vendor/
 //= require namespaces.js
 //= require_tree ./controllers/
