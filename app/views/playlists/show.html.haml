@@ -60,15 +60,17 @@
         \|
         = link_to 'Back', playlists_path
 
-#add-songs-sidebar-wrapper{"ng-controller" => "AddSongToPlaylistCtrl", "ng-cloak" => "", "ng-show" => "model.open"}
-  #add-songs-sidebar
-    %h4
-      Add Songs
-      %button.close{:type=>"button", "ng-click" => "close()"}
-        &times;
+#add-songs-sidebar-screen{"ng-controller" => "AddSongToPlaylistCtrl", "ng-cloak" => "", "ng-show" => "model.open"}
+  #add-songs-sidebar-wrapper
+    #add-songs-sidebar
+      %h4
+        Add Songs
+        %button.close{:type=>"button", "ng-click" => "close()"}
+          &times;
 
-    %input{"ng-model" => "model.songSearchTerm", "ng-change" => "search()"}
+      %input{"ng-model" => "model.songSearchTerm", "ng-change" => "search()"}
 
-    %ul
-      %li{"ng-repeat" => "song in model.songs", "ng-click" => "addSong(song.id)"}
-        {{song.name}}
+      %ul.unstyled
+        %li{"ng-repeat" => "song in model.songs", "ng-click" => "addSong(song.id)"}
+          {{song.name}}
+          %small ({{song.artist}})
