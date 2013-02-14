@@ -5,7 +5,7 @@ class @beard.impl.SongService
     @$http.get("/songs/search/#{data.term}?mine=#{data.mine}").success callback
 
   addSongToPlaylist: (playlistId, songId, callback) =>
-    @$http.post("/playlists/#{playlistId}/addSong", { songId: songId }).success callback
+    @$http.post("/playlist_song", { playlist_id: playlistId, song_id: songId }).success callback
 
 # Register
 window.beard.services.factory(

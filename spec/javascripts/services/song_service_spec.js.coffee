@@ -17,5 +17,5 @@ describe 'SongService', ->
     it 'should call post with the correct parameters', ->
       tempFunction = ->
       @service.addSongToPlaylist 8, 4, tempFunction
-      expect(@http.post).toHaveBeenCalledWith "/playlists/8/addSong", { songId: 4 }
+      expect(@http.post).toHaveBeenCalledWith "/playlist_song", { playlist_id: 8, song_id: 4 }
       expect(@httpResult.success).toHaveBeenCalledWith tempFunction
