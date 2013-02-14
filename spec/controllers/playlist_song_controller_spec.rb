@@ -13,9 +13,20 @@ describe PlaylistSongController do
   end
 
   describe "create" do
+    before :each do
+      post :create, playlist_id: @playlist.id, song_id: @song.id
+      @association = PlaylistSong.where playlist_id: @playlist.id, song_id: @song.id
+    end
+
     it "add specified song to playlist" do
-      #post :create
-      #assigns(:songs).length.should eq(100)
+      @association.should_not be_nil
+    end
+
+    it "should return a json representation of the association" do
+      results = JSON.parse response.body
+      results["playlist_id"].should eq(@playlist.id)
+      results["song_id"].should eq(@song.id)
+      results["id"].should eq(@association[0].id)
     end
   end
 end

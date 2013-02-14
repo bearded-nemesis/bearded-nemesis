@@ -1,5 +1,6 @@
 class PlaylistSongController < ApplicationController
   before_filter :authenticate_user!
+  protect_from_forgery :except => [:create]
 
   # PUT /playlistsong
   # PUT /playlistsong.json
@@ -20,6 +21,14 @@ class PlaylistSongController < ApplicationController
     else
       render json: playlist_song.errors, status: :unprocessable_entity
     end
+  end
+
+  def create
+    playlist = Playlist.find params[:playlist_id]
+    song = Song.find params[:song_id]
+    association = playlist.songs.create song: song
+    playlist.save
+    render json: association
   end
 
   # DELETE /playlistsong/1
