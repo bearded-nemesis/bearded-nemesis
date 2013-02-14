@@ -10,7 +10,7 @@ window.beard.controllers.controller(
   'PlaylistCtrl'
   [
     '$scope'
-    'bus'
+    'busService'
     beard.impl.PlaylistController
   ]
 )

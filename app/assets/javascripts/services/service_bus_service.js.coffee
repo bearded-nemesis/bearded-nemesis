@@ -1,4 +1,12 @@
+#window.beard.services.factory(
+#  'busService', () ->
+#      postal.channel()
+#)
+
 window.beard.services.factory(
-  'busService', () ->                       # all dependencies are passed as functions
+  'busService'
+  [
+    () ->
       postal.channel()
+  ]
 )

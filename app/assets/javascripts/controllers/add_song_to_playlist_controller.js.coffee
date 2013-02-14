@@ -1,15 +1,22 @@
 class @beard.impl.AddSongToPlaylistController
   constructor: (@$scope, @bus, @songService) ->
+    @$scope.model = { open: false }
+    @$scope.search = this.search
+    @$scope.addSong = this.addSong
+    @$scope.close = this.close
     @bus.subscribe "playlist.ui.showAddSong", this._showWindow
     @bus.subscribe "playlist.ui.close", this.close
 
   search: =>
-    @songService.search { term: @$scope.model.songSearchTerm, mine: true },
-      this._updateSongs
+    unless @$scope.model.songSearchTerm and @$scope.model.songSearchTerm.length > 0
+      @$scope.model.songs = []
+    else
+      @songService.search { term: @$scope.model.songSearchTerm, mine: true },
+        this._updateSongs
 
   addSong: (songId) =>
     data = { playlistId: @$scope.model.playlist.id, songId: songId }
-    @songService.addSongToPlaylist data, =>
+    @songService.addSongToPlaylist @$scope.model.playlist.id, songId, =>
       @$scope.model.songSearchTerm = ""
       @bus.publish "playlist.songAdded", data
 
@@ -27,7 +34,8 @@ window.beard.controllers.controller(
   'AddSongToPlaylistCtrl'
   [
     '$scope'
-    'bus'
+    'busService'
+    'songService'
     beard.impl.AddSongToPlaylistController
   ]
 )

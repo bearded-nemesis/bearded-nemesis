@@ -1,6 +1,6 @@
 %p#notice= notice
 
-.span8.offset2{"ng-controller" => "PlaylistCtrl"}
+.span8.offset2{"ng-controller" => "PlaylistCtrl", "ng-init" => "model.playlist.id = #{@playlist.id}"}
   .box-layout
     .row-fluid
       .span12
@@ -29,7 +29,7 @@
         %fieldset
           %legend Songs
           #add-songs-container.pull-right.btn-group
-            %a.btn{} Manual Add
+            %a.btn{"ng-click" => "showAddSong()" } Manual Add
             = link_to 'Auto Add', auto_playlist_path(@playlist), :id => "auto-add-songs", :class => "btn"
           %table#songs.table.table-striped.collapse-on-tablet
             %thead
@@ -58,3 +58,11 @@
         = link_to 'Delete', @playlist, method: :delete, data: { confirm: 'Are you sure?' }
         \|
         = link_to 'Back', playlists_path
+
+%div{"ng-controller" => "AddSongToPlaylistCtrl",
+  "ng-cloak" => "", "ng-show" => "model.open"}
+  %input{"ng-model" => "model.songSearchTerm", "ng-change" => "search()"}
+
+  %ul
+    %li{"ng-repeat" => "song in model.songs", "ng-click" => "addSong(song.id)"}
+      {{song.name}}

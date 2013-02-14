@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'json'
 
 describe SongsController do
   before :each do
@@ -33,7 +34,8 @@ describe SongsController do
 
     it "should show 10 songs that match when using json" do
       get :search, term: "1", mine: true, format: :json
-      assigns(:songs).length.should eq(10)
+      results = JSON.parse response.body
+      results.length.should eq(10)
     end
   end
 end
