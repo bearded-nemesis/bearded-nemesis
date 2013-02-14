@@ -18,9 +18,10 @@
       .span4
         %fieldset
           %legend Players
-          %ul
-            - @playlist.users.each do |user|
-              %li= user.display_name
+          - if @playlist.users.any?
+            %ul
+              - @playlist.users.each do |user|
+                %li= user.display_name
       .span4
         %fieldset
           %legend Stats
@@ -59,10 +60,15 @@
         \|
         = link_to 'Back', playlists_path
 
-%div{"ng-controller" => "AddSongToPlaylistCtrl",
-  "ng-cloak" => "", "ng-show" => "model.open"}
-  %input{"ng-model" => "model.songSearchTerm", "ng-change" => "search()"}
+#add-songs-sidebar-wrapper{"ng-controller" => "AddSongToPlaylistCtrl", "ng-cloak" => "", "ng-show" => "model.open"}
+  #add-songs-sidebar
+    %h4
+      Add Songs
+      %button.close{:type=>"button", "ng-click" => "close()"}
+        &times;
 
-  %ul
-    %li{"ng-repeat" => "song in model.songs", "ng-click" => "addSong(song.id)"}
-      {{song.name}}
+    %input{"ng-model" => "model.songSearchTerm", "ng-change" => "search()"}
+
+    %ul
+      %li{"ng-repeat" => "song in model.songs", "ng-click" => "addSong(song.id)"}
+        {{song.name}}
