@@ -1,25 +1,25 @@
 class @beard.impl.PlaylistController
-  constructor: (@$scope, @bus, @playlistService) ->
+  constructor: (@$scope, @bus, @playlistService, $routeParams) ->
     @$scope.showAddSong = this.showAddSong
     @bus.subscribe "playlist.songAdded", this._addSong
 
-    @playlistService.get { id: @$scope.model.playlist.id },
+    @playlistService.get { id: $routeParams.id },
       this._updatePlaylist
 
   showAddSong: =>
     @bus.publish "playlist.ui.showAddSong",
-      { "playlist": @$scope.model.playlist }
+      { playlist: @$scope.playlist }
 
   removeSong: (songId) =>
-    data = { playlistId: @$scope.model.playlist.id, songId: songId }
-    @playlistService.removeSongFromPlaylist @$scope.model.playlist.id, songId, =>
+    data = { playlistId: @$scope.playlist.id, songId: songId }
+    @playlistService.removeSongFromPlaylist @$scope.playlist.id, songId, =>
       @bus.publish "playlist.songRemoved", data
 
   _addSong: (data) =>
-    @$scope.model.playlist.songs.push data.songId
+    @$scope.playlist.songs.push data.songId
 
   _updatePlaylist: (data) =>
-    @$scope.model.playlist = data
+    @$scope.playlist = data
 
 window.beard.controllers.controller(
   'PlaylistCtrl'
@@ -27,6 +27,7 @@ window.beard.controllers.controller(
     '$scope'
     'busService'
     'playlistService'
+    '$routeParams'
     beard.impl.PlaylistController
   ]
 )

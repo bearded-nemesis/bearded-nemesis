@@ -13,6 +13,7 @@ angular.module("beard", ['beard.services', 'beard.controllers'])
         .when('/playlists/:id', {templateUrl: '/playlists/detail.html', controller: "PlaylistCtrl"})
         .when('/playlists/:id/players', {templateUrl: '/playlists/players.html', controller: "PlaylistPlayersCtrl"})
         .when('/playlists/:id/songs', {templateUrl: '/playlists/songs.html', controller: "PlaylistSongsCtrl"})
+        .when('/playlists/:id/play', {templateUrl: '/playlists/play.html', controller: "PlaylistPlayCtrl"})
         .otherwise({redirectTo: '/playlists'})
     ])
 
