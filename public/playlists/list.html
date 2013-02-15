@@ -1,2 +1,6 @@
 <h1>Playlist index!!  BOOYA!</h1>
-<a href="#/playlists/6">Foobar!</a>
+<ul>
+  <li ng-repeat="playlist in playlists">
+    <a href="#/playlists/{{playlist.id}}">{{playlist.name}}</a>
+  </li>
+</ul>

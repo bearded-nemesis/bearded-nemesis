@@ -6,8 +6,8 @@ class PlaylistsController < ApplicationController
   # GET /playlists
   # GET /playlists.json
   def index
-    @playlists = Playlist.where(user_id: current_user)
-    @playlists.concat Playlist.includes(:players).where("playlist_users.user_id" => current_user)
+    #@playlists = Playlist.where(user_id: current_user)
+    @playlists = Playlist.includes(:players).where("playlist_users.user_id" => current_user)
 
     respond_to do |format|
       format.html # index.html.erb
