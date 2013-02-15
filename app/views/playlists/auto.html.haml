@@ -44,17 +44,17 @@
             %thead
               %tr
                 %th &nbsp;
-                - @playlist.players.each do |player|
+                - @playlist.player_users.each do |player|
                   %th= player.email
             %tbody
               - ApplicationController::INSTRUMENTS.each do |instrument|
                 %tr
                   %td= instrument
-                  - @playlist.players.each do |player|
+                  - @playlist.player_users.each do |player|
                     %td= radio_button_tag "instrument_#{player.id}", instrument
                 %tr
                   %td= "#{instrument} (Pro)"
-                  - @playlist.players.each do |player|
+                  - @playlist.player_users.each do |player|
                     %td= radio_button_tag "instrument_#{player.id}", "pro_#{instrument}"
 
       .row-fluid

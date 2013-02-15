@@ -7,7 +7,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists.json
   def index
     @playlists = Playlist.where(user_id: current_user)
-    @playlists.concat Playlist.includes(:users).where("users.id" => current_user)
+    @playlists.concat Playlist.includes(:players).where("playlist_users.user_id" => current_user)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -67,7 +67,7 @@ class PlaylistsController < ApplicationController
     save_songs
 
     # Remove all players and add the ones being submitted via post
-    @playlist.users.delete_all
+    @playlist.players.delete_all
     save_players
 
     respond_to do |format|

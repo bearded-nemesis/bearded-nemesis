@@ -5,7 +5,7 @@ describe PerformancesController do
     @user = FactoryGirl.create :user
     @songs = FactoryGirl.create_list :song, 3
     @playlist = FactoryGirl.create :playlist
-    @playlist.players << @user
+    @playlist.players.create user: @user
     @songs.each do |song|
       @playlist.songs.create song: song, vocals_rocker: @user
     end

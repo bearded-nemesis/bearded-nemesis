@@ -1,20 +1,22 @@
 class Playlist < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :name, :user, :rock_party
+  before_save :ensure_owner_is_player
+  before_create :ensure_owner_is_player
+  before_validation :ensure_unique_players
 
-  has_and_belongs_to_many :users, :uniq => true do
-    def <<(new_item)
-      super new_item unless new_item == proxy_association.owner.user
-    end
+  attr_accessible :name, :user, :rock_party, :players
+
+  def ensure_owner_is_player
+    players << PlaylistUser.new(user: user, playlist: self) unless players.any? {|item| item.user == user}
   end
 
+  def ensure_unique_players
+    players.map {|item| item.user}.uniq.length == players.length
+  end
+
+  has_many :players, class_name: "PlaylistUser", :uniq => true
   has_many :songs, class_name: "PlaylistSong"
-
   belongs_to :rock_party
-
-  def players
-    users + [user]
-  end
 
   def add_generated_songs(generator, player_instruments, options = {})
     remove_unrated = options[:remove_unrated]
@@ -28,7 +30,7 @@ class Playlist < ActiveRecord::Base
 
     songs_to_remove = []
 
-    players.each do |player|
+    player_users.each do |player|
       player_ratings = player.ratings.includes :song
       instrument = player_instruments[player.id]
 
@@ -49,10 +51,14 @@ class Playlist < ActiveRecord::Base
       data = { song: song }
       player_instruments.keys.each do |player|
         instrument = player_instruments[player].to_s.gsub "pro_", ""
-        data["#{instrument}_rocker".to_sym] = players.find {|item| item.id == player}
+        data["#{instrument}_rocker".to_sym] = player_users.find {|item| item.id == player}
       end
 
       songs.create data
     end
+  end
+
+  def player_users
+    players.map {|item| item.user }
   end
 end

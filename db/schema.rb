@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208004425) do
+ActiveRecord::Schema.define(:version => 20130214223702) do
 
   create_table "admin_whitelists", :force => true do |t|
     t.string   "email"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(:version => 20130208004425) do
   add_index "playlist_songs", ["playlist_id"], :name => "index_playlist_songs_on_playlist_id"
   add_index "playlist_songs", ["song_id"], :name => "index_playlist_songs_on_song_id"
 
+  create_table "playlist_users", :force => true do |t|
+    t.integer "playlist_id"
+    t.integer "user_id"
+    t.string  "default_instrument"
+  end
+
+  add_index "playlist_users", ["playlist_id", "user_id"], :name => "index_playlists_users_on_playlist_id_and_user_id"
+
   create_table "playlists", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -56,13 +64,6 @@ ActiveRecord::Schema.define(:version => 20130208004425) do
   end
 
   add_index "playlists", ["user_id"], :name => "index_playlists_on_user_id"
-
-  create_table "playlists_users", :id => false, :force => true do |t|
-    t.integer "playlist_id"
-    t.integer "user_id"
-  end
-
-  add_index "playlists_users", ["playlist_id", "user_id"], :name => "index_playlists_users_on_playlist_id_and_user_id"
 
   create_table "ratings", :force => true do |t|
     t.integer  "user_id"

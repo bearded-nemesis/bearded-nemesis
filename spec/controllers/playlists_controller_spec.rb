@@ -8,7 +8,7 @@ describe PlaylistsController do
       @user = FactoryGirl.create :user
       @playlist_owned = FactoryGirl.create :playlist, user: @user, name: "I own it"
       @playlist_player = FactoryGirl.create :playlist, name: "I play in it"
-      @playlist_player.users << @user
+      @playlist_player.players.create user: @user
       @playlist_player.save
       @playlist_neither = FactoryGirl.create :playlist, name: "I should not see this"
     end

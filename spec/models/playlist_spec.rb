@@ -6,15 +6,17 @@ describe Playlist do
   end
 
   describe "players" do
-    it "should return all users" do
+    it "should return all players" do
       first_user = FactoryGirl.create :user
       second_user = FactoryGirl.create :user
 
-      playlist = Playlist.new name: "Foo", user: first_user
-      playlist.users << second_user
+      playlist = Playlist.create name: "Foo", user: first_user
+      playlist.players.create user: second_user
 
-      playlist.players.should include(first_user)
-      playlist.players.should include(second_user)
+      players = playlist.players.map {|item| item.user }
+
+      players.should include(first_user)
+      players.should include(second_user)
     end
   end
 
@@ -133,27 +135,24 @@ describe Playlist do
     a_user = FactoryGirl.create :user
 
     playlist = Playlist.new name: "Foo"
+    playlist.save!
 
-    playlist.users << a_user
+    playlist.players.create user: a_user
     playlist.save!
     playlist.reload
 
-    playlist.users << a_user
-    playlist.save!
-    playlist.reload
+    begin
+      playlist.players.create user: a_user
+      playlist.save!
+      true.should be_false
+    rescue
 
-    playlist.users.count.should eq(1)
+    end
   end
 
-  it "should not allow the owner to be added as a user" do
+  it "should add owner as a player" do
     me_user = FactoryGirl.create :user
-
-    playlist = Playlist.new name: "Foo", user: me_user
-
-    playlist.users << me_user
-    playlist.save!
-    playlist.reload
-
+    playlist = Playlist.create name: "Foo", user: me_user
     playlist.players.count.should eq(1)
   end
 end

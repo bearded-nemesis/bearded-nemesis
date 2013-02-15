@@ -19,7 +19,7 @@
         %fieldset
           %legend Players
           %ul
-            - @playlist.users.each do |user|
+            - @playlist.player_users.each do |user|
               %li= user.display_name
       .span4
         %fieldset
@@ -36,7 +36,7 @@
               %tr
                 %th.hidden-tablet
                 %th Name
-                - @playlist.players.each do |player|
+                - @playlist.player_users.each do |player|
                   %th= player.email
                 %th
             %tbody
@@ -46,7 +46,7 @@
                     %span.ui-icon.ui-icon-arrowthick-2-n-s
                   %td
                     =link_to playlist_song.song.name, song_path(playlist_song)
-                  - @playlist.players.each do |player|
+                  - @playlist.player_users.each do |player|
                     %td
                       %span.visible-tablet= player.email
                       %span.clearfix= instrument_select_list(playlist_song, player)
