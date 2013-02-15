@@ -1,18 +1,1 @@
-.span12
-  %h3 Listing playlists
-
-  %table.table.table-bordered.table-striped
-    %tr
-      %th Name
-      %th Owner
-      %th
-
-    - @playlists.each do |playlist|
-      %tr
-        %td= link_to playlist.name, playlist
-        %td= playlist.user.display_name unless playlist.user.nil?
-        %td= link_to 'Play', play_playlist_path(playlist)
-
-  %br
-
-  = link_to 'New Playlist', new_playlist_path
+.span12{"ng-view" => ""}

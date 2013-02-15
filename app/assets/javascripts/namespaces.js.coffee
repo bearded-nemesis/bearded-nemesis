@@ -13,12 +13,20 @@ window.beard = {
 }
 
 angular.module("beard", ['beard.services', 'beard.controllers'])
+  .config([
+    '$routeProvider'
+    ($routeProvider) ->
+      $routeProvider
+        .when('/playlists', {templateUrl: '/playlists/list.html', controller: "PlaylistListCtrl"})
+        .when('/playlists/:id', {templateUrl: '/playlists/detail.html', controller: "PlaylistCtrl"})
+        .when('/playlists/:id/players', {templateUrl: '/playlists/players.html', controller: "PlaylistPlayersCtrl"})
+        .otherwise({redirectTo: '/playlists'})
+    ])
 
 window.Beard =
   Widgets: {}
   Models: {}
   Controllers: {}
-  #App: angular.module("Beard", ["Beard.Controllers", "Beard.Services"])
 
 Beard.Widgets.Songs = {}
 Beard.Models.Songs = {}
