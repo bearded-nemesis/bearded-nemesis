@@ -5,7 +5,7 @@ class @beard.impl.PlaylistService
     @$http.get("/playlists/#{data.id}").success callback
 
   query: (callback) =>
-    @$http.get("/playlists").success callback
+    @$http.get("/playlists.json").success callback
 
 window.beard.services.factory(
   'playlistService'

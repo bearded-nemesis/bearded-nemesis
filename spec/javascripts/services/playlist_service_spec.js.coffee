@@ -10,7 +10,7 @@ describe 'PlaylistService', ->
     it 'should call get with the correct parameters', ->
       tempFunction = ->
       @service.query tempFunction
-      expect(@http.get).toHaveBeenCalledWith "/playlists"
+      expect(@http.get).toHaveBeenCalledWith "/playlists.json"
       expect(@httpResult.success).toHaveBeenCalledWith tempFunction
 
   describe 'get', ->
