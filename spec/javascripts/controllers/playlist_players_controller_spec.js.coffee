@@ -2,7 +2,7 @@ describe 'PlaylistController', ->
   beforeEach ->
     @scope = { }
     @routeParams = { id: 3 }
-    @playlistPlayersService = jasmine.createSpyObj 'playlistPlaylistService', ['query']
+    @playlistPlayersService = jasmine.createSpyObj 'playlistPlaylistService', ['query', 'delete']
     @controller = new beard.impl.PlaylistPlayersController @scope, @playlistPlayersService, @routeParams
 
   describe 'constructor', ->
@@ -12,9 +12,32 @@ describe 'PlaylistController', ->
 
     it 'should set the players property of the model', ->
       @controller
-      players = [ { id: 3, name: 'bro@example.com', instrument: "pro_drums" } ]
+      players = [ { id: 9, user_id: 3, name: 'bro@example.com', instrument: "pro_drums" } ]
       @playlistPlayersService.query.mostRecentCall.args[1] players
       expect(@scope.players).toEqual players
+
+    it 'should set the available instruments', ->
+      @controller
+      expect(@scope.instruments).toContain "bass"
+      expect(@scope.instruments).toContain "pro_bass"
+      expect(@scope.instruments).toContain "guitar"
+
+  describe 'remove', ->
+    beforeEach ->
+      @scope.players = [ { id: 9 }, { id: 6 } ]
+
+    it 'should call delete on the service', ->
+      @controller.delete 9
+      expect(@playlistPlayersService.delete).toHaveBeenCalledWith 9
+
+    it 'should remove the element from the players array', ->
+      @controller.delete 9
+      expect(@scope.players).not.toContain { id: 9 }
+      expect(@scope.players).toContain { id: 6 }
+
+    it 'should not call delete if player is not in collection', ->
+      @controller.delete 12
+      expect(@playlistPlayersService.delete).not.toHaveBeenCalled()
 
   #describe 'receiving an open message', ->
   #  beforeEach ->
