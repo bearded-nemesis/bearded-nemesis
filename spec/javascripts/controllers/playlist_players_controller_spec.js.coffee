@@ -2,7 +2,7 @@ describe 'PlaylistController', ->
   beforeEach ->
     @scope = { }
     @routeParams = { id: 3 }
-    @playlistPlayersService = jasmine.createSpyObj 'playlistPlaylistService', ['query', 'delete', 'update']
+    @playlistPlayersService = jasmine.createSpyObj 'playlistPlaylistService', ['query', 'delete', 'update', 'new']
     @controller = new beard.impl.PlaylistPlayersController @scope, @playlistPlayersService, @routeParams
 
   describe 'constructor', ->
@@ -66,22 +66,29 @@ describe 'PlaylistController', ->
       @controller.changeInstrument 12
       expect(@playlistPlayersService.update).not.toHaveBeenCalled()
 
-  #describe 'receiving an open message', ->
-  #  beforeEach ->
-  #    @callback = @bus.subscribe.calls[0].args[1]
-#
-#    it 'should add song passed in open message', ->
-#      songId = 6
-#      @callback { songId: songId }
-#      expect(@scope.playlist.songs).toContain songId
-#
-#  describe 'removing songs', ->
-#    it 'should send a remove song request when button is clicked', ->
-#      @controller.removeSong 6
-#      expect(@playlistService.removeSongFromPlaylist).toHaveBeenCalledWith 8, 6, jasmine.any(Function)
-#
-#  describe 'sending messages', ->
-#    it 'should send message when ui is requested', ->
-#      @controller.showAddSong()
-#
-#      expect(@bus.publish).toHaveBeenCalledWith "playlist.ui.showAddSong", {playlist: @scope.playlist}
+  describe 'adding players', ->
+    beforeEach ->
+      @scope.newPlayer = { user_id: 4, instrument: "vocals" }
+      @players = [ { id: 9, instrument: "pro_drums" }, { id: 6, instrument: "guitar" } ]
+      @playlistPlayersService.query.mostRecentCall.args[1] @players
+
+    it "should call new on the service", ->
+      @controller.addPlayer()
+      expect(@playlistPlayersService.new).toHaveBeenCalledWith { user_id: 4, instrument: "vocals" }, jasmine.any(Function)
+
+    it "should add the new player to the list", ->
+      @controller.addPlayer()
+      new_player = { id: 91, user_id: 4, instrument: "vocals" }
+      @playlistPlayersService.new.mostRecentCall.args[1] new_player
+      expect(@scope.players).toContain new_player
+
+    it "should remove the new player's instrument from the available list", ->
+      @controller.addPlayer()
+      new_player = { id: 91, user_id: 4, instrument: "vocals" }
+      @playlistPlayersService.new.mostRecentCall.args[1] new_player
+      expect(@scope.availableInstruments).not.toContain "vocals"
+
+    it "should not allow existing player to be added", ->
+      @scope.newPlayer.user_id = 6
+      @controller.addPlayer()
+      expect(@playlistPlayersService.new).not.toHaveBeenCalled

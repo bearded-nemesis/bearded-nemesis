@@ -22,9 +22,19 @@ class @beard.impl.PlaylistPlayersController
     player = _.find @$scope.players, (player) ->
       player.id == id
     return unless player
-      
+
     @_updateAvailableInstruments()
     @playlistPlayerService.update {id: id, instrument: player.instrument}
+
+  addPlayer: =>
+    player = _.find @$scope.players, (player) =>
+      player.id == @$scope.newPlayer.id
+
+    return if player
+
+    @playlistPlayerService.new @$scope.newPlayer, (data) =>
+      @$scope.players.push data
+      @_updateAvailableInstruments()
 
   _updateAvailableInstruments: =>
     @$scope.availableInstruments = _.difference @$scope.instruments, @$scope.players.map((item) -> item.instrument)
