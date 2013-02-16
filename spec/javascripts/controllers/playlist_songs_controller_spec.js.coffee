@@ -1,0 +1,2 @@
+describe 'PlaylistSongsController', ->
+  beforeEach ->
