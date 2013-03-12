@@ -38,7 +38,7 @@
                 %th.hidden-tablet
                 %th Name
                 - @playlist.players.each do |player|
-                  %th= player.email
+                  %th= player.user.email
                 %th
             %tbody
               - @playlist.songs.sort_by{|e| e[:position] || 0}.each do |playlist_song|
@@ -49,7 +49,7 @@
                     =link_to playlist_song.song.name, song_path(playlist_song)
                   - @playlist.players.each do |player|
                     %td
-                      %span.visible-tablet= player.email
+                      %span.visible-tablet= player.user.email
                       %span.clearfix= instrument_select_list(playlist_song, player)
                   %td= link_to "Remove", playlist_song, method: :delete, data: { confirm: 'Are you sure?' }
     .row-fluid
