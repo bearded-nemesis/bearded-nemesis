@@ -16,8 +16,8 @@ admin_user = User.create email: "admin@example.com",
                          admin: true
 user = User.create email: "user@example.com",
                    password: "password"
-User.create email: "bro@example.com",
-            password: "yousuck"
+bro = User.create email: "bro@example.com",
+                  password: "yousuck"
 
 Song.delete_all
 song1 = Song.create artist: "The Gathering",
@@ -77,3 +77,14 @@ song1.save!
 song2.ratings.build bass: 3,
                     user: user
 song2.save!
+
+Playlist.delete_all
+playlist1 = Playlist.create user: bro,
+                            name: "Kick Ass Playlist #1"
+
+PlaylistSong.delete_all
+playlistSong1 = PlaylistSong.create song: song1,
+                                    playlist: playlist1,
+                                    bass_rocker: bro
+
+playlist1.songs << playlistSong1
