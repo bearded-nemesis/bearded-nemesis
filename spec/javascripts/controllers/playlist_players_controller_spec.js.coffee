@@ -19,6 +19,9 @@ describe 'PlaylistController', ->
       expect(@scope.instruments).toContain "pro_bass"
       expect(@scope.instruments).toContain "guitar"
 
+    it 'should save the playlist id', ->
+      expect(@scope.playlistId).toEqual 3
+
   describe 'remove', ->
     beforeEach ->
       @players = [ { id: 9, instrument: "pro_drums" }, { id: 6, instrument: "guitar" } ]
@@ -74,7 +77,7 @@ describe 'PlaylistController', ->
 
     it "should call new on the service", ->
       @controller.addPlayer()
-      expect(@playlistPlayersService.new).toHaveBeenCalledWith { user_id: 4, instrument: "vocals" }, jasmine.any(Function)
+      expect(@playlistPlayersService.new).toHaveBeenCalledWith { playlist_id: 3, user_id: 4, instrument: "vocals" }, jasmine.any(Function)
 
     it "should add the new player to the list", ->
       @controller.addPlayer()
@@ -92,3 +95,8 @@ describe 'PlaylistController', ->
       @scope.newPlayer.user_id = 6
       @controller.addPlayer()
       expect(@playlistPlayersService.new).not.toHaveBeenCalled
+
+    it "should clear the new player variable", ->
+      @controller.addPlayer()
+      @playlistPlayersService.new.mostRecentCall.args[1] @players
+      expect(@scope.newPlayer).toEqual {}

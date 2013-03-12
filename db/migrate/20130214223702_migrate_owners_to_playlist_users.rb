@@ -2,7 +2,7 @@ class MigrateOwnersToPlaylistUsers < ActiveRecord::Migration
   def up
     playlists = Playlist.all
     playlists.each do |playlist|
-      playlist.users.create user: playlist.user
+      playlist.players.create user: playlist.user
       playlist.save
     end
   end

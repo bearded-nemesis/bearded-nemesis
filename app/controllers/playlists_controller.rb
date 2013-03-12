@@ -135,7 +135,7 @@ class PlaylistsController < ApplicationController
     if params[:players]
       params[:players].each do |user_id|
         user = User.find(user_id)
-        @playlist.users << user
+        @playlist.players << user
       end
     end
   end

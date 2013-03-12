@@ -3,6 +3,7 @@ class @beard.impl.PlaylistPlayersController
     @$scope.instruments = ["bass", "pro_bass", "guitar", "pro_guitar",
       "drums", "pro_drums", "keyboard", "pro_keyboard", "vocals", "pro_vocals"]
     @$scope.availableInstruments = @$scope.instruments
+    @$scope.playlistId = $routeParams.id
 
     @playlistPlayerService.query $routeParams.id, (data) =>
       @$scope.players = data
@@ -32,9 +33,12 @@ class @beard.impl.PlaylistPlayersController
 
     return if player
 
+    @$scope.newPlayer.playlist_id = @$scope.playlistId
+
     @playlistPlayerService.new @$scope.newPlayer, (data) =>
       @$scope.players.push data
       @_updateAvailableInstruments()
+      @$scope.newPlayer = {}
 
   _updateAvailableInstruments: =>
     @$scope.availableInstruments = _.difference @$scope.instruments, @$scope.players.map((item) -> item.instrument)
