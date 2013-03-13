@@ -1,11 +1,11 @@
 class @beard.impl.PlaylistPlayersController
-  constructor: (@$scope, @playlistPlayerService, $routeParams) ->
+  constructor: (@$scope, @playlistPlayersService, $routeParams) ->
     @$scope.instruments = ["bass", "pro_bass", "guitar", "pro_guitar",
       "drums", "pro_drums", "keyboard", "pro_keyboard", "vocals", "pro_vocals"]
     @$scope.availableInstruments = @$scope.instruments
     @$scope.playlistId = $routeParams.id
 
-    @playlistPlayerService.query $routeParams.id, (data) =>
+    @playlistPlayersService.query $routeParams.id, (data) =>
       @$scope.players = data
       @_updateAvailableInstruments()
 
@@ -47,7 +47,7 @@ window.beard.controllers.controller(
   'PlaylistPlayersCtrl'
   [
     '$scope'
-    'playlistPlayerService'
+    'playlistPlayersService'
     '$routeParams'
     beard.impl.PlaylistPlayersController
   ]

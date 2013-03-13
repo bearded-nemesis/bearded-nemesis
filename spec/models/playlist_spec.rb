@@ -131,28 +131,40 @@ describe Playlist do
     end
   end
 
-  it "should not allow players to be added twice" do
-    a_user = FactoryGirl.create :user
+  describe "players" do
+    it "should not allow players to be added twice" do
+      a_user = FactoryGirl.create :user
 
-    playlist = Playlist.new name: "Foo"
-    playlist.save!
+      playlist = Playlist.new name: "Foo"
+      playlist.save!
 
-    playlist.players.create user: a_user
-    playlist.save!
-    playlist.reload
-
-    begin
       playlist.players.create user: a_user
       playlist.save!
-      true.should be_false
-    rescue
+      playlist.reload
 
+      begin
+        playlist.players.create user: a_user
+        playlist.save!
+        true.should be_false
+      rescue
+
+      end
     end
-  end
 
-  it "should add owner as a player" do
-    me_user = FactoryGirl.create :user
-    playlist = Playlist.create name: "Foo", user: me_user
-    playlist.players.count.should eq(1)
+    it "should add owner as a player" do
+      me_user = FactoryGirl.create :user
+      playlist = Playlist.create name: "Foo", user: me_user
+      playlist.players.count.should eq(1)
+    end
+
+    it "should not add an owner if it's already in the collection" do
+      me_user = FactoryGirl.create :user
+      playlist = Playlist.create name: "Foo"
+      playlist.players.create user: me_user
+      playlist.user = me_user
+      playlist.save!
+
+      playlist.players.length.should eq(1)
+    end
   end
 end

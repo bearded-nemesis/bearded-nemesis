@@ -13,6 +13,8 @@ BeardedNemesis::Application.routes.draw do
       post :generate
       get :play
     end
+
+    resources :players, controller: "playlist_player"
   end
 
   resources :rock_parties
