@@ -9,11 +9,11 @@ angular.module("beard", ['beard.services', 'beard.controllers'])
     '$routeProvider'
     ($routeProvider) ->
       $routeProvider
-        .when('/playlists', {templateUrl: '/playlists/list.html', controller: "PlaylistListCtrl"})
-        .when('/playlists/:id', {templateUrl: '/playlists/detail.html', controller: "PlaylistCtrl"})
-        .when('/playlists/:id/players', {templateUrl: '/playlists/players.html', controller: "PlaylistPlayersCtrl"})
-        .when('/playlists/:id/songs', {templateUrl: '/playlists/songs.html', controller: "PlaylistSongsCtrl"})
-        .when('/playlists/:id/play', {templateUrl: '/playlists/play.html', controller: "PlaylistPlayCtrl"})
+        .when('/playlists', {templateUrl: '/assets/playlists/list.html', controller: "PlaylistListCtrl"})
+        .when('/playlists/:id', {templateUrl: '/assets/playlists/detail.html', controller: "PlaylistCtrl"})
+        .when('/playlists/:id/players', {templateUrl: '/assets/playlists/players.html', controller: "PlaylistPlayersCtrl"})
+        .when('/playlists/:id/songs', {templateUrl: '/assets/playlists/songs.html', controller: "PlaylistSongsCtrl"})
+        .when('/playlists/:id/play', {templateUrl: '/assets/playlists/play.html', controller: "PlaylistPlayCtrl"})
         .otherwise({redirectTo: '/playlists'})
     ])
 
